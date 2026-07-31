@@ -124,13 +124,14 @@ h1 span{color:var(--accent);}
 
 /* recipe photo marquee */
 .marquee-section{overflow:hidden;padding:var(--s-9) 0;background:var(--bg-canvas);border-top:1px solid var(--border-subtle);border-bottom:1px solid var(--border-subtle);}
-.marquee-track{display:flex;gap:var(--s-5);width:max-content;animation:marquee-scroll 46s linear infinite;}
+.marquee-track{display:flex;gap:var(--s-5);width:max-content;animation:marquee-scroll 46s linear infinite;animation-play-state:paused;}
+.marquee-track.ready{animation-play-state:running;}
 .marquee-item{position:relative;flex:none;width:260px;height:360px;border-radius:var(--radius-xl);overflow:hidden;box-shadow:var(--shadow-tab);}
 .marquee-item img{width:100%;height:100%;object-fit:cover;display:block;}
 .marquee-item::after{content:"";position:absolute;inset:0;background:linear-gradient(to top,rgba(14,31,22,0.72) 0%,rgba(14,31,22,0.15) 45%,rgba(14,31,22,0.35) 100%);}
 .marquee-tags{position:absolute;top:var(--s-3);left:var(--s-3);right:var(--s-3);display:flex;gap:var(--s-15);flex-wrap:wrap;z-index:1;}
 .marquee-name{position:absolute;left:var(--s-4);right:var(--s-4);bottom:var(--s-3);color:#fff;font-weight:800;font-size:var(--fs-web-body);line-height:1.3;z-index:1;text-wrap:pretty;}
-@keyframes marquee-scroll{ from{transform:translateX(0);} to{transform:translateX(-50%);} }
+@keyframes marquee-scroll{ from{transform:translateX(0);} to{transform:translateX(var(--marquee-end,-50%));} }
 @media (max-width:640px){ .marquee-item{width:200px;height:290px;} .marquee-name{font-size:var(--fs-web-sm);} }
 .hero-phones .device-shot{width:100%;height:auto;}
 
@@ -145,23 +146,31 @@ h1 span{color:var(--accent);}
 .problem-fix div{font-size:var(--fs-web-body);font-weight:700;line-height:1.5;text-wrap:pretty;}
 
 /* tour cards — whatsapp-style carousel, light */
-.tour-layout{display:flex;gap:var(--s-13);align-items:flex-start;flex-wrap:wrap;}
-.tour-heading{flex:0 0 400px;max-width:440px;}
-.tour-heading h2{font-size:clamp(28px,3.6vw,46px);}
-.tour-nav{display:flex;gap:var(--s-3);margin-top:var(--s-8);}
-.tour-arrow{width:48px;height:48px;flex:none;border-radius:var(--radius-full);border:1px solid var(--border-strong);background:transparent;color:var(--text-primary);display:flex;align-items:center;justify-content:center;transition:background var(--transition),transform var(--transition),border-color var(--transition);}
-.tour-arrow:hover{background:var(--hover-surface);border-color:var(--text-primary);}
-.tour-arrow:active{transform:scale(0.9);}
-.tour-arrow:disabled{opacity:0.3;pointer-events:none;}
-.tour-track-wrap{flex:1;min-width:280px;max-width:100%;overflow:hidden;}
-.tour-track{display:flex;gap:var(--s-6);overflow-x:auto;scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch;padding:4px 4px var(--s-4);scrollbar-width:none;margin:0 -4px;}
-.tour-track::-webkit-scrollbar{display:none;}
-.tour-card{flex:0 0 min(440px,84vw);scroll-snap-align:start;background:var(--bg-surface);border:1px solid var(--border-subtle);border-radius:var(--radius-2xl);padding:var(--s-8) var(--s-7) var(--s-7);display:flex;flex-direction:column;align-items:center;text-align:center;gap:var(--s-3);transition:transform 260ms cubic-bezier(0.2,0,0.2,1),box-shadow 260ms cubic-bezier(0.2,0,0.2,1);}
-.tour-card:hover{transform:translateY(-8px);box-shadow:var(--shadow-card);}
-.tour-card-phone{width:250px;margin-bottom:var(--s-3);filter:drop-shadow(0 14px 28px rgba(22,48,33,0.18));}
-.tour-card .eyebrow{margin-bottom:0;}
-.tour-card h3{font-size:var(--fs-web-h4);font-weight:800;letter-spacing:-0.01em;line-height:1.3;text-wrap:balance;}
-.tour-card p{font-size:var(--fs-web-sm);color:var(--text-secondary);line-height:1.55;}
+/* steps — numbered accordion + cropped phone in dashed ring */
+.steps-layout{display:flex;gap:var(--s-13);align-items:center;flex-wrap:wrap;}
+.steps-visual{position:relative;flex:0 0 440px;height:520px;display:flex;align-items:center;justify-content:center;overflow:hidden;border-radius:var(--radius-2xl);background:var(--bg-inverse-strong);}
+.steps-ring{position:absolute;width:480px;height:480px;border:1.5px dashed var(--on-inverse-border);border-radius:50%;}
+.steps-ring::before{content:"";position:absolute;inset:36px;border:1px dashed var(--on-inverse-bg-subtle);border-radius:50%;}
+.steps-phone{position:relative;width:320px;height:640px;margin-top:110px;}
+.step-img{position:absolute;left:0;top:0;width:100%;opacity:0;transform:scale(0.96);transition:opacity 420ms ease,transform 420ms ease;filter:drop-shadow(0 24px 48px rgba(0,0,0,0.4));}
+.step-img.active{opacity:1;transform:scale(1);}
+.steps-copy{flex:1;min-width:320px;}
+.steps-copy h2{font-size:clamp(28px,3.6vw,46px);}
+.steps-list{display:flex;flex-direction:column;margin-top:var(--s-8);}
+.step-item{display:flex;gap:var(--s-5);align-items:flex-start;text-align:left;padding:var(--s-6) 0;border-top:1px solid var(--border-subtle);background:none;border-left:none;border-right:none;border-bottom:none;width:100%;cursor:pointer;}
+.step-item:last-child{border-bottom:1px solid var(--border-subtle);}
+.step-num{font-size:clamp(30px,3.2vw,42px);font-weight:600;color:var(--border-strong);flex:none;width:64px;transition:color var(--transition);line-height:1;}
+.step-item.active .step-num{color:var(--accent);}
+.step-body h3{font-size:var(--fs-web-h4);font-weight:800;letter-spacing:-0.01em;margin-bottom:var(--s-2);transition:color var(--transition);}
+.step-item:not(.active) .step-body h3{color:var(--text-muted);}
+.step-body p{font-size:var(--fs-web-sm);color:var(--text-secondary);line-height:1.5;max-height:0;overflow:hidden;opacity:0;transition:max-height 320ms ease,opacity 320ms ease;}
+.step-item.active .step-body p{max-height:120px;opacity:1;margin-top:var(--s-2);}
+@media (max-width:900px){
+  .steps-visual{flex-basis:100%;height:420px;}
+  .steps-ring{width:380px;height:380px;}
+  .steps-ring::before{inset:28px;}
+  .steps-phone{width:250px;height:500px;margin-top:80px;}
+}
 @media (max-width:900px){ .tour-heading{flex-basis:100%;max-width:none;} }
 
 /* appka feature showcase */
@@ -380,10 +389,10 @@ footer.site{padding:var(--s-12) var(--s-9);background:var(--bg-inverse-strong);}
   <div class="wrap hero-inner">
     <div class="hero-copy">
       <div class="hero-badge"><span class="ms">schedule</span>Pripravujeme · pridaj sa medzi prvých</div>
-      <h1>Čo je v akcii, to <span>navaríme.</span></h1>
-      <p class="lead">Šporáček si prečíta letáky za teba. Povieš, do ktorého obchodu ideš a na koľko dní chceš mať jedlo — dostaneš jedálniček z akciových surovín, nákupný zoznam s cenami a po nákupe presné číslo, koľko si ušetril.</p>
+      <h1>Čo je v akcii, to <span>navaríš.</span></h1>
+      <p class="lead">Povieš obchod a počet dní — dostaneš jedálniček z akcií, nákupný zoznam s cenami a presnú úsporu.</p>
       <div class="hero-ctas">
-        <a class="btn-accent" href="#newsletter">Posielajte mi ukážky nákupov</a>
+        <a class="btn-accent" href="#newsletter">Chcem ukážky nákupov</a>
         <a class="btn-ghost" href="#ako">Ako to funguje</a>
       </div>
       <div class="hero-facts">
@@ -426,18 +435,15 @@ footer.site{padding:var(--s-12) var(--s-9);background:var(--bg-inverse-strong);}
 
 <section id="ako">
   <div class="wrap">
-    <div class="tour-layout" data-reveal>
-      <div class="tour-heading">
+    <div class="steps-layout" data-reveal>
+      <div class="steps-visual">
+        <div class="steps-ring"></div>
+        <div class="steps-phone" id="steps-phone"></div>
+      </div>
+      <div class="steps-copy">
         <div class="eyebrow">Tri ukážky z appky</div>
         <h2>Klikni si, ako to vyzerá vnútri</h2>
-        <p class="lead" style="margin-top:var(--s-35);color:var(--text-secondary);">Tri veci, ktoré appka robí za teba každý týždeň.</p>
-        <div class="tour-nav">
-          <button class="tour-arrow" id="tour-prev" aria-label="Predchádzajúca ukážka"><span class="ms">arrow_back</span></button>
-          <button class="tour-arrow" id="tour-next" aria-label="Ďalšia ukážka"><span class="ms">arrow_forward</span></button>
-        </div>
-      </div>
-      <div class="tour-track-wrap">
-        <div class="tour-track" id="tour-track"></div>
+        <div class="steps-list" id="steps-list"></div>
       </div>
     </div>
   </div>
@@ -696,13 +702,28 @@ var RECIPES = [
 (function(){
   var track = document.getElementById("marquee-track");
   if (!track) return;
-  var items = RECIPES.concat(RECIPES).map(function(r){
+  var unit = RECIPES.map(function(r){
     var b = basket(r, r.base);
     return '<div class="marquee-item"><img src="' + r.photo + '" alt="' + r.name + '" loading="lazy">' +
       '<div class="marquee-tags"><span class="chip-accent">' + fmtEur(b.perPortion) + ' / porcia</span><span class="chip-surface">' + r.store + '</span></div>' +
       '<span class="marquee-name">' + r.name + '</span></div>';
   }).join('');
-  track.innerHTML = items;
+  function buildMarquee(){
+    track.innerHTML = unit;
+    var unitWidth = track.scrollWidth;
+    if (!unitWidth) return;
+    var copies = Math.max(2, Math.ceil((window.innerWidth * 2.5) / unitWidth) + 1);
+    track.innerHTML = new Array(copies).fill(unit).join("");
+    track.style.setProperty("--marquee-end", "-" + (100 / copies).toFixed(4) + "%");
+    track.style.animationDuration = Math.round(unitWidth / 44) + "s";
+    track.classList.add("ready");
+  }
+  buildMarquee();
+  var marqueeResizeTimer;
+  window.addEventListener("resize", function(){
+    clearTimeout(marqueeResizeTimer);
+    marqueeResizeTimer = setTimeout(buildMarquee, 300);
+  });
 })();
 
 var PLANS = [
@@ -739,31 +760,44 @@ var LAWS = [
 ];
 
 var VIEWS = [
-  {eyebrow:"Recepty podľa akcií", title:"Leták si prečítal. Večeru vymyslel.",
+  {title:"Leták si prečítal. Večeru vymyslel.",
     text:"Ty len povieš, koľko dní a pre koľko ľudí. Zvyšok — čo je v akcii, čo sa k sebe hodí, čo sa oplatí — už vyriešil Šporáček.", img:"01-recepty-akcie.png"},
-  {eyebrow:"Nákup podľa zoznamu", title:"Zoznam, ktorý si pamätá tvoju špajzu",
+  {title:"Zoznam, ktorý si pamätá tvoju špajzu",
     text:"Prejdeš regál po regáli a ceny sa počítajú za tebou. Čo máš doma, sa samo odpočíta — nekúpiš to isté dvakrát.", img:"02-nakupny-zoznam.png"},
-  {eyebrow:"Varenie s príbehom", title:"Ruky v múke, telefón sa netreba dotýkať",
+  {title:"Ruky v múke, telefón sa netreba dotýkať",
     text:"Jeden krok, jedna obrazovka, veľké písmo. Ťukneš prstom aj keď máš na ňom cesto — a ideš ďalej.", img:"03-varenie-02.png"}
 ];
 
-/* ── tour cards ── */
-var tourTrack = document.getElementById("tour-track");
-tourTrack.innerHTML = VIEWS.map(function(v){
-  return '<div class="tour-card"><img class="tour-card-phone" src="../img/mockups/' + v.img + '" alt="' + v.title + '">' +
-    '<div class="eyebrow">' + v.eyebrow + '</div><h3>' + v.title + '</h3><p>' + v.text + '</p></div>';
-}).join('');
-var tourPrev = document.getElementById("tour-prev");
-var tourNext = document.getElementById("tour-next");
-function updateTourNav(){
-  tourPrev.disabled = tourTrack.scrollLeft < 8;
-  tourNext.disabled = tourTrack.scrollLeft > tourTrack.scrollWidth - tourTrack.clientWidth - 8;
-}
-function tourStep(){ var c = tourTrack.querySelector(".tour-card"); return c ? c.getBoundingClientRect().width + 24 : 300; }
-tourPrev.addEventListener("click", function(){ tourTrack.scrollBy({left:-tourStep(), behavior:"smooth"}); });
-tourNext.addEventListener("click", function(){ tourTrack.scrollBy({left:tourStep(), behavior:"smooth"}); });
-tourTrack.addEventListener("scroll", updateTourNav);
-updateTourNav();
+/* ── steps ── */
+(function(){
+  var list = document.getElementById("steps-list");
+  var phone = document.getElementById("steps-phone");
+  if (!list || !phone) return;
+  phone.innerHTML = VIEWS.map(function(v,i){
+    return '<img class="device-shot step-img' + (i===0?' active':'') + '" data-i="' + i + '" src="../img/mockups/' + v.img + '" alt="' + v.title + '">';
+  }).join('');
+  list.innerHTML = VIEWS.map(function(v,i){
+    return '<button class="step-item' + (i===0?' active':'') + '" data-i="' + i + '">' +
+      '<span class="step-num">0' + (i+1) + '</span>' +
+      '<span class="step-body"><h3>' + v.title + '</h3><p>' + v.text + '</p></span></button>';
+  }).join('');
+  var items = Array.prototype.slice.call(list.querySelectorAll(".step-item"));
+  var imgs = Array.prototype.slice.call(phone.querySelectorAll(".step-img"));
+  var current = 0, timer;
+  function show(i){
+    current = i;
+    items.forEach(function(el){ el.classList.toggle("active", +el.getAttribute("data-i") === i); });
+    imgs.forEach(function(el){ el.classList.toggle("active", +el.getAttribute("data-i") === i); });
+  }
+  function restart(){
+    clearInterval(timer);
+    timer = setInterval(function(){ show((current + 1) % VIEWS.length); }, 5000);
+  }
+  items.forEach(function(el){
+    el.addEventListener("click", function(){ show(+el.getAttribute("data-i")); restart(); });
+  });
+  restart();
+})();
 
 /* ── sticky-scroll feature story ── */
 (function(){
