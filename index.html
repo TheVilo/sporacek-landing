@@ -288,9 +288,9 @@ h1 span{color:var(--accent);}
 .laws-arrow:active{transform:scale(0.9);}
 .laws-arrow:disabled{opacity:0.3;pointer-events:none;}
 .laws-track-wrap{flex:1;min-width:280px;max-width:100%;overflow:hidden;}
-.laws-track{display:flex;gap:var(--s-5);overflow-x:auto;scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch;padding:4px 4px var(--s-3);scrollbar-width:none;margin:0 -4px;}
+.laws-track{display:flex;gap:var(--s-6);overflow-x:auto;scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch;padding:4px 4px var(--s-3);scrollbar-width:none;margin:0 -4px;}
 .laws-track::-webkit-scrollbar{display:none;}
-.law-card{flex:0 0 250px;scroll-snap-align:start;border-radius:var(--radius-xl);padding:var(--s-7);display:flex;flex-direction:column;gap:var(--s-3);transition:transform 260ms cubic-bezier(0.2,0,0.2,1),box-shadow 260ms cubic-bezier(0.2,0,0.2,1);}
+.law-card{flex:0 0 min(400px,78vw);scroll-snap-align:start;border-radius:var(--radius-2xl);padding:var(--s-8) var(--s-7);display:flex;flex-direction:column;gap:var(--s-3);transition:transform 260ms cubic-bezier(0.2,0,0.2,1),box-shadow 260ms cubic-bezier(0.2,0,0.2,1);}
 .law-card:hover{transform:translateY(-8px);box-shadow:0 22px 44px rgba(0,0,0,0.3);}
 .law-num-row{display:flex;align-items:baseline;gap:var(--s-2);}
 .law-num{font-size:var(--fs-web-amount);font-weight:800;letter-spacing:-0.04em;line-height:0.85;}
@@ -880,8 +880,9 @@ function updateLawsNav(){
   lawsPrev.disabled = lawsTrack.scrollLeft < 8;
   lawsNext.disabled = lawsTrack.scrollLeft > lawsTrack.scrollWidth - lawsTrack.clientWidth - 8;
 }
-lawsPrev.addEventListener("click", function(){ lawsTrack.scrollBy({left:-270, behavior:"smooth"}); });
-lawsNext.addEventListener("click", function(){ lawsTrack.scrollBy({left:270, behavior:"smooth"}); });
+function lawsStep(){ var c = lawsTrack.querySelector(".law-card"); return c ? c.getBoundingClientRect().width + 24 : 300; }
+lawsPrev.addEventListener("click", function(){ lawsTrack.scrollBy({left:-lawsStep(), behavior:"smooth"}); });
+lawsNext.addEventListener("click", function(){ lawsTrack.scrollBy({left:lawsStep(), behavior:"smooth"}); });
 lawsTrack.addEventListener("scroll", updateLawsNav);
 updateLawsNav();
 
