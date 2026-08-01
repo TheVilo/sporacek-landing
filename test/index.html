@@ -146,32 +146,33 @@ h1 span{color:var(--accent);}
 .problem-fix div{font-size:var(--fs-web-body);font-weight:700;line-height:1.5;text-wrap:pretty;}
 
 /* tour cards — whatsapp-style carousel, light */
-/* steps — numbered accordion + cropped phone in dashed ring */
-.steps-layout{display:flex;gap:var(--s-13);align-items:center;flex-wrap:wrap;}
-.steps-visual{position:relative;flex:0 0 440px;height:520px;display:flex;align-items:center;justify-content:center;overflow:hidden;border-radius:var(--radius-2xl);background:var(--bg-inverse-strong);}
-.steps-ring{position:absolute;width:480px;height:480px;border:1.5px dashed var(--on-inverse-border);border-radius:50%;}
-.steps-ring::before{content:"";position:absolute;inset:36px;border:1px dashed var(--on-inverse-bg-subtle);border-radius:50%;}
-.steps-phone{position:relative;width:320px;height:640px;margin-top:110px;}
-.step-img{position:absolute;left:0;top:0;width:100%;opacity:0;transform:scale(0.96);transition:opacity 420ms ease,transform 420ms ease;filter:drop-shadow(0 24px 48px rgba(0,0,0,0.4));}
-.step-img.active{opacity:1;transform:scale(1);}
-.steps-copy{flex:1;min-width:320px;}
-.steps-copy h2{font-size:clamp(28px,3.6vw,46px);}
-.steps-list{display:flex;flex-direction:column;margin-top:var(--s-8);}
-.step-item{display:flex;gap:var(--s-5);align-items:flex-start;text-align:left;padding:var(--s-6) 0;border-top:1px solid var(--border-subtle);background:none;border-left:none;border-right:none;border-bottom:none;width:100%;cursor:pointer;}
-.step-item:last-child{border-bottom:1px solid var(--border-subtle);}
-.step-num{font-size:clamp(30px,3.2vw,42px);font-weight:600;color:var(--border-strong);flex:none;width:64px;transition:color var(--transition);line-height:1;}
-.step-item.active .step-num{color:var(--accent);}
-.step-body h3{font-size:var(--fs-web-h4);font-weight:800;letter-spacing:-0.01em;margin-bottom:var(--s-2);transition:color var(--transition);}
-.step-item:not(.active) .step-body h3{color:var(--text-muted);}
-.step-body p{font-size:var(--fs-web-sm);color:var(--text-secondary);line-height:1.5;max-height:0;overflow:hidden;opacity:0;transition:max-height 320ms ease,opacity 320ms ease;}
-.step-item.active .step-body p{max-height:120px;opacity:1;margin-top:var(--s-2);}
+/* ako appka funguje — sticky-scroll scenes */
+.scroller{display:flex;gap:var(--s-13);align-items:flex-start;}
+.scenecol{flex:1;min-width:300px;}
+.scene{min-height:64vh;display:flex;flex-direction:column;justify-content:center;padding:var(--s-8) 0;opacity:0.32;transition:opacity 300ms ease;}
+.scene.active{opacity:1;}
+.scene-head{display:flex;align-items:center;gap:var(--s-3);margin-bottom:var(--s-35);}
+.scene-num{font-size:var(--fs-web-h4);font-weight:800;color:var(--accent);letter-spacing:-0.02em;}
+.scene-head .ms{font-size:var(--icon-xl);color:var(--accent);}
+.scene h3{font-size:var(--fs-web-h3);font-weight:800;letter-spacing:-0.02em;line-height:1.15;margin-bottom:var(--s-35);text-wrap:balance;}
+.scene .lead{font-size:var(--fs-web-lead);line-height:1.55;color:var(--text-secondary);margin-bottom:var(--s-6);text-wrap:pretty;}
+.scene ul{list-style:none;display:flex;flex-direction:column;gap:var(--s-3);}
+.scene li{display:flex;gap:var(--s-25);align-items:flex-start;}
+.scene li .ms{font-size:var(--icon-lg);flex:none;color:var(--accent);line-height:1.35;}
+.scene li span.t{font-size:var(--fs-web-body);font-weight:700;line-height:1.45;}
+.phcol.stickyphone{flex:0 0 320px;display:flex;flex-direction:column;align-items:center;gap:var(--s-5);position:sticky;top:100px;align-self:flex-start;}
+.scene-phone{position:relative;width:320px;height:589px;}
+.scene-img{position:absolute;inset:0;width:100%;opacity:0;transition:opacity 350ms ease;filter:drop-shadow(0 24px 54px rgba(22,48,33,0.24));}
+.scene-img.active{opacity:1;}
+.scene-dots{display:flex;gap:var(--s-2);}
+.scene-dot{min-width:30px;height:30px;padding:0 var(--s-15);border-radius:var(--radius-full);display:flex;align-items:center;justify-content:center;font-size:var(--fs-web-meta);font-weight:800;cursor:pointer;background:var(--bg-surface);color:var(--text-muted);border:1px solid var(--border-default);transition:background var(--transition),color var(--transition);}
+.scene-dot.active{background:var(--bg-inverse);color:var(--text-on-inverse);border-color:var(--bg-inverse);}
 @media (max-width:900px){
-  .steps-visual{flex-basis:100%;height:420px;}
-  .steps-ring{width:380px;height:380px;}
-  .steps-ring::before{inset:28px;}
-  .steps-phone{width:250px;height:500px;margin-top:80px;}
+  .scroller{flex-direction:column;}
+  .phcol.stickyphone{position:sticky;top:76px;order:-1;margin:0 auto var(--s-6);}
+  .scene-phone{width:230px;height:423px;}
+  .scene{min-height:auto;padding:var(--s-7) 0;}
 }
-@media (max-width:900px){ .tour-heading{flex-basis:100%;max-width:none;} }
 
 /* appka feature showcase */
 .sf-layout{display:flex;gap:var(--s-13);align-items:flex-start;}
@@ -303,7 +304,7 @@ h1 span{color:var(--accent);}
 .pricing-note div{font-size:var(--fs-web-meta);font-weight:700;color:var(--text-muted);line-height:1.5;max-width:560px;text-wrap:pretty;}
 
 /* laws — whatsapp-style carousel */
-.laws-section{background:var(--bg-inverse);overflow:hidden;}
+.laws-section{background:var(--bg-inverse);padding:var(--s-13) 0;}
 .laws-layout{display:flex;gap:var(--s-13);align-items:flex-start;flex-wrap:wrap;}
 .laws-heading{flex:0 0 400px;max-width:440px;}
 .laws-heading h2{font-size:clamp(28px,3.6vw,46px);}
@@ -312,8 +313,8 @@ h1 span{color:var(--accent);}
 .laws-arrow:hover{background:var(--on-inverse-bg);border-color:var(--text-on-inverse-muted);}
 .laws-arrow:active{transform:scale(0.9);}
 .laws-arrow:disabled{opacity:0.3;pointer-events:none;}
-.laws-track-wrap{flex:1;min-width:280px;max-width:100%;overflow:hidden;}
-.laws-track{display:flex;gap:var(--s-6);overflow-x:auto;scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch;padding:4px 4px var(--s-3);scrollbar-width:none;margin:0 -4px;}
+.laws-track-wrap{flex:1;min-width:280px;max-width:100%;overflow-x:hidden;}
+.laws-track{display:flex;gap:var(--s-6);overflow-x:auto;scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch;padding:var(--s-6) var(--s-3) var(--s-7);scrollbar-width:none;margin:0 calc(-1 * var(--s-3));}
 .laws-track::-webkit-scrollbar{display:none;}
 .law-card{flex:0 0 min(440px,82vw);scroll-snap-align:start;border-radius:var(--radius-2xl);padding:var(--s-9) var(--s-8);display:flex;flex-direction:column;gap:var(--s-4);transition:transform 260ms cubic-bezier(0.2,0,0.2,1),box-shadow 260ms cubic-bezier(0.2,0,0.2,1);}
 .law-card:hover{transform:translateY(-8px);box-shadow:0 22px 44px rgba(0,0,0,0.3);}
@@ -435,15 +436,15 @@ footer.site{padding:var(--s-12) var(--s-9);background:var(--bg-inverse-strong);}
 
 <section id="ako">
   <div class="wrap">
-    <div class="steps-layout" data-reveal>
-      <div class="steps-visual">
-        <div class="steps-ring"></div>
-        <div class="steps-phone" id="steps-phone"></div>
-      </div>
-      <div class="steps-copy">
-        <div class="eyebrow">Tri ukážky z appky</div>
-        <h2>Klikni si, ako to vyzerá vnútri</h2>
-        <div class="steps-list" id="steps-list"></div>
+    <div style="text-align:center;max-width:660px;margin:0 auto var(--s-12);">
+      <div class="eyebrow">Ako appka funguje</div>
+      <h2>Od letáku po tanier, krok po kroku</h2>
+    </div>
+    <div class="scroller">
+      <div class="scenecol" id="scenecol"></div>
+      <div class="phcol stickyphone">
+        <div class="scene-phone" id="scene-phone"></div>
+        <div class="scene-dots" id="scene-dots"></div>
       </div>
     </div>
   </div>
@@ -699,13 +700,35 @@ var RECIPES = [
   }
 ];
 
+var MARQUEE_RECIPES = [
+  {name:"Tuniaková nátierka", slug:"tuniakova-natierka", store:"Kaufland", price:1.08},
+  {name:"Mliečna ryža so škoricou", slug:"mliecna-ryza-skorica", store:"Lidl", price:0.47},
+  {name:"Raňajkový wrap s vajcom, morčacou šunkou a špenátom", slug:"ranajkovy-wrap-vajce-morcacia-sunka-spenat", store:"Biedronka", price:0.83},
+  {name:"Vzdušná vaječná omeleta so špenátom a syrom feta", slug:"omeleta-spenat-feta", store:"Biedronka", price:0.54},
+  {name:"Tvarohová nátierka s pažítkou", slug:"tvarohova-natierka-pazitka", store:"COOP", price:0.64},
+  {name:"Grécky jogurt s broskyňami a granolou", slug:"grecky-jogurt-broskyne-granola", store:"Tesco", price:1.19},
+  {name:"Grilované kuracie s kuskusom a zeleninou", slug:"grilovane-kuracie-kuskus-grilovana-zelenina", store:"Fresh", price:1.05},
+  {name:"Tekvicové rizoto", slug:"tekvicove-rizoto", store:"Tesco", price:1.08},
+  {name:"Zeleninové kari s ryžou", slug:"zeleninove-kari-ryza", store:"Kaufland", price:1.37},
+  {name:"Morčacie chili s fazuľou a ryžou", slug:"morcacie-chili-fazula-ryza", store:"Lidl", price:1.51},
+  {name:"Kuracie cordon bleu so šunkou a syrom", slug:"kuracie-cordon-bleu", store:"Biedronka", price:0.95},
+  {name:"Grécky šalát", slug:"grecky-salat", store:"Fresh", price:1.47},
+  {name:"Fazuľový guláš", slug:"fazulovy-gulas", store:"COOP Jednota", price:0.97},
+  {name:"Dusená bravčová krkovička s hubovou omáčkou", slug:"dusena-bravcova-krkovicka-hubova-omacka", store:"COOP Jednota", price:0.40},
+  {name:"Pečený losos so zemiakmi a cuketou", slug:"peceny-losos-zemiaky-cuketa", store:"Tesco", price:0.44},
+  {name:"Falošná sviečková na smotane s ryžou", slug:"falosna-svieckova-na-smotane-ryza", store:"Kaufland", price:0.49},
+  {name:"Plnená cuketa s mletým mäsom a syrom", slug:"plnena-cuketa-mlete-maso", store:"Biedronka", price:0.44},
+  {name:"Segedínsky guláš s ryžou", slug:"segedinsky-gulas-ryza", store:"BILLA", price:0.88},
+  {name:"Šunková nátierka", slug:"sunkova-natierka", store:"Fresh", price:0.43},
+  {name:"Krémový cícerový hummus s mrkvou a uhorkou", slug:"hummus-mrkva-uhorka", store:"Biedronka", price:0.79}
+];
+
 (function(){
   var track = document.getElementById("marquee-track");
   if (!track) return;
-  var unit = RECIPES.map(function(r){
-    var b = basket(r, r.base);
-    return '<div class="marquee-item"><img src="' + r.photo + '" alt="' + r.name + '" loading="lazy">' +
-      '<div class="marquee-tags"><span class="chip-accent">' + fmtEur(b.perPortion) + ' / porcia</span><span class="chip-surface">' + r.store + '</span></div>' +
+  var unit = MARQUEE_RECIPES.map(function(r){
+    return '<div class="marquee-item"><img src="https://recepty.sporacek.sk/fotky-nahlad/' + r.slug + '.jpg" alt="' + r.name + '" loading="lazy">' +
+      '<div class="marquee-tags"><span class="chip-accent">' + fmtEur(r.price) + ' / porcia</span><span class="chip-surface">' + r.store + '</span></div>' +
       '<span class="marquee-name">' + r.name + '</span></div>';
   }).join('');
   function buildMarquee(){
@@ -759,44 +782,91 @@ var LAWS = [
   {num:"3.",title:"Peniaze",text:"Šporáček vždy hľadá najnižšiu cenu — pokiaľ to neodporuje prvému ani druhému zákonu.",rank:"Až keď sedí všetko vyššie"}
 ];
 
-var VIEWS = [
-  {title:"Leták si prečítal. Večeru vymyslel.",
-    text:"Ty len povieš, koľko dní a pre koľko ľudí. Zvyšok — čo je v akcii, čo sa k sebe hodí, čo sa oplatí — už vyriešil Šporáček.", img:"01-recepty-akcie.png"},
-  {title:"Zoznam, ktorý si pamätá tvoju špajzu",
-    text:"Prejdeš regál po regáli a ceny sa počítajú za tebou. Čo máš doma, sa samo odpočíta — nekúpiš to isté dvakrát.", img:"02-nakupny-zoznam.png"},
-  {title:"Ruky v múke, telefón sa netreba dotýkať",
-    text:"Jeden krok, jedna obrazovka, veľké písmo. Ťukneš prstom aj keď máš na ňom cesto — a ideš ďalej.", img:"03-varenie-02.png"}
+var SCENES = [
+  {icon:"restaurant_menu", num:"01", img:"01-recepty-akcie.png",
+    title:"Jedálniček zložený z toho, čo je práve v akcii",
+    text:"Nedostaneš zoznam zliav. Dostaneš konkrétne jedlá na najbližšie dni — každé postavené na surovinách, ktoré sú tento týždeň výhodné.",
+    points:["Cena za porciu pri každom jedle","Recept vymeníš, ak sa ti nepozdáva","Porcie podľa toho, kto je doma"]},
+  {icon:"shopping_cart", num:"02", img:"02-nakupny-zoznam.png",
+    title:"Zoznam, ktorý pozná ceny aj tvoju špajzu",
+    text:"Suroviny zoradené podľa oddelení v predajni. Odškrtávaš, čo máš v košíku, a suma sa dopočítava naživo.",
+    points:["Akciová cena a značka pri každej surovine","Čo máš v špajzi, sa odpočíta","Nič nezabudneš — zoznam je z receptov"]},
+  {icon:"checklist", num:"03", img:"03-varenie-01.png",
+    title:"Suroviny a náčinie pripravené vopred",
+    text:"Skôr než zapneš sporák, odškrtneš si, čo máš pripravené. Žiadne prehľadávanie chladničky v polovici receptu.",
+    points:["Zoznam surovín s množstvom na porcie","Náčinie, ktoré budeš potrebovať","Odhad času do prvého kroku"]},
+  {icon:"local_fire_department", num:"04", img:"03-varenie-02.png",
+    title:"Varenie, kde nemusíš scrollovať — len klikáš",
+    text:"Celá obrazovka je jeden krok. Veľké písmo, časovač aj tip. Postupuješ ťuknutím, telefón si nemusíš utierať od múky.",
+    points:["Jeden krok = jedna obrazovka","Časovač spustíš jedným ťuknutím","Vrátiť sa vieš kedykoľvek"]},
+  {icon:"photo_camera", num:"05", img:"03-varenie-04.png",
+    title:"Fotka do kuchárskej knihy",
+    text:"Odfoť, čo ti vyšlo. Šporáček si zapamätá aj cenu za porciu, takže vieš, čo sa oplatilo navariť znova.",
+    points:["Vlastná kniha jedál, ktoré ti vyšli","Cena za porciu ostáva pri fotke","Uvidíš, koľko si na jedle ušetril"]}
 ];
 
-/* ── steps ── */
+/* ── ako appka funguje: sticky-scroll scenes ── */
 (function(){
-  var list = document.getElementById("steps-list");
-  var phone = document.getElementById("steps-phone");
-  if (!list || !phone) return;
-  phone.innerHTML = VIEWS.map(function(v,i){
-    return '<img class="device-shot step-img' + (i===0?' active':'') + '" data-i="' + i + '" src="../img/mockups/' + v.img + '" alt="' + v.title + '">';
+  var scenecol = document.getElementById("scenecol");
+  var phone = document.getElementById("scene-phone");
+  var dotsEl = document.getElementById("scene-dots");
+  if (!scenecol || !phone || !dotsEl) return;
+
+  scenecol.innerHTML = SCENES.map(function(s,i){
+    return '<div class="scene' + (i===0?' active':'') + '" data-scene-idx="' + i + '">' +
+      '<div class="scene-head"><span class="scene-num">' + s.num + '</span><span class="ms">' + s.icon + '</span></div>' +
+      '<h3>' + s.title + '</h3><p class="lead">' + s.text + '</p><ul>' +
+      s.points.map(function(p){ return '<li><span class="ms">check</span><span class="t">' + p + '</span></li>'; }).join('') +
+      '</ul></div>';
   }).join('');
-  list.innerHTML = VIEWS.map(function(v,i){
-    return '<button class="step-item' + (i===0?' active':'') + '" data-i="' + i + '">' +
-      '<span class="step-num">0' + (i+1) + '</span>' +
-      '<span class="step-body"><h3>' + v.title + '</h3><p>' + v.text + '</p></span></button>';
+  phone.innerHTML = SCENES.map(function(s,i){
+    return '<img class="device-shot scene-img' + (i===0?' active':'') + '" data-i="' + i + '" src="../img/mockups/' + s.img + '" alt="' + s.title + '">';
   }).join('');
-  var items = Array.prototype.slice.call(list.querySelectorAll(".step-item"));
-  var imgs = Array.prototype.slice.call(phone.querySelectorAll(".step-img"));
-  var current = 0, timer;
-  function show(i){
-    current = i;
-    items.forEach(function(el){ el.classList.toggle("active", +el.getAttribute("data-i") === i); });
-    imgs.forEach(function(el){ el.classList.toggle("active", +el.getAttribute("data-i") === i); });
+  dotsEl.innerHTML = SCENES.map(function(s,i){
+    return '<div class="scene-dot' + (i===0?' active':'') + '" data-i="' + i + '">' + s.num + '</div>';
+  }).join('');
+
+  var sceneEls = Array.prototype.slice.call(scenecol.querySelectorAll(".scene"));
+  var imgEls = Array.prototype.slice.call(phone.querySelectorAll(".scene-img"));
+  var dotEls = Array.prototype.slice.call(dotsEl.querySelectorAll(".scene-dot"));
+  var activeScene = 0;
+
+  function setActive(i){
+    if (i === activeScene) return;
+    activeScene = i;
+    sceneEls.forEach(function(el){ el.classList.toggle("active", +el.getAttribute("data-scene-idx") === i); });
+    imgEls.forEach(function(el){ el.classList.toggle("active", +el.getAttribute("data-i") === i); });
+    dotEls.forEach(function(el){ el.classList.toggle("active", +el.getAttribute("data-i") === i); });
   }
-  function restart(){
-    clearInterval(timer);
-    timer = setInterval(function(){ show((current + 1) % VIEWS.length); }, 5000);
+
+  var raf = null;
+  function onScroll(){
+    if (raf) return;
+    raf = requestAnimationFrame(function(){
+      raf = null;
+      var mid = window.innerHeight / 2;
+      var best = 0, bestDist = Infinity;
+      sceneEls.forEach(function(el){
+        var r = el.getBoundingClientRect();
+        var d = Math.abs(r.top + r.height / 2 - mid);
+        if (d < bestDist){ bestDist = d; best = +el.getAttribute("data-scene-idx"); }
+      });
+      setActive(best);
+    });
   }
-  items.forEach(function(el){
-    el.addEventListener("click", function(){ show(+el.getAttribute("data-i")); restart(); });
+  window.addEventListener("scroll", onScroll, {passive:true});
+  window.addEventListener("resize", onScroll);
+  onScroll();
+
+  dotEls.forEach(function(el){
+    el.addEventListener("click", function(){
+      var i = +el.getAttribute("data-i");
+      var target = sceneEls[i];
+      if (!target) return;
+      var top = target.getBoundingClientRect().top + window.scrollY - 110;
+      window.scrollTo({top:top, behavior:"smooth"});
+    });
   });
-  restart();
 })();
 
 /* ── sticky-scroll feature story ── */
