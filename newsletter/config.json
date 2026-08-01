@@ -3,20 +3,17 @@
     "action_url": "TODO",
     "list_id": "TODO",
     "pole_email": "EMAIL",
-    "pole_meno": "NOM",
     "honeypot_pole": "TODO",
     "extra_skryte_polia": [],
 
     "poznamky": {
-      "_vseobecne": "Túto konfiguráciu na runtime načíta landing/index.html (fetch na /newsletter/config.json) a použije na vyplnenie action + skrytých polí newsletter formulára. Kým je action_url 'TODO', stránka zostáva v lokálnom demo režime (validácia + úspešná hláška, nič sa nikam neposiela) — takže sa dá bezpečne pushnúť aj bez hotových Brevo údajov a nič sa nepokazí.",
+      "_vseobecne": "Túto konfiguráciu na runtime načíta landing/index.html (fetch na /newsletter/config.json) a použije na vyplnenie action + skrytých polí newsletter formulára. Kým je action_url 'TODO', stránka zostáva v lokálnom demo režime (validácia + úspešná hláška, nič sa nikam neposiela) — takže sa dá bezpečne pushnúť aj bez hotových Brevo údajov a nič sa nepokazí. Formulár na stránke má už len pole email (meno sa od redizajnu nezbiera), preto tu nie je pole_meno.",
 
       "action_url": "URL z atribútu action=\"...\" v <form> tagu, ktorý dostaneš z Brevo → Contacts → Forms → tvoj formulár → záložka Share → 'Get the code'. Zvyčajne tvaru https://xxxxxx.sibforms.com/serve/MUI....",
 
       "list_id": "ID zoznamu kontaktov v Brevo, do ktorého sa má prihlásený email pridať. Nájdeš ho buď v skrytom <input name=\"list_ids\" ...> v tom istom embed kóde, alebo v Brevo → Contacts → Lists → daný zoznam → v URL/detaile zoznamu. Slúži len ako záznam pre nás (ktorý zoznam je toto) — samotné napojenie na zoznam robí Brevo cez action_url + skryté polia, nie tento údaj priamo.",
 
       "pole_email": "Názov <input name=\"...\"> poľa pre email v Brevo formulári. Klasické Brevo (sibforms) formuláre bežne používajú 'EMAIL' — over si to v embed kóde a over/priprav podľa toho, ak je iný.",
-
-      "pole_meno": "Rovnaké ako pole_email, ale pre meno — Brevo bežne 'NOM' alebo 'FIRSTNAME' podľa nastavenia atribútov zoznamu. Over v embed kóde.",
 
       "honeypot_pole": "Názov skrytého anti-spam poľa z Brevo embed kódu (input, ktorý je v ich kóde schovaný cez CSS a NESMIE byť nikdy vyplnený človekom). Bežne má name obsahujúce niečo ako '_did' alebo podobný interný názov — skopíruj presne z embed kódu. Naša stránka toto pole nikdy nezobrazí ani nevyplní; ak by ho vyplnil bot, Brevo request zahodí.",
 
