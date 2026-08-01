@@ -308,7 +308,6 @@ h1 span{color:var(--accent);}
 .laws-layout{display:flex;gap:var(--s-13);align-items:flex-start;flex-wrap:wrap;}
 .laws-heading{flex:0 0 400px;max-width:440px;}
 .laws-heading h2{font-size:clamp(28px,3.6vw,46px);}
-.laws-cta{margin-top:var(--s-7);}
 .laws-nav{display:flex;gap:var(--s-3);margin-top:var(--s-6);}
 .laws-arrow{width:48px;height:48px;flex:none;border-radius:var(--radius-full);border:1px solid var(--on-inverse-border);background:transparent;color:var(--text-on-inverse);display:flex;align-items:center;justify-content:center;transition:background var(--transition),transform var(--transition),border-color var(--transition);}
 .laws-arrow:hover{background:var(--on-inverse-bg);border-color:var(--text-on-inverse-muted);}
@@ -326,6 +325,8 @@ h1 span{color:var(--accent);}
 .law-card p{font-size:var(--fs-web-body);font-weight:500;line-height:1.6;color:var(--on-inverse-secondary);text-wrap:pretty;}
 .law-rank{font-size:var(--fs-web-meta);font-weight:800;margin-top:auto;padding-top:var(--s-25);}
 @media (max-width:900px){ .laws-heading{flex-basis:100%;max-width:none;} }
+.laws-footer-cta{display:flex;align-items:center;justify-content:center;gap:var(--s-5);flex-wrap:wrap;margin-top:var(--s-9);padding-top:var(--s-7);border-top:1px solid var(--on-inverse-border);text-align:center;}
+.laws-footer-cta p{color:var(--text-on-inverse);font-size:var(--fs-web-h4);font-weight:800;letter-spacing:-0.01em;}
 
 /* quote */
 .quote-section{max-width:820px;margin:0 auto;text-align:center;}
@@ -541,7 +542,6 @@ footer.site{padding:var(--s-12) var(--s-9);background:var(--bg-inverse-strong);}
         <div class="eyebrow" style="color:var(--text-on-inverse-muted);">Na čom to stojí</div>
         <h2 style="color:var(--text-on-inverse);">Štyri zákony Šporáčka</h2>
         <p class="lead" style="color:var(--on-inverse-secondary);margin-top:var(--s-35);">Ako u Asimova: každý zákon platí len vtedy, keď neporušuje ten pred ním. Preto nikdy nedostaneš zlé jedlo len preto, že bolo lacné.</p>
-        <a class="btn-accent laws-cta" href="#newsletter">Mám záujem</a>
         <div class="laws-nav">
           <button class="laws-arrow" id="laws-prev" aria-label="Predchádzajúci zákon"><span class="ms">arrow_back</span></button>
           <button class="laws-arrow" id="laws-next" aria-label="Ďalší zákon"><span class="ms">arrow_forward</span></button>
@@ -550,6 +550,10 @@ footer.site{padding:var(--s-12) var(--s-9);background:var(--bg-inverse-strong);}
       <div class="laws-track-wrap">
         <div class="laws-track" id="laws-grid"></div>
       </div>
+    </div>
+    <div class="laws-footer-cta">
+      <p>Presvedčili sme ťa?</p>
+      <a class="btn-accent" href="#newsletter">Mám záujem</a>
     </div>
   </div>
 </section>
