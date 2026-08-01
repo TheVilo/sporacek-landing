@@ -3,18 +3,18 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Šporáček — Čo je v akcii, to navaríme.</title>
-<meta name="description" content="Šporáček ti z aktuálnych letákov poskladá jedálniček, nákupný zoznam s cenami a po nákupe presné číslo, koľko si ušetril.">
+<title>Šporáček — Vieme, čo dnes navariť z toho, čo je v akcii.</title>
+<meta name="description" content="Šporáček prečíta letáky za teba, poskladá jedálniček z akciových surovín a k nemu rovno aj nákupný zoznam s cenami.">
 <link rel="icon" type="image/svg+xml" href="img/favicon.svg">
 <link rel="icon" type="image/png" sizes="32x32" href="img/favicon-32.png">
 <link rel="icon" type="image/png" sizes="16x16" href="img/favicon-16.png">
 <link rel="apple-touch-icon" sizes="180x180" href="img/apple-touch-icon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500;600;700;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0">
 <style>
-/* ── ŠPORÁČEK tokeny — zdroj: claude.ai/design projekt "sporacek", tokens.css ── */
+/* ── ŠPORÁČEK tokeny — zdroj: claude.ai/design projekt "sporacek", tokens.css, 1:1 ── */
 :root {
   --green-900:#0E1F16; --green-800:#163021; --green-700:#204432;
   --green-600:#3C5A48; --green-500:#3F6B50; --green-400:#7FA38C; --green-300:#B7C9BE; --green-200:#E4EDE6;
@@ -25,47 +25,56 @@
   --white:#FFFFFF;
 
   --bg-canvas:var(--sand-100); --bg-surface:var(--white); --bg-sunken:var(--sand-300); --bg-sunken-soft:var(--sand-200);
-  --bg-inverse:var(--green-700); --bg-inverse-strong:var(--green-900); --bg-device:var(--green-800);
-  --text-primary:var(--green-700); --text-secondary:var(--grey-600); --text-muted:var(--grey-500); --text-faint:var(--grey-400);
-  --text-on-inverse:var(--white); --text-on-inverse-muted:var(--sand-400);
-  --border-subtle:rgba(32,68,50,0.07); --border-default:rgba(32,68,50,0.12); --border-strong:rgba(32,68,50,0.20);
-  --accent:var(--clay-600); --accent-bg:var(--clay-100); --accent-pressed:var(--clay-800); --accent-border:rgba(186,95,63,0.22);
+  --bg-inverse:var(--green-700); --bg-inverse-strong:var(--green-900); --bg-device:var(--green-800); --bg-desk:var(--sand-500); --bg-disabled:rgba(32,68,50,0.06);
+  --text-primary:var(--green-700); --text-secondary:var(--grey-600); --text-muted:var(--grey-500); --text-faint:var(--grey-400); --text-disabled:var(--grey-300);
+  --text-on-inverse:var(--white); --text-on-inverse-muted:var(--sand-400); --ink-ghost:rgba(32,68,50,0.3);
+  --border-subtle:rgba(32,68,50,0.07); --border-default:rgba(32,68,50,0.12); --border-strong:rgba(32,68,50,0.20); --border-selected:var(--green-700);
+  --accent:var(--clay-600); --accent-bg:var(--clay-100); --accent-bg-muted:var(--clay-150); --accent-muted:var(--clay-400); --accent-faint:var(--clay-300); --accent-pressed:var(--clay-800); --accent-border:rgba(186,95,63,0.22);
   --highlight:var(--sand-400);
-  --warn:var(--clay-700);
+  --warn:var(--clay-700); --warn-bg:var(--clay-100); --warn-bg-strong:var(--clay-200);
   --info:var(--gold-600); --info-strong:var(--gold-700); --info-bg:var(--gold-100);
-  --success-bg:var(--green-200); --sage:var(--green-400); --sage-border:rgba(127,163,140,0.4);
-  --pantry:var(--green-600);
+  --success:var(--green-500); --success-bg:var(--green-200); --sage:var(--green-400); --text-on-sage:var(--green-900); --sage-border:rgba(127,163,140,0.4);
+  --pantry:var(--green-600); --pantry-muted:var(--green-300);
   --on-inverse-bg-subtle:rgba(231,214,180,0.08); --on-inverse-bg:rgba(231,214,180,0.14); --on-inverse-border:rgba(231,214,180,0.22);
   --on-inverse-faint:rgba(231,214,180,0.6); --on-inverse-secondary:rgba(231,214,180,0.82);
-  --on-photo-bg:rgba(255,255,255,0.18); --on-photo-secondary:rgba(255,255,255,0.88);
-  --scrim:rgba(14,31,22,0.45);
+  --on-photo-bg:rgba(255,255,255,0.18); --on-photo-faint:rgba(255,255,255,0.65); --on-photo-secondary:rgba(255,255,255,0.88);
+  --overlay-ink:rgba(14,31,22,0.55); --scrim:rgba(14,31,22,0.45); --scrim-strong:rgba(14,31,22,0.92);
 
   --s-05:2px; --s-1:4px; --s-15:6px; --s-2:8px; --s-25:10px; --s-3:12px; --s-35:14px; --s-4:16px; --s-45:18px;
   --s-5:20px; --s-6:24px; --s-7:28px; --s-8:32px; --s-9:36px; --s-10:40px; --s-11:44px; --s-12:48px; --s-13:52px;
 
-  --radius-xs:6px; --radius-sm:10px; --radius-md:14px; --radius-lg:18px; --radius-xl:22px; --radius-2xl:32px; --radius-3xl:48px; --radius-full:999px;
+  --radius-2xs:2px; --radius-xs:6px; --radius-sm:10px; --radius-md:14px; --radius-lg:18px; --radius-xl:22px; --radius-2xl:32px; --radius-3xl:48px; --radius-full:999px;
 
   --font-sans:'Plus Jakarta Sans',sans-serif;
-  --icon-md:16px; --icon-lg:18px; --icon-xl:20px; --icon-2xl:24px; --icon-3xl:30px;
+  --fs-amount-xl:56px; --fs-amount-lg:38px; --fs-ghost:120px; --fs-hero:30px; --fs-display:26px; --fs-title-lg:20px; --fs-title:18px; --fs-subtitle:15px;
+  --fs-body:14px; --fs-body-sm:13.5px; --fs-label:12.5px; --fs-meta:11px; --fs-micro:10px;
+  --icon-empty:40px; --icon-xs:12px; --icon-sm:14px; --icon-md:16px; --icon-lg:18px; --icon-xl:20px; --icon-2xl:24px; --icon-3xl:30px; --icon-hero:50px;
   --fw-regular:600; --fw-medium:700; --fw-bold:800;
+  --lh-none:1; --lh-tight:1.08; --lh-snug:1.2; --lh-base:1.3; --lh-normal:1.45; --lh-relaxed:1.55;
 
-  --fs-web-hero:clamp(40px,5.6vw,68px); --fs-web-h2:clamp(30px,4vw,46px); --fs-web-h3:clamp(24px,2.6vw,30px);
-  --fs-web-h4:19px; --fs-web-amount:clamp(34px,4.6vw,52px); --fs-web-lead:20px; --fs-web-body:16px;
-  --fs-web-sm:14px; --fs-web-meta:12.5px; --fs-web-eyebrow:13px;
+  --fs-web-hero:clamp(40px,5.6vw,68px); --fs-web-h2:clamp(30px,4vw,46px); --fs-web-h3:clamp(24px,2.6vw,30px); --fs-web-h4:19px;
+  --fs-web-amount:clamp(34px,4.6vw,52px); --fs-web-lead:20px; --fs-web-body:16px; --fs-web-sm:14px; --fs-web-meta:12.5px; --fs-web-eyebrow:13px;
 
-  --shadow-tab:0 1px 3px rgba(32,68,50,0.12); --shadow-card:0 16px 32px rgba(32,68,50,0.22);
-  --shadow-accent:0 16px 36px rgba(186,95,63,0.45); --shadow-modal:0 24px 50px rgba(0,0,0,0.5);
+  --shadow-tab:0 1px 3px rgba(32,68,50,0.12); --shadow-card:0 16px 32px rgba(32,68,50,0.22); --shadow-card-lg:0 16px 34px rgba(32,68,50,0.22);
+  --shadow-accent:0 16px 36px rgba(186,95,63,0.45); --shadow-sheet-lg:0 -18px 50px rgba(14,31,22,0.3); --shadow-modal:0 24px 50px rgba(0,0,0,0.5);
+  --shadow-vignette:inset 0 0 90px rgba(0,0,0,0.45); --ring-success:0 0 0 5px rgba(127,163,140,0.35); --shadow-sheet:0 -12px 32px rgba(14,31,22,0.18); --shadow-device:0 30px 60px rgba(22,48,33,0.25);
+
+  --photo-scrim-full:linear-gradient(180deg,rgba(14,31,22,0.9) 0%,rgba(14,31,22,0.5) 30%,rgba(14,31,22,0.42) 48%,rgba(14,31,22,0.95) 100%);
+  --photo-scrim-down:linear-gradient(180deg,rgba(14,31,22,0.42) 0%,rgba(14,31,22,0.72) 45%,rgba(14,31,22,0.93) 100%);
+  --photo-scrim-up:linear-gradient(to top,rgba(14,31,22,0.92) 0%,rgba(14,31,22,0.05) 52%,rgba(14,31,22,0.34) 100%);
+  --photo-scrim-soft:linear-gradient(180deg,rgba(14,31,22,0.5) 0%,rgba(14,31,22,0.92) 70%);
 
   --focus-ring:0 0 0 3px rgba(186,95,63,0.45); --transition:140ms cubic-bezier(0.2,0,0.2,1);
-  --hover-surface:var(--sand-200); --hover-inverse:var(--green-800); --hover-sunken:var(--sand-550);
+  --hover-surface:var(--sand-200); --hover-sunken:var(--sand-550); --hover-inverse:var(--green-800); --hover-accent:var(--clay-800);
+  --hover-highlight:var(--sand-600); --hover-warn:var(--accent-bg-muted); --hover-on-photo:rgba(255,255,255,0.32); --pressed-scale:0.985;
 }
 
 *{box-sizing:border-box;margin:0;padding:0;}
 html{scroll-behavior:smooth;}
 @media (prefers-reduced-motion: reduce){ html{scroll-behavior:auto;} *{animation-duration:0.01ms !important;transition-duration:0.01ms !important;} }
-body{font-family:var(--font-sans);background:var(--bg-canvas);color:var(--text-primary);-webkit-font-smoothing:antialiased;overflow-x:hidden;}
-a{color:var(--accent);text-decoration:none;}
-a:hover{color:var(--accent-pressed);}
+body{font-family:var(--font-sans);background:var(--bg-canvas);color:var(--text-primary);-webkit-font-smoothing:antialiased;overflow-x:clip;}
+a{color:var(--text-primary);text-decoration:none;}
+a:hover{color:var(--accent);}
 ::selection{background:var(--accent);color:var(--white);}
 input::placeholder{color:var(--text-faint);}
 input:focus-visible,button:focus-visible,a:focus-visible,[tabindex]:focus-visible{outline:none;box-shadow:var(--focus-ring);border-radius:var(--radius-sm);}
@@ -73,818 +82,755 @@ button{font-family:inherit;cursor:pointer;}
 .ms{font-family:'Material Symbols Outlined';font-variation-settings:'FILL' 0,'wght' 500,'GRAD' 0,'opsz' 24;line-height:1;}
 .msf{font-family:'Material Symbols Outlined';font-variation-settings:'FILL' 1,'wght' 500,'GRAD' 0,'opsz' 24;line-height:1;}
 img{max-width:100%;}
-.wrap{max-width:1120px;margin:0 auto;padding-left:var(--s-9);padding-right:var(--s-9);}
-@media (max-width:640px){ .wrap{padding-left:var(--s-5);padding-right:var(--s-5);} }
+.wrap{max-width:1180px;margin:0 auto;padding-left:var(--s-9);padding-right:var(--s-9);}
+section{padding:var(--s-13) 0;}
+
+@keyframes heroFloat{from{opacity:0;transform:translateY(26px) scale(0.96);}to{opacity:1;transform:translateY(0) scale(1);}}
+@keyframes badgeFloat{from{opacity:0;transform:translateY(14px) scale(0.9);}to{opacity:1;transform:translateY(0) scale(1);}}
+@keyframes marqueeScroll{from{transform:translateX(0);}to{transform:translateX(var(--marquee-end,-50%));}}
 
 /* header */
-header.site{position:sticky;top:0;z-index:60;display:flex;align-items:center;justify-content:space-between;gap:var(--s-6);padding:var(--s-4) var(--s-9);background:rgba(250,246,238,0.9);backdrop-filter:blur(12px);border-bottom:1px solid var(--border-subtle);}
-header.site nav{display:flex;align-items:center;gap:var(--s-7);}
-header.site nav a.navlink{font-size:var(--fs-web-sm);font-weight:700;color:var(--text-primary);}
-header.site nav a.navlink:hover{color:var(--accent);}
-.btn-cta-dark{display:inline-flex;align-items:center;min-height:44px;padding:0 var(--s-5);background:var(--bg-inverse);color:var(--text-on-inverse);font-size:var(--fs-web-sm);font-weight:800;border-radius:var(--radius-md);transition:background var(--transition);}
-.btn-cta-dark:hover{background:var(--hover-inverse);color:var(--text-on-inverse);}
-@media (max-width:900px){ header.site nav a.navlink{display:none;} }
+header.site{position:sticky;top:0;z-index:60;background:rgba(250,246,238,0.86);backdrop-filter:blur(10px);border-bottom:1px solid var(--border-subtle);}
+header.site .inner{max-width:1180px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;gap:var(--s-6);padding:var(--s-3) var(--s-9);}
+.brand-mark{display:inline-block;background-color:currentColor;-webkit-mask:url(img/icon.svg) no-repeat center/contain;mask:url(img/icon.svg) no-repeat center/contain;}
+.brand-lockup{display:inline-block;background-color:currentColor;-webkit-mask:url(img/logo.svg) no-repeat center/contain;mask:url(img/logo.svg) no-repeat center/contain;}
+.navlinks{display:flex;align-items:center;gap:var(--s-7);}
+.navlinks a{font-size:var(--fs-web-sm);font-weight:700;color:var(--text-secondary);cursor:pointer;}
+.navlinks a:hover{color:var(--accent);}
+@media (max-width:860px){ .navlinks{display:none;} }
+.btn-header-cta{font-family:inherit;border:none;cursor:pointer;background:var(--accent);color:var(--text-on-inverse);font-size:var(--fs-web-sm);font-weight:800;padding:0 var(--s-6);min-height:44px;border-radius:var(--radius-md);display:inline-flex;align-items:center;transition:background var(--transition);}
+.btn-header-cta:hover{background:var(--accent-pressed);color:var(--text-on-inverse);}
+.ctashort{display:none;}
+@media (max-width:480px){ .ctafull{display:none !important;} .ctashort{display:inline-flex !important;} }
 
-/* section rhythm */
-section{padding:var(--s-13) 0;}
-section.surface{background:var(--bg-surface);}
-.eyebrow{font-size:var(--fs-web-eyebrow);font-weight:800;letter-spacing:0.18em;text-transform:uppercase;color:var(--accent);margin-bottom:var(--s-35);}
-h2{font-size:var(--fs-web-h2);font-weight:800;letter-spacing:-0.03em;line-height:1.05;text-wrap:balance;}
-.lead{font-size:var(--fs-web-lead);line-height:1.5;color:var(--text-secondary);text-wrap:pretty;}
+/* buttons */
+.btn-accent{font-family:inherit;border:none;cursor:pointer;background:var(--bg-inverse);color:var(--text-on-inverse);font-size:var(--fs-web-sm);font-weight:800;padding:0 var(--s-7);min-height:52px;border-radius:var(--radius-md);display:inline-flex;align-items:center;justify-content:center;transition:background var(--transition);}
+.btn-accent:hover{background:var(--hover-inverse);color:var(--text-on-inverse);}
+.btn-textlink{display:inline-flex;align-items:center;gap:var(--s-15);font-size:var(--fs-web-sm);font-weight:800;color:var(--text-primary);cursor:pointer;}
+.btn-textlink:hover{color:var(--accent);}
+.btn-solid-accent{font-family:inherit;border:none;cursor:pointer;background:var(--accent);color:var(--text-on-inverse);font-size:var(--fs-web-sm);font-weight:800;padding:0 var(--s-6);min-height:48px;border-radius:var(--radius-md);display:inline-flex;align-items:center;justify-content:center;transition:background var(--transition);}
+.btn-solid-accent:hover{background:var(--accent-pressed);color:var(--text-on-inverse);}
+.btn-inverse{font-family:inherit;border:none;cursor:pointer;background:var(--bg-inverse);color:var(--text-on-inverse);font-size:var(--fs-web-sm);font-weight:800;padding:0 var(--s-6);min-height:48px;border-radius:var(--radius-md);display:inline-flex;align-items:center;justify-content:center;transition:background var(--transition);}
+.btn-inverse:hover{background:var(--bg-inverse-strong);}
 
 /* hero */
-.hero-inner{display:flex;gap:var(--s-13);align-items:center;flex-wrap:wrap;}
-.hero-copy{flex:1;min-width:340px;}
-.hero-badge{display:inline-flex;align-items:center;gap:var(--s-2);background:var(--highlight);color:var(--text-primary);font-size:var(--fs-web-meta);font-weight:800;padding:var(--s-15) var(--s-35);border-radius:var(--radius-full);margin-bottom:var(--s-7);}
-h1{font-size:var(--fs-web-hero);font-weight:800;letter-spacing:-0.04em;line-height:0.98;margin-bottom:var(--s-6);text-wrap:balance;}
+.herorow{max-width:1180px;margin:0 auto;display:flex;gap:var(--s-13);align-items:center;padding:var(--s-11) var(--s-9) var(--s-13);}
+@media (max-width:900px){ .herorow{flex-direction:column !important;align-items:stretch !important;padding-left:var(--s-6);padding-right:var(--s-6);} }
+@media (max-width:700px){ .herorow{padding-top:var(--s-9);padding-bottom:var(--s-9);} }
+.herocopy{flex:1;min-width:320px;}
+.hero-badge{display:inline-flex;align-items:center;gap:var(--s-2);background:var(--highlight);color:var(--text-primary);font-size:var(--fs-web-meta);font-weight:800;padding:var(--s-15) var(--s-35);border-radius:var(--radius-full);margin-bottom:var(--s-6);}
+h1{font-size:var(--fs-web-hero);font-weight:800;letter-spacing:-0.04em;line-height:var(--lh-tight);margin-bottom:var(--s-6);text-wrap:balance;}
 h1 span{color:var(--accent);}
-.hero-ctas{display:flex;gap:var(--s-25);flex-wrap:wrap;margin:var(--s-6) 0 var(--s-7);}
-.btn-accent{display:inline-flex;align-items:center;justify-content:center;gap:var(--s-2);min-height:52px;padding:0 var(--s-7);background:var(--accent);color:var(--text-on-inverse);font-size:var(--fs-web-body);font-weight:800;border-radius:var(--radius-md);transition:background var(--transition),box-shadow var(--transition);}
-.btn-accent:hover{background:var(--accent-pressed);color:var(--text-on-inverse);box-shadow:var(--shadow-accent);}
-.btn-ghost{display:inline-flex;align-items:center;justify-content:center;min-height:52px;padding:0 var(--s-7);background:var(--bg-surface);color:var(--text-primary);border:1px solid var(--border-default);font-size:var(--fs-web-body);font-weight:800;border-radius:var(--radius-md);transition:background var(--transition);}
-.btn-ghost:hover{background:var(--hover-surface);color:var(--text-primary);}
-.hero-facts{display:flex;align-items:center;gap:var(--s-5);font-size:var(--fs-web-sm);color:var(--text-secondary);font-weight:700;flex-wrap:wrap;}
-.hero-facts span{display:inline-flex;align-items:center;gap:var(--s-15);}
-.hero-facts .ms{color:var(--accent);font-size:var(--icon-lg);}
+.herolead{font-size:var(--fs-web-lead);line-height:var(--lh-relaxed);color:var(--text-secondary);margin-bottom:var(--s-7);text-wrap:pretty;max-width:520px;font-weight:400;}
+.herocta{display:flex;align-items:center;gap:var(--s-6);margin-bottom:var(--s-8);flex-wrap:wrap;}
+.herofacts{display:flex;flex-wrap:wrap;gap:var(--s-6);font-size:var(--fs-web-sm);color:var(--text-secondary);font-weight:700;}
+.herofacts span{display:inline-flex;align-items:center;gap:var(--s-15);}
+.herofacts .ms{color:var(--accent);font-size:var(--icon-lg);}
+.herocollage{flex:0 0 auto;width:100%;max-width:480px;position:relative;aspect-ratio:1200/1263;}
+@media (max-width:900px){ .herocollage{max-width:380px !important;margin:var(--s-8) auto 0 !important;} }
+.herocollage > img{position:absolute;inset:0;width:100%;height:100%;object-fit:contain;animation:heroFloat 0.9s cubic-bezier(.16,1,.3,1) .1s both;}
+.hc-badge{position:absolute;background:var(--bg-surface);box-shadow:var(--shadow-card);border-radius:var(--radius-full);padding:var(--s-2) var(--s-4);display:flex;align-items:center;gap:var(--s-15);font-size:var(--fs-web-sm);font-weight:800;color:var(--text-primary);}
+.hc-badge.b1{top:1%;left:0%;animation:badgeFloat 0.8s cubic-bezier(.16,1,.3,1) .5s both;}
+.hc-badge.b2{bottom:8%;right:-2%;background:var(--bg-inverse);color:var(--text-on-inverse);animation:badgeFloat 0.8s cubic-bezier(.16,1,.3,1) .7s both;}
+.hc-badge .ms{font-size:var(--icon-lg);color:var(--accent);}
+.hc-badge.b2 .ms{color:var(--sage);}
+.hc-recipe{position:absolute;top:40%;left:-16%;width:224px;background:var(--bg-surface);border-radius:var(--radius-md);border:1px solid var(--border-subtle);overflow:hidden;display:flex;box-shadow:var(--shadow-card);transform:rotate(-7deg);animation:badgeFloat 0.8s cubic-bezier(.16,1,.3,1) .9s both;z-index:5;}
+.hc-recipe .ph{width:72px;flex:none;position:relative;}
+.hc-recipe .ph img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;}
+.hc-recipe .info{flex:1;min-width:0;padding:var(--s-2) var(--s-25);display:flex;flex-direction:column;justify-content:center;gap:2px;}
+.hc-recipe .nm{font-size:var(--fs-body-sm);font-weight:800;line-height:var(--lh-base);color:var(--text-primary);}
+.hc-recipe .meta{display:flex;align-items:center;gap:var(--s-2);}
+.hc-recipe .meta span{display:flex;align-items:center;gap:var(--s-1);font-size:var(--fs-meta);font-weight:400;color:var(--text-muted);white-space:nowrap;}
+.hc-recipe .meta .ms{font-size:var(--icon-sm);}
+.hc-recipe .price{display:flex;align-items:baseline;gap:var(--s-1);}
+.hc-recipe .price b{font-size:var(--fs-body-sm);font-weight:800;color:var(--text-primary);}
+.hc-recipe .price span{font-size:var(--fs-meta);font-weight:400;color:var(--text-muted);}
 
-/* phone mockups — device-shot PNGs already include the phone frame */
-.device-shot{display:block;filter:drop-shadow(0 24px 60px rgba(22,48,33,0.24));}
-.hero-phones{flex:0 0 auto;width:500px;pointer-events:none;}
-@media (max-width:900px){ .hero-phones{display:none;} }
-.hero-phones .device-shot{width:100%;height:auto;}
+/* v skratke */
+.skratke-sec{padding:calc(var(--s-13) + var(--s-9)) var(--s-9);background:var(--bg-inverse);}
+.skratke-inner{max-width:900px;margin:0 auto;text-align:center;}
+.stepsrow{display:flex;justify-content:center;align-items:center;gap:var(--s-5);flex-wrap:wrap;}
+@media (max-width:600px){ .stepsrow{gap:var(--s-2) !important;justify-content:space-between !important;} }
+.stepcol{display:flex;flex-direction:column;align-items:center;gap:var(--s-3);}
+@media (max-width:600px){ .stepcol{flex:1 1 0;min-width:0;} }
+.stepicon{width:64px;height:64px;border-radius:var(--radius-full);background:var(--on-inverse-bg);display:flex;align-items:center;justify-content:center;position:relative;}
+@media (max-width:600px){ .stepicon{width:48px !important;height:48px !important;} }
+.stepicon .badge{position:absolute;top:-6px;right:-6px;background:var(--accent);color:var(--text-on-inverse);width:22px;height:22px;border-radius:var(--radius-full);font-size:var(--fs-micro);font-weight:800;display:flex;align-items:center;justify-content:center;}
+.stepicon .ms{font-size:var(--icon-2xl);color:var(--text-on-inverse);}
+.steplabel{font-size:var(--fs-web-sm);font-weight:800;color:var(--text-on-inverse);}
+@media (max-width:600px){ .steplabel{font-size:var(--fs-web-meta) !important;text-align:center;} }
+.steparrow{font-size:var(--icon-2xl);color:var(--on-inverse-faint);}
+@media (max-width:600px){ .steparrow{font-size:var(--icon-md) !important;flex:none;} }
 
-/* problems */
-.problems-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:var(--s-6);}
-.problem{display:flex;flex-direction:column;gap:var(--s-4);}
-.problem-pain{display:flex;gap:var(--s-3);align-items:flex-start;}
-.problem-pain .ms{font-size:var(--icon-xl);flex:none;color:var(--text-faint);line-height:1.2;}
-.problem-pain div{font-size:var(--fs-web-h4);font-weight:800;line-height:1.35;color:var(--text-muted);text-wrap:pretty;}
-.problem-fix{display:flex;gap:var(--s-3);align-items:flex-start;padding:var(--s-45);background:var(--bg-canvas);border-radius:var(--radius-lg);border:1px solid var(--border-subtle);}
-.problem-fix .ms{font-size:var(--icon-xl);flex:none;color:var(--accent);line-height:1.2;}
-.problem-fix div{font-size:var(--fs-web-body);font-weight:700;line-height:1.5;text-wrap:pretty;}
+/* marquee */
+.marquee-wrap{overflow-x:auto;padding:0 0 var(--s-8);background:var(--bg-canvas);scrollbar-width:none;-webkit-overflow-scrolling:touch;overscroll-behavior-x:contain;}
+.marquee-wrap::-webkit-scrollbar{display:none;}
+.marquee{display:flex;gap:0;width:max-content;animation:marqueeScroll 42s linear infinite;touch-action:pan-x;}
+.marquee-item{flex:0 0 240px;height:310px;overflow:hidden;position:relative;box-shadow:var(--shadow-tab);}
+.marquee-item img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;}
+.marquee-item .scrim{position:absolute;inset:0;background:var(--photo-scrim-up);}
+.marquee-item .price{position:absolute;top:var(--s-3);left:var(--s-3);background:var(--accent);color:var(--text-on-inverse);font-size:var(--fs-web-meta);font-weight:800;padding:var(--s-1) var(--s-3);border-radius:var(--radius-full);white-space:nowrap;}
+.marquee-item .store{position:absolute;top:var(--s-3);right:var(--s-3);background:var(--bg-surface);color:var(--text-primary);font-size:var(--fs-web-meta);font-weight:800;padding:var(--s-1) var(--s-3);border-radius:var(--radius-full);white-space:nowrap;}
+.marquee-item .name{position:absolute;bottom:var(--s-3);left:var(--s-3);right:var(--s-3);color:var(--text-on-inverse);font-size:var(--fs-web-sm);font-weight:800;line-height:var(--lh-snug);text-wrap:pretty;}
+@media (max-width:640px){ .marquee-item{width:200px;} }
 
-/* tour tabs */
-.tab-row{display:flex;justify-content:center;gap:var(--s-2);flex-wrap:wrap;margin-bottom:var(--s-9);}
-.tab-btn{display:flex;align-items:center;gap:var(--s-2);min-height:48px;padding:0 var(--s-5);border-radius:var(--radius-full);background:var(--bg-surface);color:var(--text-primary);border:1px solid var(--border-default);font-size:var(--fs-web-sm);font-weight:800;transition:background var(--transition),border-color var(--transition),transform var(--transition);}
-.tab-btn:hover{background:var(--hover-surface);}
-.tab-btn:active{transform:scale(0.96);}
-.tab-btn.on{background:var(--bg-inverse);color:var(--text-on-inverse);border-color:var(--bg-inverse);}
-.tab-btn .ms{font-size:var(--icon-lg);}
-@media (max-width:640px){
-  .tab-row{flex-wrap:nowrap;justify-content:flex-start;overflow-x:auto;scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch;padding-bottom:var(--s-2);margin:0 calc(-1 * var(--s-5)) var(--s-7);padding-left:var(--s-5);padding-right:var(--s-5);}
-  .tab-row::-webkit-scrollbar{display:none;}
-  .tab-btn{flex:none;scroll-snap-align:start;}
+/* ako appka funguje — scenes */
+.eyebrow{font-size:var(--fs-web-eyebrow);font-weight:800;letter-spacing:0.18em;text-transform:uppercase;color:var(--accent);margin-bottom:var(--s-35);}
+h2{font-size:var(--fs-web-h2);font-weight:800;letter-spacing:-0.03em;line-height:var(--lh-tight);text-wrap:balance;}
+.scroller{display:flex;gap:var(--s-13);align-items:flex-start;}
+@media (max-width:900px){ .scroller{flex-direction:column !important;} }
+.scenecol{flex:1;min-width:300px;}
+.scene{min-height:60vh;display:flex;flex-direction:column;justify-content:center;padding:var(--s-8) 0;opacity:0.32;transition:opacity 0.3s ease;}
+.scene.active{opacity:1;}
+@media (max-width:900px){ .scene{min-height:auto !important;padding:var(--s-7) 0 !important;opacity:1 !important;border-bottom:1px solid var(--border-subtle) !important;} }
+.scene-head{display:flex;align-items:flex-start;justify-content:space-between;gap:var(--s-3);}
+@media (max-width:900px){ .scene-head{cursor:pointer !important;} }
+.scene-num{font-size:var(--fs-web-h4);font-weight:800;color:var(--accent);letter-spacing:-0.02em;}
+.scene-head .ms{font-size:var(--icon-xl);color:var(--accent);}
+.scene h3{font-size:var(--fs-web-h3);font-weight:800;letter-spacing:-0.02em;line-height:var(--lh-snug);text-wrap:balance;}
+.scene-chevron{display:none;flex:none;font-size:var(--icon-xl);color:var(--text-faint);transition:transform 0.25s ease;}
+@media (max-width:900px){ .scene-chevron{display:block !important;} }
+.scene-body{margin-top:var(--s-35);}
+.scene .lead{font-size:var(--fs-web-lead);line-height:var(--lh-relaxed);color:var(--text-secondary);margin-bottom:var(--s-6);text-wrap:pretty;font-weight:400;}
+.scene ul{list-style:none;display:flex;flex-direction:column;gap:var(--s-3);margin-bottom:var(--s-7);}
+.scene li{display:flex;gap:var(--s-25);align-items:flex-start;}
+.scene li .ms{font-size:var(--icon-lg);flex:none;color:var(--accent);line-height:1.35;}
+.scene li span.t{font-size:var(--fs-web-body);font-weight:700;line-height:var(--lh-base);text-wrap:pretty;}
+.scene-mobileimg{display:none;width:100%;max-width:280px;margin:0 auto;filter:drop-shadow(0 20px 36px rgba(14,31,22,0.2));}
+@media (max-width:900px){ .scene-mobileimg{display:block !important;} }
+.stickyphone{flex:0 0 340px;display:flex;flex-direction:column;align-items:center;gap:var(--s-5);position:sticky;top:100px;align-self:flex-start;}
+@media (max-width:900px){ .stickyphone{display:none !important;} }
+.stickyphone-img-box{position:relative;width:100%;aspect-ratio:600/1104;}
+.stickyphone-img-box img{position:absolute;inset:0;width:100%;height:100%;object-fit:contain;opacity:0;transition:opacity .35s ease;filter:drop-shadow(0 24px 44px rgba(14,31,22,0.22));}
+.stickyphone-img-box img.active{opacity:1;}
+.scene-dots{display:flex;gap:var(--s-2);}
+.scene-dot{min-width:30px;height:30px;padding:0 var(--s-15);border-radius:var(--radius-full);display:flex;align-items:center;justify-content:center;font-size:var(--fs-web-meta);font-weight:800;cursor:pointer;background:var(--bg-sunken);color:var(--text-muted);transition:background var(--transition),color var(--transition);}
+.scene-dot.active{background:var(--accent);color:var(--text-on-inverse);}
+
+/* cta banner */
+.ctabanner{padding:var(--s-9);background:var(--bg-surface);}
+.ctabannercard{max-width:1180px;margin:0 auto;background:var(--accent);border-radius:var(--radius-xl);padding:var(--s-6) var(--s-9);display:flex;align-items:center;justify-content:center;gap:var(--s-6);flex-wrap:wrap;text-align:center;}
+@media (max-width:700px){ .ctabannercard{border-radius:var(--radius-xl) !important;flex-direction:column !important;padding:var(--s-7) var(--s-6) !important;} }
+.ctabannercard span{font-size:var(--fs-web-lead);font-weight:800;color:var(--text-on-inverse);}
+
+/* recepty */
+.recipes-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:var(--s-6);}
+.recipe-card{background:var(--bg-canvas);border-radius:var(--radius-lg);overflow:hidden;box-shadow:var(--shadow-tab);display:flex;flex-direction:column;transition:transform var(--transition),box-shadow var(--transition);}
+.recipe-card:hover{transform:translateY(-4px);box-shadow:var(--shadow-card);}
+.recipe-photo{position:relative;height:220px;}
+.recipe-photo img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block;}
+.recipe-photo .price{position:absolute;top:var(--s-3);left:var(--s-3);background:var(--accent);color:var(--text-on-inverse);font-size:var(--fs-web-meta);font-weight:800;padding:var(--s-1) var(--s-3);border-radius:var(--radius-full);white-space:nowrap;}
+.recipe-photo .store{position:absolute;top:var(--s-3);right:var(--s-3);background:var(--bg-surface);color:var(--text-primary);font-size:var(--fs-web-meta);font-weight:800;padding:var(--s-1) var(--s-3);border-radius:var(--radius-full);white-space:nowrap;}
+.recipe-body{padding:var(--s-5);display:flex;flex-direction:column;gap:var(--s-3);}
+.recipe-body .name{font-size:var(--fs-web-h4);font-weight:800;line-height:var(--lh-snug);text-wrap:balance;}
+.recipe-meta{display:flex;align-items:center;gap:var(--s-4);font-size:var(--fs-web-sm);font-weight:700;color:var(--text-muted);}
+.recipe-meta span{display:inline-flex;align-items:center;gap:var(--s-1);font-weight:400;}
+.recipe-meta .ms{font-size:var(--icon-lg);}
+.recipe-tags{display:flex;gap:var(--s-2);flex-wrap:wrap;}
+.recipe-tags span{font-size:var(--fs-web-meta);font-weight:700;color:var(--text-secondary);background:var(--bg-sunken);border-radius:var(--radius-full);padding:var(--s-1) var(--s-3);}
+.recipe-open{display:inline-flex;align-items:center;gap:var(--s-1);font-size:var(--fs-web-sm);font-weight:800;color:var(--accent);margin-top:var(--s-1);}
+
+/* čísla z appky */
+.cisla-sec{padding:calc(var(--s-13) + var(--s-9)) var(--s-9);background:var(--bg-inverse);}
+.cisla-inner{max-width:1180px;margin:0 auto;}
+.numgrid{display:flex;justify-content:center;align-items:center;}
+@media (max-width:700px){ .numgrid{flex-direction:column !important;gap:var(--s-6) !important;} }
+.numitem{display:flex;flex-direction:column;align-items:center;gap:var(--s-2);padding:0 var(--s-9);text-align:center;}
+.numitem .v{font-size:var(--fs-web-h3);font-weight:800;color:var(--text-on-inverse);letter-spacing:-0.02em;}
+.numitem .l{font-size:var(--fs-web-sm);font-weight:700;color:var(--on-inverse-secondary);}
+.numdivider{width:1px;height:48px;background:var(--on-inverse-border);flex:none;}
+@media (max-width:700px){ .numdivider{width:100% !important;max-width:160px;height:1px !important;} }
+
+/* cennik */
+.cycletabs{display:flex;flex-wrap:nowrap;justify-content:center;gap:2px;padding:var(--s-1);background:var(--bg-sunken);border-radius:var(--radius-full);max-width:100%;}
+.cycletab{display:flex;align-items:center;justify-content:center;gap:var(--s-2);white-space:nowrap;flex:none;min-height:44px;padding:0 var(--s-6);border-radius:var(--radius-full);font-size:var(--fs-web-sm);font-weight:800;cursor:pointer;background:transparent;color:var(--text-muted);box-shadow:none;transition:background var(--transition),color var(--transition);}
+.cycletab.on{background:var(--bg-surface);color:var(--text-primary);box-shadow:var(--shadow-tab);}
+.cycletab .save{font-size:var(--fs-web-meta);font-weight:800;color:var(--accent);}
+.planrow{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:var(--s-6);align-items:start;}
+@media (max-width:900px){
+  .planrow{display:flex !important;flex-wrap:nowrap !important;gap:var(--s-4) !important;overflow-x:auto !important;scroll-snap-type:x mandatory !important;-webkit-overflow-scrolling:touch !important;padding:var(--s-1) var(--s-13) var(--s-3) var(--s-6) !important;margin:0 calc(-1 * var(--s-6)) !important;scrollbar-width:none !important;}
+  .planrow::-webkit-scrollbar{display:none;}
+  .plancard{flex:0 0 92% !important;scroll-snap-align:start !important;}
+  .plandots{display:flex !important;}
 }
-.tour-body{display:flex;gap:var(--s-13);align-items:center;flex-wrap:wrap;justify-content:center;}
-.tour-copy{flex:1;min-width:300px;max-width:440px;}
-.tour-copy h3{font-size:var(--fs-web-h3);font-weight:800;letter-spacing:-0.02em;line-height:1.15;margin-bottom:var(--s-35);text-wrap:balance;}
-.tour-copy ul{list-style:none;display:flex;flex-direction:column;gap:var(--s-3);}
-.tour-copy li{display:flex;gap:var(--s-25);align-items:flex-start;}
-.tour-copy li .ms{font-size:var(--icon-lg);flex:none;color:var(--accent);line-height:1.35;}
-.tour-copy li span.t{font-size:var(--fs-web-body);font-weight:700;line-height:1.45;}
-.cook-nav{display:none;align-items:center;gap:var(--s-35);margin-top:var(--s-7);padding-top:var(--s-6);border-top:1px solid var(--border-subtle);}
-.cook-nav.show{display:flex;}
-.cook-arrow{width:48px;height:48px;flex:none;border-radius:var(--radius-md);background:var(--bg-surface);border:1px solid var(--border-default);display:flex;align-items:center;justify-content:center;transition:background var(--transition),transform var(--transition);}
-.cook-arrow:hover{background:var(--hover-surface);}
-.cook-arrow:active{transform:scale(0.94);}
-.cook-next{min-height:48px;flex:none;padding:0 var(--s-5);border-radius:var(--radius-md);background:var(--accent);display:flex;align-items:center;gap:var(--s-2);color:var(--text-on-inverse);font-size:var(--fs-web-sm);font-weight:800;border:none;transition:background var(--transition),transform var(--transition);}
-.cook-next:hover{background:var(--accent-pressed);}
-.cook-next:active{transform:scale(0.96);}
-.tour-phone-wrap{flex:0 0 320px;display:flex;flex-direction:column;align-items:center;gap:var(--s-4);}
-.tour-phone{width:320px;height:588px;position:relative;}
-@media (max-width:900px){ .tour-phone-wrap{flex-basis:280px;} .tour-phone{width:280px;height:515px;} }
-.tour-panel{position:absolute;inset:0;opacity:0;transform:scale(0.97);transition:opacity 280ms ease,transform 280ms ease;pointer-events:none;}
-.tour-panel.show{opacity:1;transform:scale(1);pointer-events:auto;}
-.tour-panel .device-shot{width:100%;height:100%;object-fit:contain;}
-.tour-dots{display:flex;gap:var(--s-15);}
-.tour-dots div{width:7px;height:7px;border-radius:99px;background:var(--border-default);transition:background var(--transition),transform var(--transition);cursor:pointer;}
-.tour-dots div.on{background:var(--accent);transform:scale(1.3);}
-
-/* appka feature showcase */
-.feature-row{display:flex;gap:var(--s-13);align-items:center;flex-wrap:wrap;margin-bottom:var(--s-13);}
-.feature-row.rev{flex-wrap:wrap-reverse;}
-.feature-phone-box{flex:0 0 auto;display:flex;justify-content:center;}
-.feature-phone-box .device-shot{width:260px;height:auto;}
-.feature-copy{flex:1;min-width:300px;}
-.feature-copy h3{font-size:var(--fs-web-h3);font-weight:800;letter-spacing:-0.02em;margin-bottom:var(--s-4);line-height:1.15;text-wrap:balance;}
-.feature-copy ul{list-style:none;display:flex;flex-direction:column;gap:var(--s-35);}
-.feature-copy li{display:flex;gap:var(--s-3);align-items:flex-start;}
-.feature-copy li .ms{font-size:var(--icon-xl);color:var(--accent);flex:none;line-height:1.25;}
-.feature-copy li span{font-size:var(--fs-web-body);line-height:1.45;font-weight:700;text-wrap:pretty;}
-.savings-stats{display:flex;gap:var(--s-35);flex-wrap:wrap;}
-.savings-stats > div{background:var(--bg-inverse);border-radius:var(--radius-md);padding:var(--s-45) var(--s-6);flex:1;min-width:160px;}
-.savings-stats .v{font-size:var(--fs-web-h3);font-weight:800;color:var(--text-on-inverse);letter-spacing:-0.02em;}
-.savings-stats .l{font-size:var(--fs-web-meta);font-weight:700;margin-top:var(--s-05);color:var(--on-inverse-secondary);}
-.feature-cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:var(--s-5);}
-.feature-card{background:var(--bg-canvas);border:1px solid var(--border-subtle);border-radius:var(--radius-lg);padding:var(--s-6);}
-.feature-card .ms{font-size:var(--icon-2xl);color:var(--accent);}
-.feature-card h4{font-size:var(--fs-web-h4);font-weight:800;letter-spacing:-0.01em;margin:var(--s-35) 0 var(--s-2);line-height:1.3;}
-.feature-card p{font-size:var(--fs-web-sm);line-height:1.5;color:var(--text-secondary);text-wrap:pretty;}
-
-/* recipes */
-.recipes-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:var(--s-6);}
-.recipe-card{background:var(--bg-surface);border:1px solid var(--border-subtle);border-radius:var(--radius-xl);overflow:hidden;display:flex;flex-direction:column;text-align:left;width:100%;transition:border-color var(--transition);}
-.recipe-card:hover{border-color:var(--border-strong);}
-.recipe-photo-wrap{position:relative;}
-.recipe-photo-wrap img{width:100%;height:200px;object-fit:cover;display:block;background:var(--bg-sunken);}
-.recipe-chips{position:absolute;left:var(--s-35);top:var(--s-35);display:flex;gap:var(--s-1);}
-.chip-accent{background:var(--accent);color:var(--text-on-inverse);font-size:var(--fs-web-meta);font-weight:800;padding:var(--s-1) var(--s-25);border-radius:var(--radius-full);}
-.chip-surface{background:var(--bg-surface);color:var(--text-primary);font-size:var(--fs-web-meta);font-weight:800;padding:var(--s-1) var(--s-25);border-radius:var(--radius-full);}
-.recipe-body{padding:var(--s-6);display:flex;flex-direction:column;gap:var(--s-3);flex:1;}
-.recipe-body h3{font-size:var(--fs-web-h4);font-weight:800;letter-spacing:-0.01em;line-height:1.25;text-wrap:pretty;}
-.recipe-meta{display:flex;gap:var(--s-35);font-size:var(--fs-web-meta);font-weight:700;color:var(--text-muted);}
-.recipe-meta span{display:inline-flex;align-items:center;gap:var(--s-1);}
-.recipe-tags{display:flex;flex-wrap:wrap;gap:var(--s-15);}
-.recipe-tags span{background:var(--bg-sunken);color:var(--text-secondary);font-size:var(--fs-web-meta);font-weight:700;padding:var(--s-1) var(--s-25);border-radius:var(--radius-full);}
-.recipe-open{margin-top:auto;padding-top:var(--s-25);display:inline-flex;align-items:center;gap:var(--s-15);font-size:var(--fs-web-sm);font-weight:800;color:var(--accent);}
-
-/* modal */
-.modal-scrim{position:fixed;inset:0;z-index:100;background:var(--scrim);display:none;align-items:center;justify-content:center;padding:var(--s-6);}
-.modal-scrim.show{display:flex;}
-.modal-box{position:relative;z-index:2;width:100%;max-width:1000px;max-height:90vh;background:var(--bg-canvas);border-radius:var(--radius-2xl);box-shadow:var(--shadow-modal);overflow:hidden;display:flex;flex-wrap:wrap;}
-.modal-photo{flex:1 1 320px;min-width:300px;max-width:400px;position:relative;background:var(--bg-sunken);align-self:stretch;min-height:320px;}
-.modal-photo img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block;}
-.modal-photo-chips{position:absolute;left:var(--s-45);bottom:var(--s-45);right:var(--s-45);display:flex;flex-wrap:wrap;gap:var(--s-15);}
-.modal-content{flex:1 1 460px;min-width:320px;max-height:90vh;overflow-y:auto;padding:var(--s-8);}
-.modal-head{display:flex;align-items:flex-start;justify-content:space-between;gap:var(--s-4);margin-bottom:var(--s-4);}
-.modal-head h3{font-size:var(--fs-web-h3);font-weight:800;letter-spacing:-0.02em;line-height:1.15;text-wrap:balance;}
-.modal-close{flex:none;width:44px;height:44px;border-radius:var(--radius-full);background:var(--bg-sunken);display:flex;align-items:center;justify-content:center;border:none;}
-.modal-close:hover{background:var(--hover-sunken);}
-.modal-facts{display:flex;flex-wrap:wrap;gap:var(--s-4);margin-bottom:var(--s-7);font-size:var(--fs-web-sm);font-weight:700;color:var(--text-secondary);}
-.modal-facts span{display:inline-flex;align-items:center;gap:var(--s-1);}
-.portion-row{display:flex;align-items:center;justify-content:space-between;gap:var(--s-3);flex-wrap:wrap;margin-bottom:var(--s-4);}
-.section-label{font-size:var(--fs-web-eyebrow);font-weight:800;letter-spacing:0.12em;text-transform:uppercase;color:var(--text-muted);}
-.portion-opts{display:flex;gap:var(--s-1);}
-.portion-opt{display:flex;align-items:center;min-height:44px;padding:0 var(--s-4);border-radius:var(--radius-full);background:var(--bg-surface);color:var(--text-primary);border:1px solid var(--border-default);font-size:var(--fs-web-sm);font-weight:800;}
-.portion-opt.on{background:var(--bg-inverse);color:var(--text-on-inverse);border-color:var(--bg-inverse);}
-.list-head-row{display:flex;align-items:baseline;justify-content:space-between;gap:var(--s-3);flex-wrap:wrap;margin-bottom:var(--s-35);}
-.list-meta{font-size:var(--fs-web-meta);font-weight:700;color:var(--text-muted);}
-.basket-box{background:var(--bg-surface);border:1px solid var(--border-subtle);border-radius:var(--radius-lg);padding:var(--s-2) var(--s-45);margin-bottom:var(--s-4);}
-.basket-item{display:flex;justify-content:space-between;gap:var(--s-4);padding:var(--s-35) 0;border-bottom:1px solid var(--border-subtle);}
-.basket-item .nm{display:flex;align-items:baseline;gap:var(--s-2);flex-wrap:wrap;}
-.basket-item .nm span.name{font-size:var(--fs-web-body);font-weight:800;}
-.basket-chip{font-size:var(--fs-web-meta);font-weight:800;padding:1px var(--s-15);border-radius:var(--radius-full);}
-.basket-item .sub{font-size:var(--fs-web-meta);font-weight:700;color:var(--text-muted);margin-top:2px;text-wrap:pretty;}
-.basket-left{display:inline-flex;align-items:center;gap:var(--s-1);font-size:var(--fs-web-meta);font-weight:800;color:var(--pantry);margin-top:var(--s-1);}
-.basket-right{flex:none;text-align:right;}
-.basket-right .buy{font-size:var(--fs-web-body);font-weight:800;white-space:nowrap;}
-.basket-right .used{font-size:var(--fs-web-meta);font-weight:700;color:var(--text-muted);white-space:nowrap;margin-top:2px;}
-.basket-right .was{font-size:var(--fs-web-meta);font-weight:700;color:var(--text-faint);text-decoration:line-through;white-space:nowrap;}
-.basket-total{display:flex;justify-content:space-between;gap:var(--s-4);padding:var(--s-4) 0 var(--s-15);}
-.basket-total span:first-child{font-size:var(--fs-web-body);font-weight:800;}
-.basket-total span:last-child{font-size:var(--fs-web-h4);font-weight:800;letter-spacing:-0.01em;white-space:nowrap;}
-.basket-subline{display:flex;justify-content:space-between;gap:var(--s-4);padding:var(--s-1) 0;font-size:var(--fs-web-sm);font-weight:700;}
-.info-callout{display:flex;gap:var(--s-25);align-items:flex-start;background:var(--info-bg);border-radius:var(--radius-md);padding:var(--s-3) var(--s-45);margin-bottom:var(--s-4);}
-.info-callout .ms{font-size:var(--icon-lg);flex:none;color:var(--info-strong);line-height:1.3;}
-.info-callout div{font-size:var(--fs-web-meta);font-weight:700;color:var(--info-strong);line-height:1.5;text-wrap:pretty;}
-.save-callout{display:flex;align-items:center;gap:var(--s-25);background:var(--accent-bg);border:1px solid var(--accent-border);border-radius:var(--radius-md);padding:var(--s-3) var(--s-45);margin-bottom:var(--s-7);}
-.save-callout .ms{font-size:var(--icon-lg);color:var(--accent);}
-.save-callout span{font-size:var(--fs-web-sm);font-weight:800;color:var(--accent);}
-.steps-list{display:flex;flex-direction:column;gap:var(--s-5);}
-.step-item{display:flex;gap:var(--s-35);align-items:flex-start;}
-.step-num{flex:none;width:32px;height:32px;border-radius:var(--radius-full);background:var(--bg-inverse);color:var(--text-on-inverse);display:flex;align-items:center;justify-content:center;font-size:var(--fs-web-sm);font-weight:800;}
-.step-item h5{font-size:var(--fs-web-body);font-weight:800;line-height:1.35;margin-bottom:var(--s-1);text-wrap:pretty;}
-.step-item p{font-size:var(--fs-web-sm);line-height:1.55;color:var(--text-secondary);text-wrap:pretty;}
-.source-note{display:flex;gap:var(--s-25);align-items:flex-start;margin-top:var(--s-7);padding-top:var(--s-6);border-top:1px solid var(--border-subtle);}
-.source-note .ms{font-size:var(--icon-lg);flex:none;color:var(--text-faint);line-height:1.3;}
-.source-note div{font-size:var(--fs-web-meta);font-weight:700;color:var(--text-muted);line-height:1.5;text-wrap:pretty;}
-
-/* pricing */
-.cycle-toggle{display:flex;justify-content:center;margin-bottom:var(--s-9);}
-.cycle-toggle-inner{display:flex;gap:2px;padding:var(--s-1);background:var(--bg-sunken);border-radius:var(--radius-full);}
-.cycle-btn{display:flex;align-items:center;gap:var(--s-2);min-height:44px;padding:0 var(--s-6);border-radius:var(--radius-full);font-size:var(--fs-web-sm);font-weight:800;background:transparent;color:var(--text-muted);border:none;}
-.cycle-btn.on{background:var(--bg-surface);color:var(--text-primary);box-shadow:var(--shadow-tab);}
-.cycle-btn .save{font-size:var(--fs-web-meta);font-weight:800;color:var(--accent);}
-.plans-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(290px,1fr));gap:var(--s-6);align-items:start;}
-.plan-card{border-radius:var(--radius-xl);padding:var(--s-8);display:flex;flex-direction:column;gap:var(--s-5);background:var(--bg-surface);border:1px solid var(--border-subtle);}
-.plan-card.best{background:var(--bg-inverse);border:1px solid var(--bg-inverse);box-shadow:var(--shadow-card);}
-.plan-card.best .plan-name-row .name,.plan-card.best .plan-price{color:var(--text-on-inverse);}
+.plancard{border-radius:var(--radius-xl);padding:var(--s-8);display:flex;flex-direction:column;gap:var(--s-5);background:var(--bg-surface);border:1px solid var(--border-subtle);}
+.plancard.best{background:var(--bg-inverse);border:1px solid var(--bg-inverse);box-shadow:var(--shadow-card);}
+.plan-icon{width:44px;height:44px;border-radius:var(--radius-md);background:var(--bg-sunken);display:flex;align-items:center;justify-content:center;}
+.plancard.best .plan-icon{background:var(--accent);}
+.plan-icon .ms{font-size:var(--icon-2xl);color:var(--accent);}
+.plancard.best .plan-icon .ms{color:var(--text-on-inverse);}
 .plan-name-row{display:flex;align-items:center;justify-content:space-between;gap:var(--s-3);margin-bottom:var(--s-25);}
-.plan-name-row .name{font-size:var(--fs-web-h4);font-weight:800;letter-spacing:-0.01em;}
+.plan-name-row .name{font-size:var(--fs-web-h4);font-weight:800;letter-spacing:-0.01em;color:var(--text-primary);}
+.plancard.best .plan-name-row .name{color:var(--text-on-inverse);}
 .plan-best-badge{background:var(--accent);color:var(--text-on-inverse);font-size:var(--fs-web-meta);font-weight:800;padding:var(--s-1) var(--s-25);border-radius:var(--radius-full);}
-.plan-tagline{font-size:var(--fs-web-sm);font-weight:700;line-height:1.45;text-wrap:pretty;}
+.plan-tagline{font-size:var(--fs-web-sm);font-weight:400;line-height:var(--lh-base);color:var(--text-secondary);text-wrap:pretty;}
+.plancard.best .plan-tagline{color:var(--on-inverse-secondary);}
 .plan-price-row{display:flex;align-items:baseline;gap:var(--s-2);}
-.plan-price{font-size:var(--fs-web-amount);font-weight:800;letter-spacing:-0.03em;line-height:1;}
-.plan-period{font-size:var(--fs-web-sm);font-weight:700;}
-.plan-note{font-size:var(--fs-web-meta);font-weight:700;margin-top:var(--s-15);min-height:18px;}
+.plan-price{font-size:var(--fs-web-amount);font-weight:800;letter-spacing:-0.03em;line-height:1;color:var(--text-primary);}
+.plancard.best .plan-price{color:var(--text-on-inverse);}
+.plan-period{font-size:var(--fs-web-sm);font-weight:700;color:var(--text-secondary);}
+.plancard.best .plan-period{color:var(--on-inverse-secondary);}
+.plan-note{font-size:var(--fs-web-meta);font-weight:400;color:var(--text-secondary);margin-top:var(--s-15);min-height:18px;}
+.plancard.best .plan-note{color:var(--on-inverse-secondary);}
 .plan-features{list-style:none;display:flex;flex-direction:column;gap:var(--s-3);}
 .plan-features li{display:flex;gap:var(--s-25);align-items:flex-start;}
 .plan-features .ms{font-size:var(--icon-lg);flex:none;line-height:1.3;}
-.plan-features span{font-size:var(--fs-web-sm);font-weight:700;line-height:1.45;text-wrap:pretty;}
-.plan-cta{display:flex;align-items:center;justify-content:center;min-height:48px;padding:0 var(--s-45);border-radius:var(--radius-md);font-size:var(--fs-web-sm);font-weight:800;background:var(--bg-surface);color:var(--text-primary);border:1px solid var(--border-default);}
-.plan-cta:hover{filter:brightness(0.94);color:var(--text-primary);}
-.plan-card.best .plan-cta{background:var(--accent);color:var(--text-on-inverse);border-color:var(--accent);}
-.pricing-note{display:flex;gap:var(--s-25);align-items:flex-start;justify-content:center;margin-top:var(--s-8);}
-.pricing-note .ms{font-size:var(--icon-lg);color:var(--text-faint);flex:none;line-height:1.3;}
-.pricing-note div{font-size:var(--fs-web-meta);font-weight:700;color:var(--text-muted);line-height:1.5;max-width:560px;text-wrap:pretty;}
+.plan-features span{font-size:var(--fs-web-sm);font-weight:700;line-height:var(--lh-base);text-wrap:pretty;}
+.plan-cta{display:flex;align-items:center;justify-content:center;min-height:48px;padding:0 var(--s-45);border-radius:var(--radius-md);font-size:var(--fs-web-sm);font-weight:800;cursor:pointer;background:var(--bg-surface);color:var(--text-primary);border:1px solid var(--border-default);transition:filter var(--transition);}
+.plan-cta:hover{filter:brightness(0.94);}
+.plancard.best .plan-cta{background:var(--accent);color:var(--text-on-inverse);border:1px solid var(--accent);}
+.plandots{display:none;justify-content:center;gap:var(--s-2);margin-top:var(--s-6);}
+.plandot{height:8px;width:8px;border-radius:var(--radius-full);background:var(--border-strong);}
+@media (max-width:900px){ .plandot{width:8px !important;border-radius:var(--radius-full) !important;} }
+.plandot.plandot-active{width:22px;background:var(--accent);}
 
-/* laws — whatsapp-style carousel */
-.laws-section{background:var(--bg-inverse);overflow:hidden;}
-.laws-layout{display:flex;gap:var(--s-13);align-items:flex-start;flex-wrap:wrap;}
-.laws-heading{flex:0 0 320px;max-width:360px;}
-.laws-nav{display:flex;gap:var(--s-3);margin-top:var(--s-8);}
-.laws-arrow{width:48px;height:48px;flex:none;border-radius:var(--radius-full);border:1px solid var(--on-inverse-border);background:transparent;color:var(--text-on-inverse);display:flex;align-items:center;justify-content:center;transition:background var(--transition),transform var(--transition),border-color var(--transition);}
-.laws-arrow:hover{background:var(--on-inverse-bg);border-color:var(--text-on-inverse-muted);}
-.laws-arrow:active{transform:scale(0.9);}
-.laws-arrow:disabled{opacity:0.3;pointer-events:none;}
-.laws-track-wrap{flex:1;min-width:280px;max-width:100%;overflow:hidden;}
-.laws-track{display:flex;gap:var(--s-6);overflow-x:auto;scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch;padding:4px 4px var(--s-3);scrollbar-width:none;margin:0 -4px;}
-.laws-track::-webkit-scrollbar{display:none;}
-.law-card{flex:0 0 min(400px,78vw);scroll-snap-align:start;border-radius:var(--radius-2xl);padding:var(--s-8) var(--s-7);display:flex;flex-direction:column;gap:var(--s-3);transition:transform 260ms cubic-bezier(0.2,0,0.2,1),box-shadow 260ms cubic-bezier(0.2,0,0.2,1);}
-.law-card:hover{transform:translateY(-8px);box-shadow:0 22px 44px rgba(0,0,0,0.3);}
-.law-num-row{display:flex;align-items:baseline;gap:var(--s-2);}
-.law-num{font-size:var(--fs-web-amount);font-weight:800;letter-spacing:-0.04em;line-height:0.85;}
-.law-label{font-size:var(--fs-web-meta);font-weight:800;letter-spacing:0.1em;text-transform:uppercase;}
-.law-card h3{font-size:var(--fs-web-h4);font-weight:800;color:var(--text-on-inverse);line-height:1.2;letter-spacing:-0.01em;}
-.law-card p{font-size:var(--fs-web-sm);font-weight:700;line-height:1.55;color:var(--on-inverse-secondary);text-wrap:pretty;}
-.law-rank{font-size:var(--fs-web-meta);font-weight:800;margin-top:auto;padding-top:var(--s-25);}
-@media (max-width:900px){ .laws-heading{flex-basis:100%;max-width:none;} }
-
-/* quote */
-.quote-section{max-width:820px;margin:0 auto;text-align:center;}
-.brand-mark{display:inline-block;background-color:currentColor;-webkit-mask:url(img/icon.svg) no-repeat center/contain;mask:url(img/icon.svg) no-repeat center/contain;}
-.brand-lockup{display:inline-block;background-color:currentColor;-webkit-mask:url(img/logo.svg) no-repeat center/contain;mask:url(img/logo.svg) no-repeat center/contain;}
-.quote-mark{width:48px;height:48px;margin:0 auto var(--s-7);color:var(--accent);}
-.quote-section p{font-size:var(--fs-web-h3);font-weight:700;line-height:1.3;letter-spacing:-0.02em;text-wrap:balance;}
-
-/* newsletter */
-.newsletter-box{max-width:1120px;margin:0 auto;background:var(--accent);border-radius:var(--radius-2xl);padding:var(--s-13) var(--s-12);position:relative;overflow:hidden;}
-.newsletter-inner{position:relative;z-index:2;max-width:620px;margin:0 auto;text-align:center;}
-.newsletter-inner h2{color:var(--text-on-inverse);margin-bottom:var(--s-35);}
-.newsletter-inner .lead{color:var(--on-photo-secondary);margin-bottom:var(--s-7);font-weight:700;}
+/* signup */
+.signup-panel{background:var(--accent);padding:var(--s-13) var(--s-12);}
+@media (max-width:700px){ #signup{padding:0 !important;} .signup-panel{padding:var(--s-9) var(--s-6) !important;} }
+.signup-inner{max-width:800px;margin:0 auto;text-align:center;}
+.signup-badge{display:inline-flex;align-items:center;gap:var(--s-2);background:rgba(255,255,255,0.18);color:var(--text-on-inverse);font-size:var(--fs-web-meta);font-weight:800;padding:var(--s-15) var(--s-35);border-radius:var(--radius-full);margin-bottom:var(--s-5);}
+.signup-inner h2{color:var(--text-on-inverse);margin-bottom:var(--s-35);}
+.signup-inner .lead{color:var(--on-photo-secondary);margin-bottom:var(--s-7);font-weight:700;line-height:var(--lh-relaxed);text-wrap:pretty;font-size:var(--fs-web-lead);}
 .nl-form{display:flex;flex-direction:column;gap:var(--s-25);max-width:520px;margin:0 auto;}
 .nl-row{display:flex;gap:var(--s-25);flex-wrap:wrap;}
 .nl-row input{flex:1;min-width:150px;font-family:inherit;font-size:var(--fs-web-body);font-weight:700;color:var(--text-primary);background:var(--bg-surface);border:2px solid transparent;border-radius:var(--radius-md);padding:var(--s-45);outline:none;min-height:52px;}
 .nl-row input#nl-email{flex:1.4;min-width:200px;}
 .nl-row input.err{border-color:var(--warn);}
-.nl-submit{background:var(--bg-inverse);color:var(--text-on-inverse);border:none;font-family:inherit;font-size:var(--fs-web-body);font-weight:800;min-height:52px;padding:0 var(--s-7);border-radius:var(--radius-md);}
+.nl-submit{background:var(--bg-inverse);color:var(--text-on-inverse);border:none;font-family:inherit;font-size:var(--fs-web-sm);font-weight:800;min-height:52px;padding:0 var(--s-7);border-radius:var(--radius-md);}
 .nl-submit:hover{background:var(--bg-inverse-strong);}
 .nl-error{display:none;align-items:center;justify-content:center;gap:var(--s-15);font-size:var(--fs-web-sm);font-weight:800;color:var(--text-on-inverse);}
 .nl-error.show{display:flex;}
-.nl-fineprint{font-size:var(--fs-web-meta);font-weight:700;color:var(--on-photo-secondary);}
+.nl-fineprint{font-size:var(--fs-web-meta);font-weight:400;color:var(--on-photo-secondary);}
 .nl-success{display:none;align-items:center;gap:var(--s-3);background:var(--on-photo-bg);border-radius:var(--radius-lg);padding:var(--s-45) var(--s-6);text-align:left;}
 .nl-success.show{display:inline-flex;}
 .nl-success .ms{font-size:var(--icon-3xl);color:var(--text-on-inverse);flex:none;}
 .nl-success .t{font-size:var(--fs-web-body);font-weight:800;color:var(--text-on-inverse);}
 .nl-success .m{font-size:var(--fs-web-meta);font-weight:700;color:var(--on-photo-secondary);margin-top:var(--s-05);}
-.newsletter-mark{position:absolute;right:-50px;bottom:-50px;width:240px;height:240px;color:rgba(255,255,255,0.1);z-index:1;}
 
-footer.site{padding:var(--s-12) var(--s-9);background:var(--bg-inverse-strong);}
-.footer-inner{max-width:1120px;margin:0 auto;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:var(--s-5);}
-.footer-logo{color:var(--text-on-inverse-muted);}
-.footer-tag{font-size:var(--fs-web-sm);font-weight:700;color:var(--on-inverse-secondary);}
-.footer-copy{font-size:var(--fs-web-meta);font-weight:700;color:var(--on-inverse-faint);}
+/* štyri zákony */
+.laws-outer{padding:var(--s-11) var(--s-9);border-top:1px solid var(--border-subtle);}
+.laws-inner{max-width:1080px;margin:0 auto;}
+.laws-head{text-align:left;margin-bottom:var(--s-8);}
+.laws-head h2{color:var(--text-primary);}
+.laws-head .eyebrow{color:var(--text-faint);margin-bottom:var(--s-2);}
+.lawsgrid{display:grid;grid-template-columns:repeat(4,1fr);gap:var(--s-7);}
+@media (max-width:700px){
+  .lawsgrid{display:flex !important;flex-wrap:nowrap !important;overflow-x:auto !important;scroll-snap-type:x mandatory !important;-webkit-overflow-scrolling:touch !important;padding:var(--s-1) var(--s-13) var(--s-3) var(--s-6) !important;margin:0 calc(-1 * var(--s-6)) !important;scrollbar-width:none !important;}
+  .lawsgrid::-webkit-scrollbar{display:none;}
+  .lawitem{border-left:none !important;flex:0 0 82% !important;scroll-snap-align:start !important;padding:0 !important;}
+}
+.lawitem{display:flex;flex-direction:column;align-items:flex-start;text-align:left;gap:var(--s-3);padding:0 var(--s-4);border-left:1px solid var(--border-subtle);}
+.lawitem:first-child{padding-left:0;border-left:none;}
+.lawitem .head{display:flex;align-items:center;gap:var(--s-25);}
+.lawitem .num{width:32px;height:32px;border-radius:var(--radius-full);background:var(--accent);color:var(--text-on-inverse);display:flex;align-items:center;justify-content:center;font-size:var(--fs-web-sm);font-weight:800;flex:none;}
+.lawitem .title{font-size:var(--fs-web-h4);font-weight:800;color:var(--text-primary);}
+.lawitem .txt{font-size:var(--fs-web-body);font-weight:400;color:var(--text-muted);line-height:var(--lh-normal);}
+
+/* footer */
+footer.site{padding:var(--s-9) var(--s-9) var(--s-11);}
+.footrow{max-width:1180px;margin:0 auto;display:flex;justify-content:space-between;align-items:center;gap:var(--s-6);flex-wrap:wrap;}
+@media (max-width:480px){ .footrow{flex-direction:column !important;align-items:flex-start !important;} }
+.footer-brand{display:flex;align-items:center;gap:var(--s-3);}
+.footer-tag{font-size:var(--fs-web-meta);font-weight:700;color:var(--text-muted);}
+.footer-links{display:flex;gap:var(--s-6);}
+.footer-links a{font-size:var(--fs-web-sm);font-weight:700;color:var(--text-secondary);cursor:pointer;}
+.footer-links a:hover{color:var(--accent);}
+.footer-copy{font-size:var(--fs-web-meta);font-weight:700;color:var(--text-faint);}
+
+/* fab */
+.fab{position:fixed;bottom:24px;right:24px;z-index:60;background:var(--accent);color:var(--text-on-inverse);border-radius:var(--radius-full);padding:var(--s-3) var(--s-6);box-shadow:var(--shadow-card);cursor:pointer;font-weight:800;font-size:var(--fs-web-sm);display:flex;align-items:center;gap:var(--s-2);opacity:0;pointer-events:none;transform:translateY(14px);transition:opacity .25s ease,transform .25s ease;}
+.fab.show{opacity:1;pointer-events:auto;transform:translateY(0);}
+.fab:hover{background:var(--accent-pressed);}
 
 /* reveal-on-scroll */
-[data-reveal] > *{opacity:0;transform:translateY(14px);transition:opacity 520ms ease,transform 520ms ease;}
+[data-reveal] > *{opacity:0;transform:translateY(24px);transition:opacity 0.6s ease,transform 0.6s cubic-bezier(.16,1,.3,1);}
 [data-reveal] > *.revealed{opacity:1;transform:none;}
+[data-reveal] > *:nth-child(1){transition-delay:0ms;}
+[data-reveal] > *:nth-child(2){transition-delay:60ms;}
+[data-reveal] > *:nth-child(3){transition-delay:120ms;}
+[data-reveal] > *:nth-child(n+4){transition-delay:180ms;}
 </style>
 </head>
 <body>
 
 <header class="site">
-  <div class="brand-lockup" style="width:122px;height:28px;color:var(--text-primary);" role="img" aria-label="Šporáček"></div>
-  <nav>
-    <a class="navlink" href="#ako">Ako to funguje</a>
-    <a class="navlink" href="#appka">Čo appka vie</a>
-    <a class="navlink" href="#recepty">Recepty</a>
-    <a class="navlink" href="#cennik">Cena</a>
-    <a class="navlink" href="#zakony">4 zákony</a>
-    <a class="btn-cta-dark" href="#newsletter">Chcem ukážky</a>
-  </nav>
+  <div class="inner">
+    <div class="brand-lockup" style="width:130px;height:26px;color:var(--text-primary);" role="img" aria-label="Šporáček"></div>
+    <div class="navlinks">
+      <a href="#ako">Ako funguje</a>
+      <a href="#recepty">Recepty</a>
+      <a href="#cennik">Cenník</a>
+    </div>
+    <button class="btn-header-cta" onclick="scrollToId('signup')">
+      <span class="ctafull">Chcem appku medzi prvými</span><span class="ctashort">Chcem appku skôr</span>
+    </button>
+  </div>
 </header>
 
-<section>
-  <div class="wrap hero-inner">
-    <div class="hero-copy">
-      <div class="hero-badge"><span class="ms">schedule</span>Pripravujeme · pridaj sa medzi prvých</div>
-      <h1>Čo je v akcii, to <span>navaríme.</span></h1>
-      <p class="lead">Šporáček si prečíta letáky za teba. Povieš, do ktorého obchodu ideš a na koľko dní chceš mať jedlo — dostaneš jedálniček z akciových surovín, nákupný zoznam s cenami a po nákupe presné číslo, koľko si ušetril.</p>
-      <div class="hero-ctas">
-        <a class="btn-accent" href="#newsletter">Posielajte mi ukážky nákupov</a>
-        <a class="btn-ghost" href="#ako">Ako to funguje</a>
-      </div>
-      <div class="hero-facts">
-        <span><span class="ms">storefront</span>Lidl · Tesco · Kaufland · BILLA · COOP Jednota</span>
-        <span><span class="ms">smartphone</span>iOS a Android</span>
+<div class="herorow">
+  <div class="herocopy">
+    <div class="hero-badge"><span class="ms" style="font-size:var(--icon-md);font-variation-settings:'FILL' 1,'wght' 500,'GRAD' 0,'opsz' 24;">bolt</span>Appka sa pripravuje — buď pri tom od začiatku</div>
+    <h1>Vieme, čo dnes navariť <span>z toho, čo je v akcii.</span></h1>
+    <p class="herolead">Šporáček prečíta letáky za teba, poskladá jedálniček z akciových surovín a k nemu rovno aj nákupný zoznam s cenami.</p>
+    <div class="herocta">
+      <button class="btn-accent" onclick="scrollToId('signup')">Chcem appku medzi prvými</button>
+      <a class="btn-textlink" onclick="scrollToId('ako')">Pozri, ako to funguje<span class="ms" style="font-size:var(--icon-lg);font-variation-settings:'FILL' 0,'wght' 600,'GRAD' 0,'opsz' 24;">arrow_downward</span></a>
+    </div>
+    <div class="herofacts">
+      <span><span class="ms">storefront</span>Obchody vo tvojom okolí</span>
+      <span><span class="ms">smartphone</span>iOS a Android</span>
+    </div>
+  </div>
+  <div class="herocollage">
+    <img src="img/mockups/01-intro.png" alt="Šporáček — plán jedál na týždeň a domovská obrazovka appky">
+    <div class="hc-badge b1"><span class="ms" style="font-variation-settings:'FILL' 1,'wght' 500,'GRAD' 0,'opsz' 24;">restaurant_menu</span>142 receptov z akcií</div>
+    <div class="hc-badge b2"><span class="ms" style="font-variation-settings:'FILL' 1,'wght' 500,'GRAD' 0,'opsz' 24;">savings</span>504,70€ ušetrené</div>
+    <div class="hc-recipe">
+      <div class="ph"><img src="https://recepty.sporacek.sk/fotky-nahlad/bryndzove-halusky-slanina.jpg" alt="Bryndzové halušky so slaninou"></div>
+      <div class="info">
+        <div class="nm">Bryndzové halušky so slaninou</div>
+        <div class="meta">
+          <span><span class="ms" style="font-variation-settings:'FILL' 0,'wght' 400,'GRAD' 0,'opsz' 24;">schedule</span>35 minút</span>
+          <span><span class="ms" style="font-variation-settings:'FILL' 0,'wght' 400,'GRAD' 0,'opsz' 24;">restaurant</span>4 porcie</span>
+        </div>
+        <div class="price"><b>1,23€</b><span>/ porcia</span></div>
       </div>
     </div>
-    <div class="hero-phones">
-      <img class="device-shot" src="img/mockups/01-intro.png" alt="Jedálniček a domovská obrazovka appky Šporáček">
+  </div>
+</div>
+
+<section class="skratke-sec">
+  <div class="skratke-inner">
+    <div class="eyebrow" style="color:var(--text-on-inverse-muted);">V skratke</div>
+    <p style="font-size:var(--fs-web-h3);font-weight:800;line-height:var(--lh-snug);color:var(--text-on-inverse);text-wrap:balance;margin-bottom:var(--s-9);">Mení to, čo je práve v obchode dostupné a lacné, na hotový nápad, čo navariť — automaticky.</p>
+    <div class="stepsrow">
+      <div class="stepcol">
+        <div class="stepicon"><span class="badge">1</span><span class="ms">receipt_long</span></div>
+        <span class="steplabel">Prečíta leták</span>
+      </div>
+      <span class="steparrow ms">arrow_forward</span>
+      <div class="stepcol">
+        <div class="stepicon"><span class="badge">2</span><span class="ms">restaurant_menu</span></div>
+        <span class="steplabel">Poskladá jedálniček</span>
+      </div>
+      <span class="steparrow ms">arrow_forward</span>
+      <div class="stepcol">
+        <div class="stepicon"><span class="badge">3</span><span class="ms">savings</span></div>
+        <span class="steplabel">Spočíta úsporu</span>
+      </div>
     </div>
   </div>
 </section>
 
-<section class="surface">
-  <div class="wrap">
-    <div style="max-width:660px;margin-bottom:var(--s-12);">
-      <div class="eyebrow">Načo to je</div>
-      <h2>Akcie sú v každom letáku. Problém je ich premeniť na večeru.</h2>
-    </div>
-    <div class="problems-grid" data-reveal>
-      <div class="problem">
-        <div class="problem-pain"><span class="ms">close</span><div>Letáky si prezrieš, ale premýšľať, čo z toho navariť, sa ti nechce.</div></div>
-        <div class="problem-fix"><span class="msf">check_circle</span><div>Šporáček spojí akciové suroviny do konkrétnych jedál. Nedostaneš zľavy, dostaneš jedálniček.</div></div>
-      </div>
-      <div class="problem">
-        <div class="problem-pain"><span class="ms">close</span><div>V obchode kupuješ, čo ti príde pod ruku, a doma to nedá dokopy večeru.</div></div>
-        <div class="problem-fix"><span class="msf">check_circle</span><div>Nákupný zoznam je zoradený podľa oddelení a každá surovina má miesto v niektorom recepte.</div></div>
-      </div>
-      <div class="problem">
-        <div class="problem-pain"><span class="ms">close</span><div>Že si ušetril, len tušíš. Nikto ti to nikdy nespočítal.</div></div>
-        <div class="problem-fix"><span class="msf">check_circle</span><div>Po nákupe vidíš rozdiel oproti bežným cenám — po surovinách, po mesiacoch, po rokoch.</div></div>
-      </div>
-    </div>
-  </div>
-</section>
+<div class="marquee-wrap">
+  <div class="marquee" id="marquee-track"></div>
+</div>
 
 <section id="ako">
   <div class="wrap">
     <div style="text-align:center;max-width:660px;margin:0 auto var(--s-12);">
-      <div class="eyebrow">Tri ukážky z appky</div>
-      <h2>Klikni si, ako to vyzerá vnútri</h2>
+      <div class="eyebrow">Ako appka funguje</div>
+      <h2>Traja pomocníci v jednej appke</h2>
     </div>
-    <div data-reveal>
-      <div class="tab-row" id="tab-row"></div>
-      <div class="tour-body">
-        <div class="tour-copy" id="tour-copy"></div>
-        <div class="tour-phone-wrap">
-          <div class="tour-phone">
-            <div class="tour-panel" id="panel-recepty"><img class="device-shot" src="img/mockups/01-recepty-akcie.png" alt="Recepty z akcií"></div>
-            <div class="tour-panel" id="panel-nakup"><img class="device-shot" src="img/mockups/02-nakupny-zoznam.png" alt="Nákupný zoznam"></div>
-            <div class="tour-panel" id="panel-varenie"></div>
-          </div>
-          <div class="tour-dots" id="tour-dots"></div>
-        </div>
+    <div class="scroller">
+      <div class="scenecol" id="scenecol"></div>
+      <div class="stickyphone">
+        <div class="stickyphone-img-box" id="scene-phone"></div>
+        <div class="scene-dots" id="scene-dots"></div>
       </div>
     </div>
   </div>
 </section>
 
-<section id="appka" class="surface">
-  <div class="wrap">
-    <div style="max-width:660px;margin-bottom:var(--s-12);">
-      <div class="eyebrow">Čo appka vie</div>
-      <h2>Nie je to receptár. Je to nákup a týždeň jedla naplánovaný za teba.</h2>
-    </div>
-
-    <div class="feature-row">
-      <div class="feature-phone-box"><img class="device-shot" src="img/mockups/02-nakupny-zoznam.png" alt="Nákupný zoznam s cenami"></div>
-      <div class="feature-copy">
-        <div class="eyebrow" style="margin-bottom:var(--s-25);">Nákupný zoznam</div>
-        <h3>Zoznam, ktorý pozná ceny aj tvoju špajzu</h3>
-        <p class="lead" style="margin-bottom:var(--s-6);">Suroviny zoradené podľa oddelení v predajni, s množstvom, akciovou cenou a značkou. Čo už máš doma, odpočítame.</p>
-        <ul>
-          <li><span class="ms">check</span><span>Ceny a zľavy z aktuálneho letáka tvojho obchodu</span></li>
-          <li><span class="ms">check</span><span>Množstvá prepočítané na počet ľudí a dní</span></li>
-          <li><span class="ms">check</span><span>Čo máš v špajzi, sa z nákupu odpočíta</span></li>
-          <li><span class="ms">check</span><span>Zvonček na sledovanie ceny konkrétnej suroviny</span></li>
-        </ul>
-      </div>
-    </div>
-
-    <div class="feature-row rev">
-      <div class="feature-copy">
-        <div class="eyebrow" style="margin-bottom:var(--s-25);">Úspory</div>
-        <h3>Úspora, ktorú vieme dokázať</h3>
-        <p class="lead" style="margin-bottom:var(--s-6);">Žiadne čísla z ničoho. Každá suma stojí vedľa nákupu, z ktorého vznikla — vieš si ju rozkliknúť až po jednotlivé suroviny.</p>
-        <div class="savings-stats">
-          <div><div class="v">44,30€</div><div class="l">ušetrené v júli</div></div>
-          <div><div class="v">11 %</div><div class="l">z nákupov za 389,50€</div></div>
-        </div>
-      </div>
-      <div class="feature-phone-box"><img class="device-shot" src="img/mockups/05-uspory.png" alt="Prehľad úspor v appke"></div>
-    </div>
-
-    <div class="feature-cards" data-reveal>
-      <div class="feature-card"><span class="ms">notifications_active</span><h4>Sledovanie cien</h4><p>Označ surovinu zvončekom a ozveme sa, keď zlacnie. Nie keď zdraží.</p></div>
-      <div class="feature-card"><span class="ms">kitchen</span><h4>Špajza</h4><p>Zvyšky z varenia zostanú v špajzi a Šporáček s nimi počíta pri ďalšom nákupe.</p></div>
-      <div class="feature-card"><span class="ms">menu_book</span><h4>Kuchárska kniha</h4><p>Odfoť, čo si navaril. Vlastná kniha jedál, ktoré ti naozaj vyšli.</p></div>
-      <div class="feature-card"><span class="ms">restart_alt</span><h4>Uvar raz, jedz dvakrát</h4><p>Zapneš prepínač a plán počíta s tým, že jedno jedlo vydrží dva dni.</p></div>
-    </div>
+<div class="ctabanner">
+  <div class="ctabannercard">
+    <span>Appka je vo vývoji — buď pri tom od prvého dňa.</span>
+    <button class="btn-inverse" onclick="scrollToId('signup')">Pridať sa medzi prvých</button>
   </div>
-</section>
+</div>
 
 <section id="recepty">
   <div class="wrap">
-    <div style="max-width:660px;margin-bottom:var(--s-9);">
+    <div style="max-width:700px;margin-bottom:var(--s-9);">
       <div class="eyebrow">Z našej databázy</div>
-      <h2>Tri recepty, ktoré vieš navariť dnes</h2>
-      <p class="lead" style="margin-top:var(--s-35);">Otvor si ktorýkoľvek — uvidíš nákupný zoznam s reálnymi cenami z aktuálnych letákov, čo zostane do špajze, aj celý postup. Prepni si počet porcií a ceny sa prepočítajú.</p>
+      <h2 style="margin-bottom:var(--s-35);">Tri recepty, ktoré vieš navariť dnes</h2>
+      <p class="herolead" style="margin-bottom:0;">Otvor si ktorýkoľvek — uvidíš nákupný zoznam s reálnymi cenami z aktuálnych letákov, čo zostane do špajze, aj celý postup. Prepni si počet porcií a ceny sa prepočítajú.</p>
     </div>
-    <div class="recipes-grid" id="recipes-grid" data-reveal></div>
+    <div class="recipes-grid" id="recipes-grid"></div>
   </div>
 </section>
 
-<div class="modal-scrim" id="modal-scrim">
-  <div class="modal-box" id="modal-box"></div>
-</div>
+<section class="cisla-sec">
+  <div class="cisla-inner">
+    <div style="text-align:center;max-width:600px;margin:0 auto var(--s-9);">
+      <div class="eyebrow" style="color:var(--text-on-inverse-muted);">Čísla z appky</div>
+      <h2 style="color:var(--text-on-inverse);">Takto vyzerá mesiac v Šporáčku</h2>
+    </div>
+    <div class="numgrid">
+      <div class="numitem"><div class="v">44,30€</div><div class="l">priemerná úspora za mesiac</div></div>
+      <div class="numdivider"></div>
+      <div class="numitem"><div class="v">17,21€</div><div class="l">ušetrené na jednom nákupe</div></div>
+      <div class="numdivider"></div>
+      <div class="numitem"><div class="v">504,70€</div><div class="l">ušetrené odkedy appku sledujeme</div></div>
+    </div>
+    <div style="text-align:center;font-size:var(--fs-web-meta);font-weight:400;color:var(--on-inverse-faint);margin-top:var(--s-8);">Príklad z beta testovania — každá suma je spočítaná z reálneho nákupu, nie odhad.</div>
+  </div>
+</section>
 
 <section id="cennik">
   <div class="wrap">
     <div style="text-align:center;max-width:660px;margin:0 auto var(--s-8);">
       <div class="eyebrow">Cena</div>
       <h2>Šporáček sa má zaplatiť sám</h2>
-      <p class="lead" style="margin-top:var(--s-35);">Ak ti nešetrí viac, než stojí, nemá zmysel. Preto začni na Free a plať až vtedy, keď to na účte uvidíš.</p>
+      <p class="herolead" style="margin:var(--s-35) auto 0;">Priemerná úspora v appke je cez 40€ mesačne — PLUS aj Family sa tak zaplatia z toho, čo aj tak ušetríš.</p>
     </div>
-    <div class="cycle-toggle">
-      <div class="cycle-toggle-inner">
-        <button class="cycle-btn on" id="cycle-monthly">Mesačne</button>
-        <button class="cycle-btn" id="cycle-yearly">Ročne <span class="save">2 mesiace zadarmo</span></button>
+    <div style="display:flex;justify-content:center;margin-bottom:var(--s-9);overflow-x:auto;">
+      <div class="cycletabs">
+        <div class="cycletab on" id="cycle-monthly">Mesačne</div>
+        <div class="cycletab" id="cycle-yearly">Ročne<span class="save">15% zľava</span></div>
       </div>
     </div>
-    <div class="plans-grid" id="plans-grid" data-reveal></div>
-    <div class="pricing-note">
-      <span class="ms">info</span>
-      <div>Ceny sú pri spustení appky. Pro a Family sa dajú 10 dní skúšať zadarmo a zrušiť kedykoľvek — Free zostáva Free, nie skúšobná verzia na 14 dní.</div>
-    </div>
+    <div class="planrow" id="plans-grid" data-reveal></div>
+    <div class="plandots" id="plan-dots"></div>
   </div>
 </section>
 
-<section id="zakony" class="laws-section">
-  <div class="wrap">
-    <div class="laws-layout" data-reveal>
-      <div class="laws-heading">
-        <div class="eyebrow" style="color:var(--text-on-inverse-muted);">Na čom to stojí</div>
-        <h2 style="color:var(--text-on-inverse);">Štyri zákony Šporáčka</h2>
-        <p class="lead" style="color:var(--on-inverse-secondary);margin-top:var(--s-35);">Ako u Asimova: každý zákon platí len vtedy, keď neporušuje ten pred ním. Preto nikdy nedostaneš zlé jedlo len preto, že bolo lacné.</p>
-        <div class="laws-nav">
-          <button class="laws-arrow" id="laws-prev" aria-label="Predchádzajúci zákon"><span class="ms">arrow_back</span></button>
-          <button class="laws-arrow" id="laws-next" aria-label="Ďalší zákon"><span class="ms">arrow_forward</span></button>
+<section id="signup" style="padding:0;">
+  <div class="signup-panel">
+    <div class="signup-inner">
+      <div class="signup-badge"><span class="ms" style="font-variation-settings:'FILL' 1,'wght' 500,'GRAD' 0,'opsz' 24;">bolt</span>Obmedzene · prvých 200 dostane appku skôr</div>
+      <h2>Buď pri appke od prvého dňa</h2>
+      <p class="lead">Kým appka nie je vonku, posielame ukážky naživo — a kto je na zozname, dostane appku skôr aj možnosť prihlásiť sa do beta testovania.</p>
+
+      <form class="nl-form" id="nl-form">
+        <div class="nl-row">
+          <input id="nl-name" type="text" required aria-label="Meno" placeholder="Meno">
+          <input id="nl-email" type="email" required aria-label="Email" placeholder="tvoj@email.sk">
+        </div>
+        <button type="submit" class="nl-submit">Posielajte mi ukážky</button>
+        <div class="nl-error" id="nl-error">
+          <span class="ms" style="font-variation-settings:'FILL' 1,'wght' 600,'GRAD' 0,'opsz' 24;">error</span><span id="nl-error-text"></span>
+        </div>
+        <div class="nl-fineprint">Odhlásiť sa dá jedným klikom. Email nikomu nedávame.</div>
+      </form>
+      <div class="nl-success" id="nl-success">
+        <span class="msf" style="font-size:var(--icon-3xl);">check_circle</span>
+        <div>
+          <div class="t" id="nl-success-title"></div>
+          <div class="m" id="nl-success-msg"></div>
         </div>
       </div>
-      <div class="laws-track-wrap">
-        <div class="laws-track" id="laws-grid"></div>
-      </div>
     </div>
   </div>
 </section>
 
-<section>
-  <div class="wrap quote-section">
-    <div class="quote-mark brand-mark" role="img" aria-label="Šporáček"></div>
-    <p>„Babka sa nikdy nepýtala, či ti chutilo. Pýtala sa, či vieš, koľko to stálo."</p>
-  </div>
-</section>
-
-<section id="newsletter" style="padding-top:0;">
-  <div class="wrap">
-    <div class="newsletter-box">
-      <div class="newsletter-inner">
-        <h2>Ukážky nákupov a recepty do mailu</h2>
-        <p class="lead">Každé dva týždne pošleme jeden reálny nákup — čo bolo v akcii, čo sa z toho navarilo a koľko to stálo. Plus recepty, ktoré z tých akcií vyšli. Kto je na zozname, dostane appku skôr.</p>
-        <form class="nl-form" id="nl-form">
-          <div class="nl-row">
-            <input type="text" id="nl-name" placeholder="Meno" aria-label="Meno" autocomplete="given-name">
-            <input type="email" id="nl-email" placeholder="tvoj@email.sk" aria-label="Email" autocomplete="email">
-          </div>
-          <button type="submit" class="nl-submit">Posielajte mi ukážky</button>
-          <div class="nl-error" id="nl-error" role="alert"><span class="msf">error</span><span id="nl-error-text"></span></div>
-          <div class="nl-fineprint">Odhlásiť sa dá jedným klikom. Email nikomu nedávame.</div>
-        </form>
-        <div class="nl-success" id="nl-success">
-          <span class="msf">check_circle</span>
-          <div><div class="t" id="nl-success-title"></div><div class="m" id="nl-success-msg"></div></div>
-        </div>
-        <iframe name="nl-hidden-frame" id="nl-hidden-frame" style="display:none" aria-hidden="true" tabindex="-1"></iframe>
-      </div>
-      <div class="newsletter-mark brand-mark" aria-hidden="true"></div>
+<div class="laws-outer">
+  <div class="laws-inner">
+    <div class="laws-head">
+      <div class="eyebrow">Na čom to stojí</div>
+      <h2>Štyri zákony šetrenia</h2>
     </div>
+    <div class="lawsgrid" id="laws-grid"></div>
   </div>
-</section>
+</div>
 
 <footer class="site">
-  <div class="footer-inner">
-    <div class="footer-logo brand-lockup" style="width:114px;height:26px;" role="img" aria-label="Šporáček"></div>
-    <div class="footer-tag">Čo je v akcii, to navaríme.</div>
+  <div class="footrow">
+    <div class="footer-brand">
+      <div class="brand-lockup" style="width:110px;height:22px;color:var(--text-primary);" role="img" aria-label="Šporáček"></div>
+      <span class="footer-tag">Appka, ktorá vie, čo dnes navariť.</span>
+    </div>
+    <div class="footer-links">
+      <a href="#ako">Ako funguje</a>
+      <a href="#recepty">Recepty</a>
+      <a href="#cennik">Cenník</a>
+    </div>
     <div class="footer-copy">© 2026 Šporáček</div>
   </div>
 </footer>
 
+<div class="fab" id="fab" onclick="scrollToId('signup')">
+  <span class="ms" style="font-variation-settings:'FILL' 1,'wght' 500,'GRAD' 0,'opsz' 24;">bolt</span>Chcem appku
+</div>
+
 <script>
 (function(){
-"use strict";
 
-function eur(cents){ return (cents/100).toFixed(2).replace(".",",") + "€"; }
-function fmtEur(n){ return (n||0).toFixed(2).replace(".",",") + "€"; }
-function plural(n){ return n + (n===1?" porcia":(n<5?" porcie":" porcií")); }
-function amount(v, unit){
-  if (unit === "ks") return (Math.round(v*10)/10).toString().replace(".",",") + " ks";
-  if (v >= 1000) return (Math.round(v/100)/10).toString().replace(".",",").replace(",0","") + (unit==="ml" ? " l" : " kg");
-  return Math.round(v) + " " + (unit==="ml"?"ml":"g");
+function scrollToId(id){
+  var el = document.getElementById(id);
+  if (!el) return;
+  var top = el.getBoundingClientRect().top + window.scrollY - 84;
+  window.scrollTo({top:top, behavior:"smooth"});
 }
-function basket(recipe, portions){
-  var f = portions / recipe.base;
-  var buy=0, meal=0, saved=0;
-  var items = recipe.items.map(function(it){
-    if (it.missing) return {name:it.name, qty:"—", buy:"—", packs:"nie je v tomto letáku", used:"—", left:"", est:true, sale:false, was:""};
-    var need = it.need * f;
-    var packs = it.packQty > 0 ? Math.max(1, Math.ceil(need/it.packQty)) : 1;
-    var cost = packs * it.packPrice;
-    var inMeal = (it.mealBase||0) * f;
-    var left = it.packQty > 0 ? packs*it.packQty - need : 0;
-    buy += cost; meal += inMeal;
-    if (it.saveBase != null) saved += it.saveBase * f;
-    return {
-      name: it.name,
-      qty: it.text || amount(need, it.unit),
-      buy: fmtEur(cost),
-      packs: (packs>1 ? packs+"× " : "") + it.packLabel,
-      used: fmtEur(inMeal),
-      left: left > 0 ? amount(left, it.unit) : "",
-      sale: it.sale, est: it.est,
-      was: (it.saveBase != null && it.saveBase > 0) ? fmtEur(inMeal + it.saveBase*f) : ""
-    };
-  });
-  return {items:items, buy:buy, meal:meal, pantry:buy-meal, saved:saved, perPortion: meal/portions};
-}
+window.scrollToId = scrollToId;
 
-/* ── data ── */
-var RECIPES = [
-  {
-    name:"Bryndzové halušky so slaninou", photo:"https://recepty.sporacek.sk/fotky-nahlad/bryndzove-halusky-slanina.jpg",
-    time:"35 minút", kcal:"~852 kcal", base:2, store:"Biedronka", valid:"leták platí do 5. 8.", tags:["obed","jednohrnec","sýte"],
-    items:[
-      {name:"Zemiaky",need:500,unit:"g",packQty:2000,packPrice:1.39,packLabel:"2 kg",mealBase:0.35,saveBase:0.25,sale:true,est:false},
-      {name:"Múka",need:130,unit:"g",packQty:1000,packPrice:0.75,packLabel:"1 kg",mealBase:0.1,saveBase:null,sale:false,est:true},
-      {name:"Vajcia",need:60,unit:"g",packQty:600,packPrice:0.99,packLabel:"10 ks",mealBase:0.1,saveBase:0.15,sale:true,est:false},
-      {name:"Bryndza",need:150,unit:"g",packQty:250,packPrice:1.99,packLabel:"250 g",mealBase:1.19,saveBase:0.82,sale:true,est:false},
-      {name:"Slanina",need:80,unit:"g",packQty:250,packPrice:2.29,packLabel:"250 g",mealBase:0.73,saveBase:0.21,sale:true,est:false},
-      {name:"Soľ",text:"podľa chuti",need:2,unit:"g",packQty:1000,packPrice:0.5,packLabel:"1 kg",mealBase:0,saveBase:null,sale:false,est:true}
-    ],
-    steps:[
-      ["Zemiaky nastrúhaj a osoľ.","Zemiaky ošúp a najemno nastrúhaj (na najjemnejšom strúhadle), osoľ."],
-      ["Vmiešaj múku a vajce, vypracuj husté cesto.","Postupne prisýpaj múku a vmiešaj vajce, vypracuj hustejšie cesto."],
-      ["Slaninu opeč do chrumkava.","Slaninu nakrájaj na kocky a opeč na suchej panvici do chrumkava."],
-      ["Cesto pretláčaj cez sitko do vriacej vody.","Cesto pretláčaj cez haluškové sitko (alebo dosku a nôž) priamo do vriacej osolenej vody. Keď halušky vyplávajú na povrch, sú hotové (cca 2–3 minúty), vyber ich dierovanou lyžicou."],
-      ["Zmiešaj s bryndzou a slaninou.","Bryndzu rozmiešaj s troškou horúcej vody z varenia halušiek, nech je krémovejšia. Horúce halušky premiešaj s bryndzou, navrch pridaj opečenú slaninu aj s výpekom."]
-    ]
-  },
-  {
-    name:"Krémové toskánske cestoviny s kuracím", photo:"https://recepty.sporacek.sk/fotky-nahlad/cestoviny-kuracie-spenat-smotana.jpg",
-    time:"30 minút", kcal:"~980 kcal", base:2, store:"Lidl", valid:"leták platí do 2. 8.", tags:["večera","obed","kura"],
-    items:[
-      {name:"Kuracie prsia",need:300,unit:"g",packQty:1000,packPrice:3.99,packLabel:"1 kg",mealBase:1.2,saveBase:null,sale:false,est:false},
-      {name:"Cestoviny",need:200,unit:"g",packQty:500,packPrice:0.79,packLabel:"500 g",mealBase:0.32,saveBase:null,sale:false,est:false},
-      {name:"Špenát",need:150,unit:"g",packQty:0,packPrice:0,packLabel:"",mealBase:null,saveBase:null,sale:false,est:true,missing:true},
-      {name:"Smotana na varenie",need:150,unit:"ml",packQty:500,packPrice:0.99,packLabel:"500 ml",mealBase:0.3,saveBase:0.12,sale:true,est:false},
-      {name:"Parmezán",need:30,unit:"g",packQty:100,packPrice:2.49,packLabel:"100 g",mealBase:0.75,saveBase:null,sale:false,est:true},
-      {name:"Sušené paradajky",need:40,unit:"g",packQty:280,packPrice:2.8,packLabel:"280 g",mealBase:0.4,saveBase:null,sale:false,est:true},
-      {name:"Cibuľa",need:28,unit:"g",packQty:1000,packPrice:1,packLabel:"1 kg",mealBase:0.03,saveBase:null,sale:false,est:true},
-      {name:"Cesnak",need:10,unit:"g",packQty:100,packPrice:0.5,packLabel:"100 g",mealBase:0.05,saveBase:null,sale:false,est:true},
-      {name:"Čili vločky",text:"štipka",need:0,unit:"g",packQty:30,packPrice:1.8,packLabel:"30 g",mealBase:0.03,saveBase:null,sale:false,est:true},
-      {name:"Olivový olej",need:15,unit:"ml",packQty:1000,packPrice:4.99,packLabel:"1 l",mealBase:0.07,saveBase:null,sale:true,est:false},
-      {name:"Soľ, čierne korenie",need:2,unit:"g",packQty:50,packPrice:2.2,packLabel:"50 g",mealBase:0.09,saveBase:null,sale:false,est:true}
-    ],
-    steps:[
-      ["Daj variť cestoviny a opeč kuracie dozlata.","Cestoviny daj variť v osolenej vode podľa návodu na obale (8–11 minút), pred scedením si odlož šálku vody. Medzitým rozpáľ olej na panvici, kuracie prsia nakrájané na tenké prúžky osoľ, okoreň a opekaj 5–6 minút, kým nezozlatnú. Potom odlož nabok."],
-      ["Orestuj cibuľu, cesnak a paradajky, zalej smotanou.","Na výpeku zníž oheň, orestuj nadrobno nakrájanú cibuľu, prelisovaný cesnak a prúžky sušených paradajok. Zalej smotanou s čili vločkami a jemne prevar."],
-      ["Vmiešaj špenát a parmezán.","Vmiešaj špenát, nech zvädne (1–2 minúty). Odstav z ohňa a vmiešaj čerstvo nastrúhaný parmezán."],
-      ["Vmiešaj cestoviny a kuracie do omáčky.","Vráť kuracie do panvice, pridaj scedené cestoviny. Ak je omáčka hustá, prilej trochu odloženej vody z varenia, kým sa hodvábne nespojí. Podávaj hneď, posyp ďalším parmezánom."]
-    ]
-  },
-  {
-    name:"Bravčový guláš so zemiakmi", photo:"https://recepty.sporacek.sk/fotky-nahlad/bravcovy-gulas-zemiaky.jpg",
-    time:"70 minút", kcal:"~871 kcal", base:2, store:"Kaufland", valid:"leták platí do 5. 8.", tags:["obed","večera","bravčové"],
-    items:[
-      {name:"Bravčová krkovička",need:400,unit:"g",packQty:1000,packPrice:3.79,packLabel:"1 kg",mealBase:1.52,saveBase:0.4,sale:true,est:false},
-      {name:"Zemiaky",need:300,unit:"g",packQty:1000,packPrice:0.55,packLabel:"1 kg",mealBase:0.17,saveBase:0.19,sale:true,est:false},
-      {name:"Cibuľa",need:200,unit:"g",packQty:1000,packPrice:0.49,packLabel:"1 kg balenie",mealBase:0.1,saveBase:0.08,sale:true,est:false},
-      {name:"Cesnak",need:10,unit:"g",packQty:100,packPrice:0.5,packLabel:"100 g",mealBase:0.05,saveBase:null,sale:false,est:true},
-      {name:"Sladká paprika",need:15,unit:"g",packQty:100,packPrice:1.5,packLabel:"100 g",mealBase:0.22,saveBase:null,sale:false,est:true},
-      {name:"Mletá rasca",need:2,unit:"g",packQty:25,packPrice:1.3,packLabel:"25 g",mealBase:0.13,saveBase:null,sale:false,est:true},
-      {name:"Paradajkový pretlak",need:15,unit:"g",packQty:140,packPrice:0.55,packLabel:"140 g",mealBase:0.06,saveBase:0.02,sale:true,est:false},
-      {name:"Bobkový list",need:1,unit:"g",packQty:10,packPrice:1,packLabel:"10 g",mealBase:0,saveBase:null,sale:false,est:true},
-      {name:"Slnečnicový olej",need:30,unit:"ml",packQty:1000,packPrice:1.79,packLabel:"1 l",mealBase:0.05,saveBase:0.04,sale:true,est:false},
-      {name:"Soľ, čierne korenie",need:2,unit:"g",packQty:50,packPrice:2.2,packLabel:"50 g",mealBase:0.09,saveBase:null,sale:false,est:true}
-    ],
-    steps:[
-      ["Orestuj cibuľu a mäso.","Cibuľu nakrájaj nadrobno a na oleji ju opeč do zlata (7–10 minút). Bravčovú krkovičku nakrájaj na kocky, pridaj k cibuli a opeč zo všetkých strán."],
-      ["Zalej korením a vodou.","Odstav hrniec z ohňa, vmiešaj sladkú papriku, rascu, prelisovaný cesnak a paradajkový pretlak. Vráť na oheň, krátko opraž a hneď zalej vodou, aby bolo mäso ponorené. Pridaj bobkový list."],
-      ["Dus mäso do mäkka.","Priveď do varu, prikry a dus na miernom ohni."],
-      ["Pridaj zemiaky a dovar.","Pridaj zemiaky nakrájané na kocky a dus ďalej, kým sú mäso aj zemiaky mäkké a omáčka hustá."],
-      ["Dochuť a podávaj.","Vyber bobkový list, dochuť soľou a čiernym korením. Podávaj posypané petržlenovou vňaťou, s krajcom chleba."]
-    ]
+/* ── marquee — reálne recepty, nekonečná slučka ── */
+var MARQUEE_RECIPES = [
+  {photo:"https://recepty.sporacek.sk/fotky-nahlad/bravcovy-gulas-zemiaky.jpg", name:"Bravčový guláš so zemiakmi", price:"1,19€", store:"Kaufland"},
+  {photo:"https://recepty.sporacek.sk/fotky-nahlad/cestoviny-kuracie-spenat-smotana.jpg", name:"Toskánske cestoviny s kuracím", price:"1,61€", store:"Lidl"},
+  {photo:"https://recepty.sporacek.sk/fotky-nahlad/bryndzove-halusky-slanina.jpg", name:"Bryndzové halušky so slaninou", price:"1,24€", store:"Biedronka"},
+  {photo:"https://recepty.sporacek.sk/fotky-nahlad/pecena-bravcova-krkovicka-paprika-cibula.jpg", name:"Pečená bravčová krkovička s paprikou", price:"1,45€", store:"Tesco"},
+  {photo:"https://recepty.sporacek.sk/fotky-nahlad/peceny-losos-citron-brokolica.jpg", name:"Pečený losos s citrónom a brokolicou", price:"2,10€", store:"Kaufland"},
+  {photo:"https://recepty.sporacek.sk/fotky-nahlad/plnena-cuketa-mlete-maso.jpg", name:"Plnená cuketa s mletým mäsom", price:"0,95€", store:"BILLA"},
+  {photo:"https://recepty.sporacek.sk/fotky-nahlad/kremove-kuracie-rizoto-sampinony.jpg", name:"Krémové kuracie rizoto so šampiňónmi", price:"1,35€", store:"Tesco"},
+  {photo:"https://recepty.sporacek.sk/fotky-nahlad/hovedzi-gulas-zemiaky-mrkva.jpg", name:"Hovädzí guláš so zemiakmi a mrkvou", price:"1,29€", store:"Lidl"}
+];
+(function(){
+  var track = document.getElementById("marquee-track");
+  if (!track) return;
+  var unit = MARQUEE_RECIPES.map(function(r){
+    return '<div class="marquee-item"><img src="' + r.photo + '" alt="' + r.name + '" loading="lazy">' +
+      '<div class="scrim"></div><div class="price">' + r.price + ' / porcia</div><div class="store">' + r.store + '</div>' +
+      '<div class="name">' + r.name + '</div></div>';
+  }).join('');
+  function buildMarquee(){
+    track.innerHTML = unit;
+    var unitWidth = track.scrollWidth;
+    if (!unitWidth) return;
+    var copies = Math.max(2, Math.ceil((window.innerWidth * 2.5) / unitWidth) + 1);
+    track.innerHTML = new Array(copies).fill(unit).join("");
+    track.style.setProperty("--marquee-end", "-" + (100 / copies).toFixed(4) + "%");
+    track.style.animationDuration = Math.round(unitWidth / 44) + "s";
   }
-];
-
-var PLANS = [
-  { key:"free", name:"Free", tagline:"Na vyskúšanie, ako to celé funguje", monthly:0, yearly:0, cta:"Začať na Free",
-    features:[
-      {label:"1 obchod, plán na 3 dni", on:true},
-      {label:"Nákupný zoznam s akciovými cenami", on:true},
-      {label:"Sledovanie ceny 3 surovín", on:true},
-      {label:"Špajza a história nákupov", on:false}
-    ]},
-  { key:"pro", name:"Pro", tagline:"Pre jedného alebo dvoch, čo varia pravidelne", monthly:299, yearly:2990, best:true, cta:"Skúsiť 10 dní zadarmo",
-    features:[
-      {label:"Všetky obchody, plán na 5 dní", on:true},
-      {label:"Neobmedzené sledovanie cien", on:true},
-      {label:"Špajza — počítame so zvyškami", on:true},
-      {label:"Kuchárska kniha a celá história", on:true},
-      {label:"Zdieľanie zoznamu s domácnosťou", on:false}
-    ]},
-  { key:"family", name:"Family", tagline:"Pre celú domácnosť, aj s deťmi", monthly:499, yearly:4990, cta:"Skúsiť 10 dní zadarmo",
-    features:[
-      {label:"Všetko z Pro", on:true},
-      {label:"Až 5 profilov s vlastnými porciami", on:true},
-      {label:"Zdieľaný zoznam — nakupuje kto môže", on:true},
-      {label:"Detské porcie a alergény zvlášť", on:true},
-      {label:"Týždenný súhrn pre celú domácnosť", on:true}
-    ]}
-];
-
-var LAWS = [
-  {num:"0.",title:"Pravda",text:"Šporáček nikdy neklame číslom. Cena, úspora aj pôvod receptu sú vždy pravdivé — bez toho neplatí žiadny z ostatných zákonov.",rank:"Stojí nad všetkými",best:true},
-  {num:"1.",title:"Jedlo",text:"Šporáček nikdy neponúkne zlé jedlo. Recept je vždy hotové, chutné a kompletné jedlo — ani najlacnejšia surovina to neprebije.",rank:"Pred rozhodnutím aj peniazmi"},
-  {num:"2.",title:"Rozhodnutie",text:"Šporáček vždy povie konkrétne, čo kúpiť a čo navariť. Nikdy nepoučuje a nezahanbuje — pokiaľ to neodporuje prvému zákonu.",rank:"Pred peniazmi"},
-  {num:"3.",title:"Peniaze",text:"Šporáček vždy hľadá najnižšiu cenu — pokiaľ to neodporuje prvému ani druhému zákonu.",rank:"Až keď sedí všetko vyššie"}
-];
-
-var VIEWS = [
-  {icon:"restaurant_menu", label:"Recepty podľa akcií", title:"Jedálniček zložený z toho, čo je práve v akcii",
-    text:"Nedostaneš zoznam zliav — dostaneš konkrétne jedlá z akciových surovín na najbližšie dni.",
-    points:["Cena za porciu pri každom jedle","Recept vymeníš, ak sa ti nepozdáva","Porcie podľa toho, kto je doma"]},
-  {icon:"shopping_cart", label:"Nákup podľa zoznamu", title:"Zoznam, ktorý pozná ceny aj tvoju špajzu",
-    text:"Suroviny zoradené podľa oddelení. Odškrtávaš v košíku, suma sa počíta naživo.",
-    points:["Akciová cena a značka pri každej surovine","Čo máš v špajzi, sa odpočíta","Nič nezabudneš — zoznam je z receptov"]},
-  {icon:"local_fire_department", label:"Varenie s príbehom", title:"Varenie, kde nemusíš scrollovať — len klikáš",
-    text:"Celá obrazovka je jeden krok — veľké písmo, časovač, fotka aj tip. Len ťukáš, aj s rukami v múke.",
-    points:["Najprv si odškrtneš suroviny a náčinie","Jeden krok = jedna obrazovka","Na konci fotka do kuchárskej knihy"]}
-];
-var COOK_STEPS = [
-  {label:"Príprava", kind:"mise", img:"03-varenie-01.png"},
-  {label:"Krok 1 — cestoviny a kuracie", kind:"step", num:1, img:"03-varenie-02.png"},
-  {label:"Krok 2 — smotanová omáčka", kind:"step", num:2, img:"03-varenie-03.png"},
-  {label:"Uvarené", kind:"done", img:"03-varenie-04.png"}
-];
-
-/* ── tour tabs ── */
-var currentView = 0, cookStep = 0;
-var tabRow = document.getElementById("tab-row");
-var tourCopy = document.getElementById("tour-copy");
-var tourDots = document.getElementById("tour-dots");
-var panelVarenie = document.getElementById("panel-varenie");
-
-function renderTabs(){
-  tabRow.innerHTML = VIEWS.map(function(v,i){
-    return '<button class="tab-btn' + (i===currentView?' on':'') + '" data-view="' + i + '"><span class="ms">' + v.icon + '</span>' + v.label + '</button>';
-  }).join('');
-  tourDots.innerHTML = VIEWS.map(function(v,i){ return '<div class="' + (i===currentView?'on':'') + '"></div>'; }).join('');
-  Array.prototype.forEach.call(tabRow.querySelectorAll(".tab-btn"), function(btn){
-    btn.addEventListener("click", function(){ currentView = parseInt(btn.getAttribute("data-view"),10); cookStep = 0; renderTabs(); renderCopy(); renderPanels(); });
+  buildMarquee();
+  var resizeTimer;
+  window.addEventListener("resize", function(){
+    clearTimeout(resizeTimer);
+    resizeTimer = setTimeout(buildMarquee, 300);
   });
-  Array.prototype.forEach.call(tourDots.children, function(dot,i){
-    dot.style.cursor = "pointer";
-    dot.addEventListener("click", function(){ currentView = i; cookStep = 0; renderTabs(); renderCopy(); renderPanels(); });
-  });
-}
-function renderCopy(){
-  var v = VIEWS[currentView];
-  var isCooking = currentView === 2;
-  var html = '<h3>' + v.title + '</h3><p class="lead" style="margin-bottom:var(--s-6);">' + v.text + '</p><ul>' +
-    v.points.map(function(p){ return '<li><span class="ms">check</span><span class="t">' + p + '</span></li>'; }).join('') + '</ul>';
-  html += '<div class="cook-nav' + (isCooking?' show':'') + '">' +
-    '<button class="cook-arrow" id="cook-prev" aria-label="Predchádzajúci krok"><span class="ms">arrow_back</span></button>' +
-    '<div style="flex:1;min-width:0;"><div class="eyebrow" style="margin-bottom:0;">Krok ' + (cookStep+1) + ' zo ' + COOK_STEPS.length + '</div><div style="font-size:var(--fs-web-h4);font-weight:800;letter-spacing:-0.01em;">' + COOK_STEPS[cookStep].label + '</div></div>' +
-    '<button class="cook-next" id="cook-next">Ďalej<span class="ms">arrow_forward</span></button></div>';
-  tourCopy.innerHTML = html;
-  if (isCooking){
-    document.getElementById("cook-prev").addEventListener("click", function(){ cookStep = (cookStep + COOK_STEPS.length - 1) % COOK_STEPS.length; renderCopy(); renderPanels(); });
-    document.getElementById("cook-next").addEventListener("click", function(){ cookStep = (cookStep + 1) % COOK_STEPS.length; renderCopy(); renderPanels(); });
-  }
-}
-function renderPanels(){
-  Array.prototype.forEach.call(document.querySelectorAll(".tour-panel"), function(p){ p.classList.remove("show"); });
-  if (currentView === 0) document.getElementById("panel-recepty").classList.add("show");
-  else if (currentView === 1) document.getElementById("panel-nakup").classList.add("show");
-  else { panelVarenie.innerHTML = '<img class="device-shot" src="img/mockups/' + COOK_STEPS[cookStep].img + '" alt="' + COOK_STEPS[cookStep].label + '">'; panelVarenie.classList.add("show"); }
-}
-renderTabs(); renderCopy(); renderPanels();
+  var pause = function(){ track.style.animationPlayState = "paused"; };
+  var resume = function(){ track.style.animationPlayState = "running"; };
+  track.addEventListener("pointerdown", function(e){ if (e.pointerType === "touch" || e.pointerType === "pen") pause(); });
+  track.addEventListener("pointerup", resume);
+  track.addEventListener("pointercancel", resume);
+})();
 
-/* ── recipes grid + modal ── */
-var recipesGrid = document.getElementById("recipes-grid");
-var portions = 4;
-var openIndex = null;
+/* ── ako appka funguje: sticky-scroll scenes ── */
+var SCENES = [
+  {icon:"shopping_cart", num:"01", img:"img/mockups/02-nakupny-zoznam.png",
+    title:"Zoznam, ktorý pozná ceny aj tvoju špajzu",
+    text:"Suroviny zoradené podľa oddelení v predajni, s množstvom, akciovou cenou a značkou. Čo už máš doma, odpočítame.",
+    points:["Ceny a zľavy priamo z aktuálneho letáka","Čo máš v špajzi, sa z nákupu odpočíta","Zvonček na sledovanie ceny konkrétnej suroviny"]},
+  {icon:"checklist", num:"02", img:"img/mockups/03-varenie-01.png",
+    title:"Suroviny a náčinie pripravené vopred",
+    text:"Skôr než zapneš sporák, odškrtneš si, čo máš pripravené. Žiadne prehľadávanie chladničky v polovici receptu.",
+    points:["Zoznam surovín s množstvom na porcie","Náčinie, ktoré budeš potrebovať","Odhad času do prvého kroku"]},
+  {icon:"local_fire_department", num:"03", img:"img/mockups/03-varenie-03.png",
+    title:"Krok za krokom, veľkým písmom",
+    text:"Otvor appku pri sporáku. Jeden krok je jedna obrazovka — s časovačom, poznámkou aj možnosťou vrátiť sa.",
+    points:["Jeden krok = jedna obrazovka, nič neskrolluješ","Časovač spustíš jedným ťuknutím","Vrátiť sa vieš kedykoľvek"]},
+  {icon:"savings", num:"04", img:"img/mockups/05-uspory.png",
+    title:"Presné číslo, nie odhad",
+    text:"Každá suma stojí vedľa nákupu, z ktorého vznikla. Vieš si ju rozkliknúť až po jednotlivé suroviny.",
+    points:["Úspora za mesiac, rok aj celkovo","História nákupov s dátumom a obchodom","Žiadne čísla z ničoho — všetko sa dá overiť"]}
+];
+(function(){
+  var scenecol = document.getElementById("scenecol");
+  var phone = document.getElementById("scene-phone");
+  var dotsEl = document.getElementById("scene-dots");
+  if (!scenecol || !phone || !dotsEl) return;
 
-function revealNow(container){
-  Array.prototype.forEach.call(container.children, function(el){ el.classList.add("revealed"); });
-}
-
-function renderRecipes(){
-  recipesGrid.innerHTML = RECIPES.map(function(r,i){
-    var b = basket(r, portions);
-    return '<button class="recipe-card" data-idx="' + i + '">' +
-      '<div class="recipe-photo-wrap"><img src="' + r.photo + '" alt="' + r.name + '" loading="lazy">' +
-      '<div class="recipe-chips"><span class="chip-accent">' + fmtEur(b.perPortion) + ' / porcia</span><span class="chip-surface">' + r.store + '</span></div></div>' +
-      '<div class="recipe-body"><h3>' + r.name + '</h3>' +
-      '<div class="recipe-meta"><span><span class="ms">schedule</span>' + r.time + '</span><span><span class="ms">group</span>' + plural(portions) + '</span></div>' +
-      '<div class="recipe-tags">' + r.tags.map(function(t){ return '<span>' + t + '</span>'; }).join('') + '</div>' +
-      '<div class="recipe-open">Zobraziť recept<span class="ms">arrow_forward</span></div></div></button>';
-  }).join('');
-  Array.prototype.forEach.call(recipesGrid.querySelectorAll(".recipe-card"), function(card){
-    card.addEventListener("click", function(){ openIndex = parseInt(card.getAttribute("data-idx"),10); renderModal(); document.getElementById("modal-scrim").classList.add("show"); document.body.style.overflow = "hidden"; });
-  });
-  revealNow(recipesGrid);
-}
-
-var modalScrim = document.getElementById("modal-scrim");
-var modalBox = document.getElementById("modal-box");
-function closeModal(){ modalScrim.classList.remove("show"); document.body.style.overflow = ""; openIndex = null; }
-modalScrim.addEventListener("click", function(e){ if (e.target === modalScrim) closeModal(); });
-document.addEventListener("keydown", function(e){ if (e.key === "Escape" && openIndex !== null) closeModal(); });
-
-function renderModal(){
-  if (openIndex === null) return;
-  var r = RECIPES[openIndex];
-  var b = basket(r, portions);
-  var itemsHtml = b.items.map(function(it){
-    var chip = it.sale ? "akcia" : (it.est ? "odhad" : "z letáka");
-    var chipStyle = it.sale ? "background:var(--accent-bg);color:var(--accent);" : "background:var(--bg-sunken);color:var(--text-muted);";
-    return '<div class="basket-item"><div style="flex:1;min-width:0;"><div class="nm"><span class="name">' + it.name + '</span><span class="basket-chip" style="' + chipStyle + '">' + chip + '</span></div>' +
-      '<div class="sub">Kúpiš ' + it.packs + ' · v recepte ' + it.qty + '</div>' +
-      (it.left ? '<div class="basket-left"><span class="ms" style="font-size:12px;">kitchen</span>zostane ' + it.left + ' do špajze</div>' : '') + '</div>' +
-      '<div class="basket-right"><div class="buy" style="color:' + (it.buy === "—" ? "var(--text-faint)" : "var(--text-primary)") + ';">' + it.buy + '</div><div class="used">v jedle ' + it.used + '</div>' +
-      (it.was ? '<div class="was">' + it.was + '</div>' : '') + '</div></div>';
-  }).join('');
-  var hasSave = b.saved > 0.005;
-  modalBox.innerHTML =
-    '<div class="modal-photo"><img src="' + r.photo + '" alt="' + r.name + '">' +
-    '<div class="modal-photo-chips"><span class="chip-accent">' + fmtEur(b.perPortion) + ' / porcia</span><span class="chip-surface">' + r.store + '</span></div></div>' +
-    '<div class="modal-content">' +
-    '<div class="modal-head"><h3>' + r.name + '</h3><button class="modal-close" id="modal-close-btn" aria-label="Zavrieť"><span class="ms">close</span></button></div>' +
-    '<div class="modal-facts"><span><span class="ms">schedule</span>' + r.time + '</span><span><span class="ms">local_fire_department</span>' + r.kcal + ' na porciu</span></div>' +
-    '<div class="portion-row"><div class="section-label">Varíš pre</div><div class="portion-opts">' +
-    [2,4,6].map(function(p){ return '<button class="portion-opt' + (p===portions?' on':'') + '" data-p="' + p + '">' + plural(p) + '</button>'; }).join('') + '</div></div>' +
-    '<div class="list-head-row"><div class="section-label">Nákupný zoznam</div><div class="list-meta">' + r.store + ' · ' + r.valid + '</div></div>' +
-    '<div class="basket-box">' + itemsHtml +
-    '<div class="basket-total"><span>Zaplatíš v obchode</span><span>' + fmtEur(b.buy) + '</span></div>' +
-    '<div class="basket-subline" style="color:var(--text-secondary);"><span>Z toho zjete v tomto jedle</span><span>' + fmtEur(b.meal) + '</span></div>' +
-    '<div class="basket-subline" style="color:var(--pantry);"><span>Zostane ti v špajzi na ďalšie jedlá</span><span>' + fmtEur(b.pantry) + '</span></div></div>' +
-    '<div class="info-callout"><span class="msf">kitchen</span><div>Balenie sa nekupuje po gramoch — jedno vajce ani pol balenia slaniny si nekúpiš. Čo zostane, ide do špajze a Šporáček s tým počíta pri ďalšom nákupe. Preto čím viac porcií navaríš, tým menej z nákupu ostane nevyužitého.</div></div>' +
-    (hasSave ? '<div class="save-callout"><span class="msf">savings</span><span>Vďaka akciám ušetríš ' + fmtEur(b.saved/portions) + ' na porcii</span></div>' : '') +
-    '<div class="section-label" style="margin-bottom:var(--s-35);">Postup</div><div class="steps-list">' +
-    r.steps.map(function(s,i){ return '<div class="step-item"><div class="step-num">' + (i+1) + '</div><div style="flex:1;min-width:0;"><h5>' + s[0] + '</h5><p>' + s[1] + '</p></div></div>'; }).join('') + '</div>' +
-    '<div class="source-note"><span class="ms">verified</span><div>Recept je overený podľa viacerých zdrojov — pomery si nevymýšľame. Ceny sú z aktuálneho letáka daného obchodu; „odhad" znamená, že surovina v letáku nie je a počítame ju z bežnej ceny.</div></div>' +
+  scenecol.innerHTML = SCENES.map(function(s,i){
+    return '<div class="scene' + (i===0?' active':'') + '" data-scene-idx="' + i + '">' +
+      '<div class="scene-head" data-idx="' + i + '">' +
+        '<div style="flex:1;">' +
+          '<div style="display:flex;align-items:center;gap:var(--s-3);margin-bottom:var(--s-35);"><span class="scene-num">' + s.num + '</span><span class="ms">' + s.icon + '</span></div>' +
+          '<h3>' + s.title + '</h3>' +
+        '</div>' +
+        '<span class="ms scene-chevron" data-chevron="' + i + '">expand_more</span>' +
+      '</div>' +
+      '<div class="scene-body" data-body="' + i + '">' +
+        '<p class="lead">' + s.text + '</p><ul>' +
+        s.points.map(function(p){ return '<li><span class="ms" style="font-variation-settings:\'FILL\' 0,\'wght\' 600,\'GRAD\' 0,\'opsz\' 24;">check</span><span class="t">' + p + '</span></li>'; }).join('') +
+        '</ul>' +
+        '<img class="scene-mobileimg" src="' + s.img + '" alt="">' +
+      '</div>' +
     '</div>';
-  document.getElementById("modal-close-btn").addEventListener("click", closeModal);
-  Array.prototype.forEach.call(modalBox.querySelectorAll(".portion-opt"), function(btn){
-    btn.addEventListener("click", function(){ portions = parseInt(btn.getAttribute("data-p"),10); renderModal(); renderRecipes(); });
-  });
-}
-renderRecipes();
-
-/* ── pricing ── */
-var cycle = "monthly";
-var plansGrid = document.getElementById("plans-grid");
-var btnMonthly = document.getElementById("cycle-monthly");
-var btnYearly = document.getElementById("cycle-yearly");
-function renderPlans(){
-  btnMonthly.classList.toggle("on", cycle === "monthly");
-  btnYearly.classList.toggle("on", cycle === "yearly");
-  plansGrid.innerHTML = PLANS.map(function(p){
-    var free = p.monthly === 0;
-    var price = free ? "0€" : eur(cycle === "yearly" ? p.yearly : p.monthly);
-    var period = free ? "navždy" : (cycle === "yearly" ? "za rok" : "za mesiac");
-    var note = free ? "Bez karty, bez časového limitu" : (cycle === "yearly" ? "Vychádza na " + eur(Math.round(p.yearly/12)) + " za mesiac" : "Ročne ušetríš 2 mesiace");
-    return '<div class="plan-card' + (p.best?' best':'') + '">' +
-      '<div><div class="plan-name-row"><div class="name">' + p.name + '</div>' + (p.best ? '<div class="plan-best-badge">Najčastejšia voľba</div>' : '') + '</div>' +
-      '<p class="plan-tagline" style="color:' + (p.best?'var(--on-inverse-secondary)':'var(--text-secondary)') + ';">' + p.tagline + '</p></div>' +
-      '<div><div class="plan-price-row"><div class="plan-price">' + price + '</div><div class="plan-period" style="color:' + (p.best?'var(--on-inverse-secondary)':'var(--text-secondary)') + ';">' + period + '</div></div>' +
-      '<div class="plan-note" style="color:' + (p.best?'var(--on-inverse-secondary)':'var(--text-secondary)') + ';">' + note + '</div></div>' +
-      '<ul class="plan-features">' + p.features.map(function(f){
-        var color = f.on ? (p.best ? "var(--sage)" : "var(--accent)") : (p.best ? "var(--on-inverse-faint)" : "var(--text-faint)");
-        var ink = f.on ? (p.best ? "var(--on-inverse-secondary)" : "var(--text-primary)") : (p.best ? "var(--on-inverse-faint)" : "var(--text-faint)");
-        return '<li><span class="ms" style="color:' + color + ';">' + (f.on ? "check" : "remove") + '</span><span style="color:' + ink + ';">' + f.label + '</span></li>';
-      }).join('') + '</ul>' +
-      '<a class="plan-cta" href="#newsletter">' + p.cta + '</a></div>';
   }).join('');
-  revealNow(plansGrid);
-}
-btnMonthly.addEventListener("click", function(){ cycle = "monthly"; renderPlans(); });
-btnYearly.addEventListener("click", function(){ cycle = "yearly"; renderPlans(); });
-renderPlans();
+  phone.innerHTML = SCENES.map(function(s,i){
+    return '<img class="' + (i===0?'active':'') + '" data-i="' + i + '" src="' + s.img + '" alt="">';
+  }).join('');
+  dotsEl.innerHTML = SCENES.map(function(s,i){
+    return '<div class="scene-dot' + (i===0?' active':'') + '" data-i="' + i + '">' + s.num + '</div>';
+  }).join('');
 
-/* ── laws ── */
-document.getElementById("laws-grid").innerHTML = LAWS.map(function(l){
-  return '<div class="law-card" style="background:' + (l.best?'var(--accent)':'var(--on-inverse-bg-subtle)') + ';border:1px solid ' + (l.best?'var(--accent)':'var(--on-inverse-border)') + ';">' +
-    '<div class="law-num-row"><div class="law-num" style="color:' + (l.best?'#fff':'var(--text-on-inverse-muted)') + ';">' + l.num + '</div><div class="law-label" style="color:' + (l.best?'#fff':'var(--text-on-inverse-muted)') + ';">zákon</div></div>' +
-    '<h3>' + l.title + '</h3><p>' + l.text + '</p>' +
-    '<div class="law-rank" style="color:' + (l.best?'#fff':'var(--text-on-inverse-muted)') + ';">' + l.rank + '</div></div>';
-}).join('');
+  var sceneEls = Array.prototype.slice.call(scenecol.querySelectorAll(".scene"));
+  var imgEls = Array.prototype.slice.call(phone.querySelectorAll("img"));
+  var dotEls = Array.prototype.slice.call(dotsEl.querySelectorAll(".scene-dot"));
+  var activeScene = 0;
+  var openScene = 0;
+  var MOBILE_BP = 900;
 
-var lawsTrack = document.getElementById("laws-grid");
-var lawsPrev = document.getElementById("laws-prev");
-var lawsNext = document.getElementById("laws-next");
-function updateLawsNav(){
-  lawsPrev.disabled = lawsTrack.scrollLeft < 8;
-  lawsNext.disabled = lawsTrack.scrollLeft > lawsTrack.scrollWidth - lawsTrack.clientWidth - 8;
-}
-function lawsStep(){ var c = lawsTrack.querySelector(".law-card"); return c ? c.getBoundingClientRect().width + 24 : 300; }
-lawsPrev.addEventListener("click", function(){ lawsTrack.scrollBy({left:-lawsStep(), behavior:"smooth"}); });
-lawsNext.addEventListener("click", function(){ lawsTrack.scrollBy({left:lawsStep(), behavior:"smooth"}); });
-lawsTrack.addEventListener("scroll", updateLawsNav);
-updateLawsNav();
+  function isMobile(){ return window.innerWidth <= MOBILE_BP; }
+
+  function setActive(i){
+    if (i === activeScene) return;
+    activeScene = i;
+    sceneEls.forEach(function(el){ el.classList.toggle("active", +el.getAttribute("data-scene-idx") === i); });
+    imgEls.forEach(function(el){ el.classList.toggle("active", +el.getAttribute("data-i") === i); });
+    dotEls.forEach(function(el){ el.classList.toggle("active", +el.getAttribute("data-i") === i); });
+  }
+
+  function renderOpen(){
+    scenecol.querySelectorAll("[data-body]").forEach(function(el){
+      var i = +el.getAttribute("data-body");
+      el.style.display = (!isMobile() || openScene === i) ? "block" : "none";
+    });
+    scenecol.querySelectorAll("[data-chevron]").forEach(function(el){
+      var i = +el.getAttribute("data-chevron");
+      el.style.transform = openScene === i ? "rotate(180deg)" : "rotate(0deg)";
+    });
+  }
+  renderOpen();
+
+  scenecol.querySelectorAll(".scene-head").forEach(function(head){
+    head.addEventListener("click", function(){
+      if (!isMobile()) return;
+      var i = +head.getAttribute("data-idx");
+      openScene = openScene === i ? -1 : i;
+      renderOpen();
+    });
+  });
+
+  var raf = null;
+  function onScroll(){
+    if (raf) return;
+    raf = requestAnimationFrame(function(){
+      raf = null;
+      var mid = window.innerHeight / 2;
+      var best = 0, bestDist = Infinity;
+      sceneEls.forEach(function(el){
+        var r = el.getBoundingClientRect();
+        var d = Math.abs(r.top + r.height / 2 - mid);
+        if (d < bestDist){ bestDist = d; best = +el.getAttribute("data-scene-idx"); }
+      });
+      setActive(best);
+    });
+  }
+  window.addEventListener("scroll", onScroll, {passive:true});
+  window.addEventListener("resize", function(){ onScroll(); renderOpen(); });
+  onScroll();
+
+  dotEls.forEach(function(el){
+    el.addEventListener("click", function(){
+      var i = +el.getAttribute("data-i");
+      var target = sceneEls[i];
+      if (!target) return;
+      var top = target.getBoundingClientRect().top + window.scrollY - 110;
+      window.scrollTo({top:top, behavior:"smooth"});
+    });
+  });
+})();
+
+/* ── tri recepty ── */
+var RECIPES = [
+  {slug:"bryndzove-halusky-slanina", name:"Bryndzové halušky so slaninou", time:"35 minút", portions:"4 porcie", price:"1,23€", tags:["obed","jednohrnec","sýte"], store:"Biedronka"},
+  {slug:"cestoviny-kuracie-spenat-smotana", name:"Krémové toskánske cestoviny s kuracím", time:"30 minút", portions:"4 porcie", price:"1,62€", tags:["večera","obed","kura"], store:"Lidl"},
+  {slug:"bravcovy-gulas-zemiaky", name:"Bravčový guláš so zemiakmi", time:"70 minút", portions:"4 porcie", price:"1,19€", tags:["obed","večera","bravčové"], store:"Kaufland"}
+];
+(function(){
+  var grid = document.getElementById("recipes-grid");
+  if (!grid) return;
+  grid.innerHTML = RECIPES.map(function(r){
+    return '<a class="recipe-card" href="https://recepty.sporacek.sk/' + r.slug + '.html">' +
+      '<div class="recipe-photo"><img src="https://recepty.sporacek.sk/fotky-nahlad/' + r.slug + '.jpg" alt="' + r.name + '" loading="lazy">' +
+      '<div class="price">' + r.price + ' / porcia</div><div class="store">' + r.store + '</div></div>' +
+      '<div class="recipe-body">' +
+        '<div class="name">' + r.name + '</div>' +
+        '<div class="recipe-meta"><span><span class="ms">schedule</span>' + r.time + '</span><span><span class="ms">group</span>' + r.portions + '</span></div>' +
+        '<div class="recipe-tags">' + r.tags.map(function(t){ return '<span>' + t + '</span>'; }).join('') + '</div>' +
+        '<div class="recipe-open">Zobraziť recept<span class="ms" style="font-variation-settings:\'FILL\' 0,\'wght\' 600,\'GRAD\' 0,\'opsz\' 24;">arrow_forward</span></div>' +
+      '</div></a>';
+  }).join('');
+})();
+
+/* ── cenník ── */
+var PLANS = [
+  {key:"free", name:"Free", tagline:"Na vyskúšanie, ako to celé funguje", monthly:0, yearly:0, cta:"Začať na Free", icon:"eco",
+    features:[{label:"1 obchod, plán na 3 dni", on:true},{label:"Nákupný zoznam s akciovými cenami", on:true},{label:"Sledovanie ceny 3 surovín", on:true},{label:"Špajza a história nákupov", on:false}]},
+  {key:"plus", name:"PLUS", tagline:"Pre jedného alebo dvoch, čo varia pravidelne", monthly:299, yearly:2990, best:true, cta:"Skúsiť 10 dní zadarmo", icon:"bolt",
+    features:[{label:"Všetky obchody, plán na 5 dní", on:true},{label:"Neobmedzené sledovanie cien", on:true},{label:"Špajza — počítame so zvyškami", on:true},{label:"Kuchárska kniha a celá história", on:true},{label:"Zdieľanie zoznamu s domácnosťou", on:false}]},
+  {key:"family", name:"Family", tagline:"Pre celú domácnosť, aj s deťmi", monthly:499, yearly:4990, cta:"Skúsiť 10 dní zadarmo", icon:"groups",
+    features:[{label:"Všetko z PLUS", on:true},{label:"Až 5 profilov s vlastnými porciami", on:true},{label:"Zdieľaný zoznam — nakupuje kto môže", on:true},{label:"Detské porcie a alergény zvlášť", on:true},{label:"Týždenný súhrn pre celú domácnosť", on:true}]}
+];
+function fmtEur(cents){ return (cents/100).toFixed(2).replace(".", ",") + "€"; }
+(function(){
+  var plansGrid = document.getElementById("plans-grid");
+  var planDots = document.getElementById("plan-dots");
+  var btnMonthly = document.getElementById("cycle-monthly");
+  var btnYearly = document.getElementById("cycle-yearly");
+  var cycle = "monthly";
+  var activePlan = 0;
+
+  function renderPlans(){
+    var yearly = cycle === "yearly";
+    btnMonthly.classList.toggle("on", !yearly);
+    btnYearly.classList.toggle("on", yearly);
+    plansGrid.innerHTML = PLANS.map(function(p){
+      var free = p.monthly === 0, best = !!p.best;
+      var price = free ? "0€" : (yearly ? fmtEur(p.yearly) : fmtEur(p.monthly));
+      var period = free ? "navždy" : (yearly ? "za rok" : "za mesiac");
+      var note = free ? "Bez karty, bez časového limitu" : (yearly ? "Vychádza na " + fmtEur(Math.round(p.yearly/12)) + " za mesiac" : "Ročne ušetríš 15%");
+      return '<div class="plancard' + (best?' best':'') + '">' +
+        '<div class="plan-icon"><span class="ms" style="font-variation-settings:\'FILL\' 1,\'wght\' 500,\'GRAD\' 0,\'opsz\' 24;">' + p.icon + '</span></div>' +
+        '<div><div class="plan-name-row"><div class="name">' + p.name + '</div>' + (best?'<div class="plan-best-badge">Najčastejšia voľba</div>':'') + '</div>' +
+        '<p class="plan-tagline">' + p.tagline + '</p></div>' +
+        '<div><div class="plan-price-row"><div class="plan-price">' + price + '</div><div class="plan-period">' + period + '</div></div>' +
+        '<div class="plan-note">' + note + '</div></div>' +
+        '<ul class="plan-features">' + p.features.map(function(f){
+          return '<li><span class="ms" style="color:' + (f.on ? (best?'var(--sage)':'var(--accent)') : (best?'var(--on-inverse-faint)':'var(--text-faint)')) + ';font-variation-settings:\'FILL\' 0,\'wght\' 600,\'GRAD\' 0,\'opsz\' 24;">' + (f.on?'check':'remove') + '</span><span style="color:' + (f.on ? (best?'var(--on-inverse-secondary)':'var(--text-primary)') : (best?'var(--on-inverse-faint)':'var(--text-faint)')) + ';">' + f.label + '</span></li>';
+        }).join('') + '</ul>' +
+        '<a class="plan-cta" href="#signup">' + p.cta + '</a></div>';
+    }).join('');
+    planDots.innerHTML = PLANS.map(function(p,i){ return '<div class="plandot' + (i===activePlan?' plandot-active':'') + '"></div>'; }).join('');
+    Array.prototype.forEach.call(plansGrid.children, function(el){ el.classList.add("revealed"); });
+  }
+  btnMonthly.addEventListener("click", function(){ cycle = "monthly"; renderPlans(); });
+  btnYearly.addEventListener("click", function(){ cycle = "yearly"; renderPlans(); });
+  renderPlans();
+
+  var raf = null;
+  plansGrid.addEventListener("scroll", function(){
+    if (raf) return;
+    raf = requestAnimationFrame(function(){
+      raf = null;
+      var cards = plansGrid.querySelectorAll(".plancard");
+      var rowRect = plansGrid.getBoundingClientRect();
+      var best = 0, bestDist = Infinity;
+      cards.forEach(function(c,i){
+        var r = c.getBoundingClientRect();
+        var d = Math.abs(r.left - rowRect.left);
+        if (d < bestDist){ bestDist = d; best = i; }
+      });
+      if (best !== activePlan){ activePlan = best; Array.prototype.forEach.call(planDots.children, function(d,i){ d.classList.toggle("plandot-active", i===activePlan); }); }
+    });
+  }, {passive:true});
+})();
+
+/* ── štyri zákony ── */
+var LAWS = [
+  {num:"0", title:"Pravda", text:"Šporáček nikdy neklame číslom. Cena, úspora aj pôvod receptu sú vždy pravdivé — bez toho neplatí žiadny z ostatných zákonov."},
+  {num:"1", title:"Jedlo", text:"Šporáček nikdy neponúkne zlé jedlo. Recept je vždy hotové, chutné a kompletné jedlo — ani najlacnejšia surovina to neprebije."},
+  {num:"2", title:"Rozhodnutie", text:"Šporáček vždy povie konkrétne, čo kúpiť a čo navariť. Nikdy nepoučuje a nezahanbuje — pokiaľ to neodporuje prvému zákonu."},
+  {num:"3", title:"Peniaze", text:"Šporáček vždy hľadá najnižšiu cenu — pokiaľ to neodporuje prvému ani druhému zákonu."}
+];
+(function(){
+  var grid = document.getElementById("laws-grid");
+  if (!grid) return;
+  grid.innerHTML = LAWS.map(function(l){
+    return '<div class="lawitem"><div class="head"><div class="num">' + l.num + '</div><div class="title">' + l.title + '</div></div>' +
+      '<div class="txt">' + l.text + '</div></div>';
+  }).join('');
+})();
+
+/* ── fab (floating cta) ── */
+(function(){
+  var fab = document.getElementById("fab");
+  if (!fab) return;
+  window.addEventListener("scroll", function(){
+    fab.classList.toggle("show", window.scrollY > 560);
+  }, {passive:true});
+})();
 
 /* ── newsletter form ──
    Konfigurácia napojenia na Brevo je v newsletter/config.json (mimo kódu,
@@ -943,7 +889,7 @@ nlForm.addEventListener("submit", function(e){
   }
   nlForm.style.display = "none";
   document.getElementById("nl-success-title").textContent = "Sme dohodnutí, " + name.split(" ")[0];
-  document.getElementById("nl-success-msg").textContent = "Prvú ukážku nákupu pošleme na " + email + ".";
+  document.getElementById("nl-success-msg").textContent = "Prvú ukážku pošleme na " + email + ".";
   nlSuccess.classList.add("show");
 });
 
@@ -952,15 +898,21 @@ if ("IntersectionObserver" in window){
   var io = new IntersectionObserver(function(entries){
     entries.forEach(function(entry){ if (entry.isIntersecting){ entry.target.classList.add("revealed"); io.unobserve(entry.target); } });
   }, {threshold:0.12});
-  document.addEventListener("DOMContentLoaded", function(){
-    Array.prototype.forEach.call(document.querySelectorAll("[data-reveal] > *"), function(el){ io.observe(el); });
-  });
-  window.addEventListener("load", function(){
-    Array.prototype.forEach.call(document.querySelectorAll("[data-reveal] > *"), function(el){ io.observe(el); });
-  });
+  function observeAll(){ Array.prototype.forEach.call(document.querySelectorAll("[data-reveal] > *"), function(el){ io.observe(el); }); }
+  document.addEventListener("DOMContentLoaded", observeAll);
+  window.addEventListener("load", observeAll);
 } else {
   Array.prototype.forEach.call(document.querySelectorAll("[data-reveal] > *"), function(el){ el.classList.add("revealed"); });
 }
+
+/* ── header scroll shadow ── */
+(function(){
+  var header = document.querySelector("header.site");
+  if (!header) return;
+  window.addEventListener("scroll", function(){
+    header.style.boxShadow = window.scrollY > 8 ? "0 8px 24px rgba(22,48,33,0.08)" : "none";
+  }, {passive:true});
+})();
 
 })();
 </script>
