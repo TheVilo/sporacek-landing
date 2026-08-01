@@ -313,7 +313,7 @@ h1 span{color:var(--accent);}
 .laws-arrow:hover{background:var(--on-inverse-bg);border-color:var(--text-on-inverse-muted);}
 .laws-arrow:active{transform:scale(0.9);}
 .laws-arrow:disabled{opacity:0.3;pointer-events:none;}
-.laws-track-wrap{flex:1;min-width:280px;max-width:100%;overflow-x:hidden;}
+.laws-track-wrap{flex:1;min-width:280px;max-width:100%;overflow-x:hidden;-webkit-mask-image:linear-gradient(to right,transparent 0,black var(--s-6),black calc(100% - var(--s-9)),transparent 100%);mask-image:linear-gradient(to right,transparent 0,black var(--s-6),black calc(100% - var(--s-9)),transparent 100%);}
 .laws-track{display:flex;gap:var(--s-6);overflow-x:auto;scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch;padding:var(--s-6) var(--s-3) var(--s-7);scrollbar-width:none;margin:0 calc(-1 * var(--s-3));}
 .laws-track::-webkit-scrollbar{display:none;}
 .law-card{flex:0 0 min(440px,82vw);scroll-snap-align:start;border-radius:var(--radius-2xl);padding:var(--s-9) var(--s-8);display:flex;flex-direction:column;gap:var(--s-4);transition:transform 260ms cubic-bezier(0.2,0,0.2,1),box-shadow 260ms cubic-bezier(0.2,0,0.2,1);}
@@ -325,8 +325,6 @@ h1 span{color:var(--accent);}
 .law-card p{font-size:var(--fs-web-body);font-weight:500;line-height:1.6;color:var(--on-inverse-secondary);text-wrap:pretty;}
 .law-rank{font-size:var(--fs-web-meta);font-weight:800;margin-top:auto;padding-top:var(--s-25);}
 @media (max-width:900px){ .laws-heading{flex-basis:100%;max-width:none;} }
-.laws-footer-cta{display:flex;align-items:center;justify-content:center;gap:var(--s-5);flex-wrap:wrap;margin-top:var(--s-9);padding-top:var(--s-7);border-top:1px solid var(--on-inverse-border);text-align:center;}
-.laws-footer-cta p{color:var(--text-on-inverse);font-size:var(--fs-web-h4);font-weight:800;letter-spacing:-0.01em;}
 
 /* quote */
 .quote-section{max-width:820px;margin:0 auto;text-align:center;}
@@ -486,6 +484,7 @@ footer.site{padding:var(--s-12) var(--s-9);background:var(--bg-inverse-strong);}
             <div><div class="v">44,30€</div><div class="l">ušetrené v júli</div></div>
             <div><div class="v">11 %</div><div class="l">z nákupov za 389,50€</div></div>
           </div>
+          <a class="btn-accent" href="#newsletter" style="margin-top:var(--s-6);">Mám záujem</a>
         </div>
       </div>
     </div>
@@ -550,10 +549,6 @@ footer.site{padding:var(--s-12) var(--s-9);background:var(--bg-inverse-strong);}
       <div class="laws-track-wrap">
         <div class="laws-track" id="laws-grid"></div>
       </div>
-    </div>
-    <div class="laws-footer-cta">
-      <p>Presvedčili sme ťa?</p>
-      <a class="btn-accent" href="#newsletter">Mám záujem</a>
     </div>
   </div>
 </section>
