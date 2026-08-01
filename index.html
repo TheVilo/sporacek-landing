@@ -117,7 +117,7 @@ header.site .inner{max-width:1180px;margin:0 auto;display:flex;align-items:cente
 
 /* hero */
 .herorow{max-width:1180px;margin:0 auto;display:flex;gap:var(--s-13);align-items:center;padding:var(--s-11) var(--s-9) var(--s-13);}
-@media (max-width:900px){ .herorow{flex-direction:column !important;align-items:stretch !important;padding-left:var(--s-6);padding-right:var(--s-6);} }
+@media (max-width:1024px){ .herorow{flex-direction:column !important;align-items:stretch !important;padding-left:var(--s-6);padding-right:var(--s-6);} }
 @media (max-width:700px){ .herorow{padding-top:var(--s-9);padding-bottom:var(--s-9);} }
 .herocopy{flex:1;min-width:320px;}
 .hero-badge{display:inline-flex;align-items:center;gap:var(--s-2);background:var(--highlight);color:var(--text-primary);font-size:var(--fs-web-meta);font-weight:800;padding:var(--s-15) var(--s-35);border-radius:var(--radius-full);margin-bottom:var(--s-6);}
@@ -129,7 +129,7 @@ h1 span{color:var(--accent);}
 .herofacts span{display:inline-flex;align-items:center;gap:var(--s-15);}
 .herofacts .ms{color:var(--accent);font-size:var(--icon-lg);}
 .herocollage{flex:0 0 auto;width:100%;max-width:480px;position:relative;aspect-ratio:1200/1263;}
-@media (max-width:900px){ .herocollage{max-width:380px !important;margin:var(--s-8) auto 0 !important;} }
+@media (max-width:1024px){ .herocollage{max-width:380px !important;margin:var(--s-8) auto 0 !important;} }
 .herocollage > img{position:absolute;inset:0;width:100%;height:100%;object-fit:contain;animation:heroFloat 0.9s cubic-bezier(.16,1,.3,1) .1s both;}
 .hc-badge{position:absolute;background:var(--bg-surface);box-shadow:var(--shadow-card);border-radius:var(--radius-full);padding:var(--s-2) var(--s-4);display:flex;align-items:center;gap:var(--s-15);font-size:var(--fs-web-sm);font-weight:800;color:var(--text-primary);}
 .hc-badge.b1{top:1%;left:0%;animation:badgeFloat 0.8s cubic-bezier(.16,1,.3,1) .5s both,idleFloat 4.2s ease-in-out 1.3s infinite;}
@@ -181,20 +181,20 @@ h1 span{color:var(--accent);}
 .eyebrow{font-size:var(--fs-web-eyebrow);font-weight:800;letter-spacing:0.18em;text-transform:uppercase;color:var(--accent);margin-bottom:var(--s-35);}
 h2{font-size:var(--fs-web-h2);font-weight:800;letter-spacing:-0.03em;line-height:var(--lh-tight);text-wrap:balance;}
 .scroller{display:flex;gap:var(--s-13);align-items:flex-start;}
-@media (max-width:900px){ .scroller{flex-direction:column !important;} }
+@media (max-width:1024px){ .scroller{flex-direction:column !important;} }
 .scenecol{flex:1;min-width:300px;}
 .scene{min-height:60vh;display:flex;flex-direction:column;justify-content:center;padding:var(--s-8) 0;opacity:0.32;transition:opacity 0.3s ease;}
 .scene.active{opacity:1;}
-@media (max-width:900px){ .scene{min-height:auto !important;padding:var(--s-7) 0 !important;opacity:1 !important;border-bottom:1px solid var(--border-subtle) !important;} }
+@media (max-width:1024px){ .scene{min-height:auto !important;padding:var(--s-7) 0 !important;opacity:1 !important;border-bottom:1px solid var(--border-subtle) !important;} }
 .scene-head{display:flex;align-items:flex-start;justify-content:space-between;gap:var(--s-3);}
-@media (max-width:900px){ .scene-head{cursor:pointer !important;} }
+@media (max-width:1024px){ .scene-head{cursor:pointer !important;} }
 .scene-num{font-size:var(--fs-web-h4);font-weight:800;color:var(--accent);letter-spacing:-0.02em;}
 .scene-head .ms{font-size:var(--icon-xl);color:var(--accent);}
 .scene h3{font-size:var(--fs-web-h3);font-weight:800;letter-spacing:-0.02em;line-height:var(--lh-snug);text-wrap:balance;}
 .scene-chevron{display:none;flex:none;font-size:var(--icon-xl);color:var(--text-faint);transition:transform 0.25s ease;}
-@media (max-width:900px){ .scene-chevron{display:block !important;} }
+@media (max-width:1024px){ .scene-chevron{display:block !important;} }
 .scene-body{display:grid;grid-template-rows:1fr;}
-@media (max-width:900px){
+@media (max-width:1024px){
   .scene-body{grid-template-rows:0fr;transition:grid-template-rows .32s cubic-bezier(.2,0,.2,1);}
   .scene-body.open{grid-template-rows:1fr;}
 }
@@ -205,9 +205,9 @@ h2{font-size:var(--fs-web-h2);font-weight:800;letter-spacing:-0.03em;line-height
 .scene li .ms{font-size:var(--icon-lg);flex:none;color:var(--accent);line-height:1.35;}
 .scene li span.t{font-size:var(--fs-web-body);font-weight:700;line-height:var(--lh-base);text-wrap:pretty;}
 .scene-mobileimg{display:none;width:100%;max-width:280px;margin:0 auto;filter:drop-shadow(0 20px 36px rgba(14,31,22,0.2));}
-@media (max-width:900px){ .scene-mobileimg{display:block !important;} }
+@media (max-width:1024px){ .scene-mobileimg{display:block !important;} }
 .stickyphone{flex:0 0 340px;display:flex;flex-direction:column;align-items:center;gap:var(--s-5);position:sticky;top:100px;align-self:flex-start;}
-@media (max-width:900px){ .stickyphone{display:none !important;} }
+@media (max-width:1024px){ .stickyphone{display:none !important;} }
 .stickyphone-img-box{position:relative;width:100%;aspect-ratio:600/1104;}
 .stickyphone-img-box img{position:absolute;inset:0;width:100%;height:100%;object-fit:contain;opacity:0;transition:opacity .35s ease;filter:drop-shadow(0 24px 44px rgba(14,31,22,0.22));}
 .stickyphone-img-box img.active{opacity:1;}
@@ -223,7 +223,7 @@ h2{font-size:var(--fs-web-h2);font-weight:800;letter-spacing:-0.03em;line-height
 
 /* recepty */
 .recipes-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:var(--s-6);}
-.recipe-card{background:var(--bg-surface);border-radius:var(--radius-lg);overflow:hidden;box-shadow:var(--shadow-tab);display:flex;flex-direction:column;transition:transform var(--transition),box-shadow var(--transition);}
+.recipe-card{background:var(--bg-surface);border-radius:var(--radius-lg);overflow:hidden;box-shadow:var(--shadow-tab);display:flex;flex-direction:column;cursor:pointer;transition:transform var(--transition),box-shadow var(--transition);}
 .recipe-card:hover{transform:translateY(-4px);box-shadow:var(--shadow-card);}
 .recipe-photo{position:relative;height:220px;}
 .recipe-photo img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block;}
@@ -237,6 +237,67 @@ h2{font-size:var(--fs-web-h2);font-weight:800;letter-spacing:-0.03em;line-height
 .recipe-tags{display:flex;gap:var(--s-2);flex-wrap:wrap;}
 .recipe-tags span{font-size:var(--fs-web-meta);font-weight:700;color:var(--text-secondary);background:var(--bg-sunken);border-radius:var(--radius-full);padding:var(--s-1) var(--s-3);}
 .recipe-open{display:inline-flex;align-items:center;gap:var(--s-1);font-size:var(--fs-web-sm);font-weight:800;color:var(--accent);margin-top:var(--s-1);}
+
+/* recipe modal */
+.rmodal-scrim{position:fixed;inset:0;z-index:100;background:rgba(20,24,20,0.55);display:flex;align-items:center;justify-content:center;padding:var(--s-6);}
+.rmodal-bg{position:absolute;inset:0;cursor:pointer;}
+.rmodal-box{position:relative;z-index:2;width:100%;max-width:1000px;height:90vh;background:var(--bg-canvas);border-radius:var(--radius-2xl);box-shadow:var(--shadow-modal);overflow:hidden;display:flex;flex-wrap:wrap;}
+@media (max-width:1024px){
+  .rmodal-scrim{padding:0;}
+  .rmodal-box{width:100vw;max-width:100vw;height:100dvh;border-radius:0;flex-direction:column;flex-wrap:nowrap;}
+}
+.rmodal-photo{flex:1 1 320px;min-width:300px;max-width:400px;position:relative;background:var(--bg-sunken);align-self:stretch;min-height:320px;}
+@media (max-width:1024px){ .rmodal-photo{flex:0 0 260px;min-height:260px;max-width:100%;min-width:0;width:100%;} }
+.rmodal-photo img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block;}
+.rmodal-photo .scrim{position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,0.15) 0%,rgba(0,0,0,0) 30%,rgba(0,0,0,0.55) 100%);}
+.rmodal-close{position:absolute;top:var(--s-4);left:var(--s-4);width:44px;height:44px;border-radius:var(--radius-full);background:rgba(20,24,20,0.4);backdrop-filter:blur(6px);display:flex;align-items:center;justify-content:center;cursor:pointer;}
+.rmodal-tags{position:absolute;top:var(--s-4);right:var(--s-4);display:flex;flex-wrap:wrap;justify-content:flex-end;gap:var(--s-15);}
+.rmodal-tags .price{background:var(--accent);color:var(--text-on-inverse);font-size:var(--fs-web-meta);font-weight:800;padding:var(--s-1) var(--s-25);border-radius:var(--radius-full);}
+.rmodal-tags .store{background:var(--bg-surface);color:var(--text-primary);font-size:var(--fs-web-meta);font-weight:800;padding:var(--s-1) var(--s-25);border-radius:var(--radius-full);}
+.rmodal-photo-foot{position:absolute;left:var(--s-45);bottom:var(--s-45);right:var(--s-45);}
+.rmodal-photo-foot h3{font-size:var(--fs-web-h3);font-weight:800;letter-spacing:-0.02em;line-height:1.15;color:var(--text-on-inverse);text-wrap:balance;margin-bottom:var(--s-25);}
+.rmodal-photo-facts{display:flex;flex-wrap:wrap;gap:var(--s-4);font-size:var(--fs-web-sm);font-weight:700;color:var(--on-photo-secondary);}
+.rmodal-photo-facts span{display:inline-flex;align-items:center;gap:var(--s-1);}
+.rmodal-body{flex:1 1 460px;min-width:320px;height:90vh;overflow-y:auto;padding:var(--s-8);}
+@media (max-width:1024px){ .rmodal-body{flex:1 1 auto;min-width:0;height:auto;padding:var(--s-5);} }
+.rmodal-row{display:flex;align-items:center;justify-content:space-between;gap:var(--s-3);flex-wrap:wrap;margin-bottom:var(--s-6);}
+.rmodal-portions{display:flex;gap:var(--s-1);}
+.rmodal-portion-opt{display:flex;align-items:center;min-height:44px;padding:0 var(--s-4);border-radius:var(--radius-full);background:var(--bg-surface);color:var(--text-primary);border:1px solid var(--border-default);font-size:var(--fs-web-sm);font-weight:800;cursor:pointer;}
+.rmodal-portion-opt.on{background:var(--bg-inverse);color:var(--text-on-inverse);border-color:var(--bg-inverse);}
+.rmodal-save{display:flex;align-items:center;gap:var(--s-25);background:var(--accent-bg);border:1px solid var(--accent-border);border-radius:var(--radius-md);padding:var(--s-3) var(--s-45);margin-bottom:var(--s-6);}
+.rmodal-save span{font-size:var(--fs-web-sm);font-weight:800;color:var(--accent);}
+.rmodal-section-head{display:flex;align-items:center;justify-content:space-between;gap:var(--s-3);cursor:pointer;padding-bottom:var(--s-3);border-bottom:1px solid var(--border-subtle);margin-bottom:var(--s-4);}
+.rmodal-section-head .title{font-size:var(--fs-web-h4);font-weight:800;}
+.rmodal-section-head .sub{font-size:var(--fs-web-meta);font-weight:700;color:var(--text-muted);}
+.rmodal-section-head .chev{flex:none;font-size:var(--icon-xl);color:var(--text-faint);transition:transform 0.2s ease;}
+.rmodal-basket{background:var(--bg-surface);border:1px solid var(--border-subtle);border-radius:var(--radius-lg);padding:var(--s-2) var(--s-45);margin-bottom:var(--s-4);}
+.rmodal-item{display:flex;justify-content:space-between;gap:var(--s-4);padding:var(--s-35) 0;border-bottom:1px solid var(--border-subtle);}
+.rmodal-item .nm{display:flex;align-items:baseline;gap:var(--s-2);flex-wrap:wrap;}
+.rmodal-item .nm span.name{font-size:var(--fs-web-body);font-weight:800;}
+.rmodal-chip{font-size:var(--fs-web-meta);font-weight:800;padding:1px var(--s-15);border-radius:var(--radius-full);}
+.rmodal-item .sub{font-size:var(--fs-web-meta);font-weight:700;color:var(--text-muted);margin-top:2px;text-wrap:pretty;}
+.rmodal-left{display:inline-flex;align-items:center;gap:var(--s-1);font-size:var(--fs-web-meta);font-weight:800;color:var(--pantry);margin-top:var(--s-1);}
+.rmodal-item-right{flex:none;text-align:right;}
+.rmodal-item-right .buy{font-size:var(--fs-web-body);font-weight:800;white-space:nowrap;}
+.rmodal-item-right .used{font-size:var(--fs-web-meta);font-weight:700;color:var(--text-muted);white-space:nowrap;margin-top:2px;}
+.rmodal-item-right .was{font-size:var(--fs-web-meta);font-weight:700;color:var(--text-faint);text-decoration:line-through;white-space:nowrap;}
+.rmodal-total{display:flex;justify-content:space-between;gap:var(--s-4);padding:var(--s-4) 0 var(--s-15);}
+.rmodal-total span:first-child{font-size:var(--fs-web-body);font-weight:800;}
+.rmodal-total span:last-child{font-size:var(--fs-web-h4);font-weight:800;letter-spacing:-0.01em;white-space:nowrap;}
+.rmodal-subline{display:flex;justify-content:space-between;gap:var(--s-4);padding:var(--s-1) 0;font-size:var(--fs-web-sm);font-weight:700;}
+.rmodal-info{display:flex;gap:var(--s-25);align-items:flex-start;background:var(--info-bg);border-radius:var(--radius-md);padding:var(--s-3) var(--s-45);margin-bottom:var(--s-4);}
+.rmodal-info .ms{font-size:var(--icon-lg);flex:none;color:var(--info-strong);line-height:1.3;}
+.rmodal-info div{font-size:var(--fs-web-meta);font-weight:700;color:var(--info-strong);line-height:1.5;text-wrap:pretty;}
+.rmodal-steps{display:flex;flex-direction:column;gap:var(--s-5);margin-bottom:var(--s-6);}
+.rmodal-step{display:flex;gap:var(--s-35);align-items:flex-start;}
+.rmodal-step-num{flex:none;width:32px;height:32px;border-radius:var(--radius-full);background:var(--bg-inverse);color:var(--text-on-inverse);display:flex;align-items:center;justify-content:center;font-size:var(--fs-web-sm);font-weight:800;}
+.rmodal-step h5{font-size:var(--fs-web-body);font-weight:800;line-height:1.35;margin-bottom:var(--s-1);text-wrap:pretty;}
+.rmodal-step p{font-size:var(--fs-web-sm);line-height:1.55;color:var(--text-secondary);text-wrap:pretty;}
+.rmodal-source{display:flex;gap:var(--s-25);align-items:flex-start;padding-top:var(--s-6);border-top:1px solid var(--border-subtle);}
+.rmodal-source .ms{font-size:var(--icon-lg);flex:none;color:var(--text-faint);line-height:1.3;}
+.rmodal-source div{font-size:var(--fs-web-meta);font-weight:700;color:var(--text-muted);line-height:1.5;text-wrap:pretty;}
+.rmodal-weblink{display:inline-flex;align-items:center;gap:var(--s-15);font-size:var(--fs-web-sm);font-weight:800;color:var(--accent);margin-top:var(--s-4);}
+.rmodal-weblink:hover{color:var(--accent-pressed);}
 
 /* čísla z appky */
 .cisla-sec{padding:calc(var(--s-13) + var(--s-9)) var(--s-9);background:var(--bg-inverse);}
@@ -255,7 +316,7 @@ h2{font-size:var(--fs-web-h2);font-weight:800;letter-spacing:-0.03em;line-height
 .cycletab.on{background:var(--bg-surface);color:var(--text-primary);box-shadow:var(--shadow-tab);}
 .cycletab .save{font-size:var(--fs-web-meta);font-weight:800;color:var(--accent);}
 .planrow{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:var(--s-6);align-items:start;}
-@media (max-width:900px){
+@media (max-width:1024px){
   .planrow{display:flex !important;flex-wrap:nowrap !important;gap:var(--s-4) !important;overflow-x:auto !important;scroll-snap-type:x mandatory !important;-webkit-overflow-scrolling:touch !important;padding:var(--s-1) var(--s-13) var(--s-3) var(--s-6) !important;margin:0 calc(-1 * var(--s-6)) !important;scrollbar-width:none !important;}
   .planrow::-webkit-scrollbar{display:none;}
   .plancard{flex:0 0 92% !important;scroll-snap-align:start !important;}
@@ -289,7 +350,7 @@ h2{font-size:var(--fs-web-h2);font-weight:800;letter-spacing:-0.03em;line-height
 .plancard.best .plan-cta{background:var(--accent);color:var(--text-on-inverse);border:1px solid var(--accent);}
 .plandots{display:none;justify-content:center;gap:var(--s-2);margin-top:var(--s-6);}
 .plandot{height:8px;width:8px;border-radius:var(--radius-full);background:var(--border-strong);}
-@media (max-width:900px){ .plandot{width:8px !important;border-radius:var(--radius-full) !important;} }
+@media (max-width:1024px){ .plandot{width:8px !important;border-radius:var(--radius-full) !important;} }
 .plandot.plandot-active{width:22px;background:var(--accent);}
 
 /* faq */
@@ -427,14 +488,14 @@ footer.site{padding:var(--s-9) var(--s-9) var(--s-11);}
 <div class="herorow">
   <div class="herocopy">
     <div class="hero-badge"><span class="ms" style="font-size:var(--icon-md);font-variation-settings:'FILL' 1,'wght' 500,'GRAD' 0,'opsz' 24;">bolt</span>Appka sa pripravuje — buď pri tom od začiatku</div>
-    <h1>Vieme, čo dnes navariť <span>z toho, čo je v akcii.</span></h1>
+    <h1>Dobré jedlo nemusí byť <span>drahé.</span></h1>
     <p class="herolead" style="margin-bottom:var(--s-4);">Šporáček prečíta letáky za teba, poskladá jedálniček z akciových surovín a k nemu rovno aj nákupný zoznam s cenami.</p>
     <div style="display:flex;align-items:center;gap:var(--s-2);margin-bottom:var(--s-7);">
       <span class="ms" style="font-size:var(--icon-md);color:var(--accent);font-variation-settings:'FILL' 1,'wght' 600,'GRAD' 0,'opsz' 24;">verified</span>
-      <span style="font-size:var(--fs-web-sm);font-weight:700;color:var(--text-secondary);">Každá cena a úspora je vždy reálna — nikdy si ju nevymýšľame.</span>
+      <span style="font-size:var(--fs-web-sm);font-weight:700;color:var(--text-secondary);">Ceny aj úspora sú vždy reálne. Žiadne odhady.</span>
     </div>
     <div class="herocta">
-      <button class="btn-accent" onclick="scrollToId('signup')">Chcem šetriť od prvého dňa</button>
+      <button class="btn-accent" onclick="scrollToId('signup')">Chcem variť lacnejšie</button>
       <a class="btn-outline" onclick="scrollToId('recepty')">Pozri 3 recepty v akcii<span class="ms" style="font-size:var(--icon-lg);font-variation-settings:'FILL' 0,'wght' 600,'GRAD' 0,'opsz' 24;">arrow_downward</span></a>
     </div>
     <div class="herofacts">
@@ -444,7 +505,7 @@ footer.site{padding:var(--s-9) var(--s-9) var(--s-11);}
   </div>
   <div class="herocollage">
     <img src="img/mockups/01-intro.png" alt="Šporáček — plán jedál na týždeň a domovská obrazovka appky">
-    <div class="hc-badge b1"><span class="ms" style="font-variation-settings:'FILL' 1,'wght' 500,'GRAD' 0,'opsz' 24;">restaurant_menu</span>142 receptov z akcií</div>
+    <div class="hc-badge b1"><span class="ms" style="font-variation-settings:'FILL' 1,'wght' 500,'GRAD' 0,'opsz' 24;">restaurant_menu</span>Recepty priamo z akcií</div>
     <div class="hc-badge b2"><span class="ms" style="font-variation-settings:'FILL' 1,'wght' 500,'GRAD' 0,'opsz' 24;">savings</span>504,70€ ušetrené</div>
     <div class="hc-recipe">
       <div class="ph"><img src="https://recepty.sporacek.sk/fotky-nahlad/bryndzove-halusky-slanina.jpg" alt="Bryndzové halušky so slaninou"></div>
@@ -506,7 +567,7 @@ footer.site{padding:var(--s-9) var(--s-9) var(--s-11);}
 <div class="ctabanner">
   <div class="ctabannercard">
     <span>Appka je vo vývoji — buď pri tom od prvého dňa.</span>
-    <button class="btn-inverse" onclick="scrollToId('signup')">Chcem šetriť od prvého dňa</button>
+    <button class="btn-inverse" onclick="scrollToId('signup')">Chcem appku skôr</button>
   </div>
 </div>
 
@@ -620,6 +681,8 @@ footer.site{padding:var(--s-9) var(--s-9) var(--s-11);}
 <div class="fab" id="fab" onclick="scrollToId('signup')">
   <span class="ms" style="font-variation-settings:'FILL' 1,'wght' 500,'GRAD' 0,'opsz' 24;">bolt</span>Chcem appku
 </div>
+
+<div id="recipe-modal-root"></div>
 
 <script>
 (function(){
@@ -790,26 +853,238 @@ var SCENES = [
   });
 })();
 
-/* ── tri recepty ── */
+/* ── tri recepty + detail modal ──
+   Dáta (suroviny, gramáže, ceny balení, postup) sú zatiaľ napevno v tomto
+   poli — presne štruktúrované tak, ako ich appka počíta naživo z databázy
+   (id receptu → suroviny s gramážou → cena balenia z aktuálneho letáka).
+   Keď bude newsletter/appka pripojená na skutočnú databázu receptov, toto
+   pole sa nahradí volaním na tú istú databázu — tvar dát (items/steps)
+   zostáva rovnaký, takže render aj basket() logika sa meniť nemusia. */
 var RECIPES = [
-  {slug:"bryndzove-halusky-slanina", name:"Bryndzové halušky so slaninou", time:"35 minút", portions:"4 porcie", price:"1,23€", tags:["obed","jednohrnec","sýte"], store:"Biedronka"},
-  {slug:"cestoviny-kuracie-spenat-smotana", name:"Krémové toskánske cestoviny s kuracím", time:"30 minút", portions:"4 porcie", price:"1,62€", tags:["večera","obed","kura"], store:"Lidl"},
-  {slug:"bravcovy-gulas-zemiaky", name:"Bravčový guláš so zemiakmi", time:"70 minút", portions:"4 porcie", price:"1,19€", tags:["obed","večera","bravčové"], store:"Kaufland"}
+  {
+    slug:"bryndzove-halusky-slanina", name:"Bryndzové halušky so slaninou",
+    time:"35 minút", kcal:"~852 kcal", base:2,
+    store:"Biedronka", valid:"leták platí do 5. 8.", coverage:"4 z 6 surovín je v akcii",
+    tags:["obed","jednohrnec","sýte"],
+    items:[
+      {name:"Zemiaky", text:null, need:500, unit:"g", packQty:2000, packPrice:1.39, packLabel:"2 kg", mealBase:0.35, saveBase:0.25, sale:true, est:false, missing:false},
+      {name:"Múka", text:null, need:130, unit:"g", packQty:1000, packPrice:0.75, packLabel:"1 kg", mealBase:0.1, saveBase:null, sale:false, est:true, missing:false},
+      {name:"Vajcia", text:null, need:60, unit:"g", packQty:600, packPrice:0.99, packLabel:"10 ks", mealBase:0.1, saveBase:0.15, sale:true, est:false, missing:false},
+      {name:"Bryndza", text:null, need:150, unit:"g", packQty:250, packPrice:1.99, packLabel:"250 g", mealBase:1.19, saveBase:0.82, sale:true, est:false, missing:false},
+      {name:"Slanina", text:null, need:80, unit:"g", packQty:250, packPrice:2.29, packLabel:"250 g", mealBase:0.73, saveBase:0.21, sale:true, est:false, missing:false},
+      {name:"Soľ", text:"podľa chuti", need:2, unit:"g", packQty:1000, packPrice:0.5, packLabel:"1 kg", mealBase:0, saveBase:null, sale:false, est:true, missing:false}
+    ],
+    steps:[
+      ["Zemiaky nastrúhaj a osoľ.", "Zemiaky ošúp a najemno nastrúhaj (na najjemnejšom strúhadle), osoľ."],
+      ["Vmiešaj múku a vajce, vypracuj husté cesto.", "Postupne prisýpaj múku a vmiešaj vajce, vypracuj hustejšie cesto."],
+      ["Slaninu opeč do chrumkava.", "Slaninu nakrájaj na kocky a opeč na suchej panvici do chrumkava."],
+      ["Cesto pretláčaj cez sitko do vriacej vody.", "Cesto pretláčaj cez haluškové sitko (alebo dosku a nôž) priamo do vriacej osolenej vody. Keď halušky vyplávajú na povrch, sú hotové (cca 2–3 minúty), vyber ich dierovanou lyžicou."],
+      ["Zmiešaj s bryndzou a slaninou.", "Bryndzu rozmiešaj s troškou horúcej vody z varenia halušiek, nech je krémovejšia. Horúce halušky premiešaj s bryndzou, navrch pridaj opečenú slaninu aj s výpekom."]
+    ]
+  },
+  {
+    slug:"cestoviny-kuracie-spenat-smotana", name:"Krémové toskánske cestoviny s kuracím",
+    time:"30 minút", kcal:"~980 kcal", base:2,
+    store:"Lidl", valid:"leták platí do 2. 8.", coverage:"4 z 11 surovín je v akcii",
+    tags:["večera","obed","kura"],
+    items:[
+      {name:"Kuracie prsia", text:null, need:300, unit:"g", packQty:1000, packPrice:3.99, packLabel:"1 kg", mealBase:1.2, saveBase:null, sale:false, est:false, missing:false},
+      {name:"Cestoviny", text:null, need:200, unit:"g", packQty:500, packPrice:0.79, packLabel:"500 g", mealBase:0.32, saveBase:null, sale:false, est:false, missing:false},
+      {name:"Špenát", text:null, need:150, unit:"g", packQty:0, packPrice:0, packLabel:"", mealBase:null, saveBase:null, sale:false, est:true, missing:true},
+      {name:"Smotana na varenie", text:null, need:150, unit:"ml", packQty:500, packPrice:0.99, packLabel:"500 ml", mealBase:0.3, saveBase:0.12, sale:true, est:false, missing:false},
+      {name:"Parmezán", text:null, need:30, unit:"g", packQty:100, packPrice:2.49, packLabel:"100 g", mealBase:0.75, saveBase:null, sale:false, est:true, missing:false},
+      {name:"Sušené paradajky", text:null, need:40, unit:"g", packQty:280, packPrice:2.8, packLabel:"280 g", mealBase:0.4, saveBase:null, sale:false, est:true, missing:false},
+      {name:"Cibuľa", text:null, need:28, unit:"g", packQty:1000, packPrice:1, packLabel:"1 kg", mealBase:0.03, saveBase:null, sale:false, est:true, missing:false},
+      {name:"Cesnak", text:null, need:10, unit:"g", packQty:100, packPrice:0.5, packLabel:"100 g", mealBase:0.05, saveBase:null, sale:false, est:true, missing:false},
+      {name:"Čili vločky", text:"štipka", need:0, unit:"g", packQty:30, packPrice:1.8, packLabel:"30 g", mealBase:0.03, saveBase:null, sale:false, est:true, missing:false},
+      {name:"Olivový olej", text:null, need:15, unit:"ml", packQty:1000, packPrice:4.99, packLabel:"1 l", mealBase:0.07, saveBase:null, sale:true, est:false, missing:false},
+      {name:"Soľ, čierne korenie", text:null, need:2, unit:"g", packQty:50, packPrice:2.2, packLabel:"50 g", mealBase:0.09, saveBase:null, sale:false, est:true, missing:false}
+    ],
+    steps:[
+      ["Daj variť cestoviny a opeč kuracie dozlata.", "Cestoviny daj variť v osolenej vode podľa návodu na obale (8–11 minút), pred scedením si odlož šálku vody. Medzitým rozpáľ olej na panvici, kuracie prsia nakrájané na tenké prúžky osoľ, okoreň a opekaj 5–6 minút, kým nezozlatnú. Potom odlož nabok."],
+      ["Orestuj cibuľu, cesnak a paradajky, zalej smotanou.", "Na výpeku zníž oheň, orestuj nadrobno nakrájanú cibuľu, prelisovaný cesnak a prúžky sušených paradajok. Zalej smotanou s čili vločkami a jemne prevar."],
+      ["Vmiešaj špenát a parmezán.", "Vmiešaj špenát, nech zvädne (1–2 minúty). Odstav z ohňa a vmiešaj čerstvo nastrúhaný parmezán."],
+      ["Vmiešaj cestoviny a kuracie do omáčky.", "Vráť kuracie do panvice, pridaj scedené cestoviny. Ak je omáčka hustá, prilej trochu odloženej vody z varenia, kým sa hodvábne nespojí. Podávaj hneď, posyp ďalším parmezánom."]
+    ]
+  },
+  {
+    slug:"bravcovy-gulas-zemiaky", name:"Bravčový guláš so zemiakmi",
+    time:"70 minút", kcal:"~871 kcal", base:2,
+    store:"Kaufland", valid:"leták platí do 5. 8.", coverage:"5 z 10 surovín je v akcii",
+    tags:["obed","večera","bravčové"],
+    items:[
+      {name:"Bravčová krkovička", text:null, need:400, unit:"g", packQty:1000, packPrice:3.79, packLabel:"1 kg", mealBase:1.52, saveBase:0.4, sale:true, est:false, missing:false},
+      {name:"Zemiaky", text:null, need:300, unit:"g", packQty:1000, packPrice:0.55, packLabel:"1 kg", mealBase:0.17, saveBase:0.19, sale:true, est:false, missing:false},
+      {name:"Cibuľa", text:null, need:200, unit:"g", packQty:1000, packPrice:0.49, packLabel:"1 kg balenie", mealBase:0.1, saveBase:0.08, sale:true, est:false, missing:false},
+      {name:"Cesnak", text:null, need:10, unit:"g", packQty:100, packPrice:0.5, packLabel:"100 g", mealBase:0.05, saveBase:null, sale:false, est:true, missing:false},
+      {name:"Sladká paprika", text:null, need:15, unit:"g", packQty:100, packPrice:1.5, packLabel:"100 g", mealBase:0.22, saveBase:null, sale:false, est:true, missing:false},
+      {name:"Mletá rasca", text:null, need:2, unit:"g", packQty:25, packPrice:1.3, packLabel:"25 g", mealBase:0.13, saveBase:null, sale:false, est:true, missing:false},
+      {name:"Paradajkový pretlak", text:null, need:15, unit:"g", packQty:140, packPrice:0.55, packLabel:"140 g", mealBase:0.06, saveBase:0.02, sale:true, est:false, missing:false},
+      {name:"Bobkový list", text:null, need:1, unit:"g", packQty:10, packPrice:1, packLabel:"10 g", mealBase:0, saveBase:null, sale:false, est:true, missing:false},
+      {name:"Slnečnicový olej", text:null, need:30, unit:"ml", packQty:1000, packPrice:1.79, packLabel:"1 l", mealBase:0.05, saveBase:0.04, sale:true, est:false, missing:false},
+      {name:"Soľ, čierne korenie", text:null, need:2, unit:"g", packQty:50, packPrice:2.2, packLabel:"50 g", mealBase:0.09, saveBase:null, sale:false, est:true, missing:false}
+    ],
+    steps:[
+      ["Orestuj cibuľu a mäso.", "Cibuľu nakrájaj nadrobno a na oleji ju opeč do zlata (7–10 minút). Bravčovú krkovičku nakrájaj na kocky, pridaj k cibuli a opeč zo všetkých strán."],
+      ["Zalej korením a vodou.", "Odstav hrniec z ohňa, vmiešaj sladkú papriku, rascu, prelisovaný cesnak a paradajkový pretlak. Vráť na oheň, krátko opraž a hneď zalej vodou, aby bolo mäso ponorené. Pridaj bobkový list."],
+      ["Dus mäso do mäkka.", "Priveď do varu, prikry a dus na miernom ohni."],
+      ["Pridaj zemiaky a dovar.", "Pridaj zemiaky nakrájané na kocky a dus ďalej, kým sú mäso aj zemiaky mäkké a omáčka hustá."],
+      ["Dochuť a podávaj.", "Vyber bobkový list, dochuť soľou a čiernym korením. Podávaj posypané petržlenovou vňaťou, s krajcom chleba."]
+    ]
+  }
 ];
+
 (function(){
   var grid = document.getElementById("recipes-grid");
-  if (!grid) return;
-  grid.innerHTML = RECIPES.map(function(r){
-    return '<a class="recipe-card" href="https://recepty.sporacek.sk/' + r.slug + '.html">' +
-      '<div class="recipe-photo"><img src="https://recepty.sporacek.sk/fotky-nahlad/' + r.slug + '.jpg" alt="' + r.name + '" loading="lazy">' +
-      '<div class="price">' + r.price + ' / porcia</div><div class="store">' + r.store + '</div></div>' +
+  var modalRoot = document.getElementById("recipe-modal-root");
+  if (!grid || !modalRoot) return;
+
+  function recipePhoto(r){ return "https://recepty.sporacek.sk/fotky-nahlad/" + r.slug + ".jpg"; }
+  function recipeWebUrl(r){ return "https://recepty.sporacek.sk/" + r.slug + ".html"; }
+
+  function euroDec(n){ return (n || 0).toFixed(2).replace(".", ",") + "€"; }
+  function pluralPorcie(n){ return n + (n === 1 ? " porcia" : (n < 5 ? " porcie" : " porcií")); }
+  function fmtAmount(v, unit){
+    if (unit === "ks") return (Math.round(v * 10) / 10).toString().replace(".", ",") + " ks";
+    if (v >= 1000) return (Math.round(v / 100) / 10).toString().replace(".", ",").replace(",0", "") + (unit === "ml" ? " l" : " kg");
+    return Math.round(v) + " " + (unit === "ml" ? "ml" : "g");
+  }
+  function basket(r, portions){
+    var f = portions / r.base;
+    var buy = 0, meal = 0, saved = 0;
+    var items = r.items.map(function(it){
+      if (it.missing) return {name:it.name, qty:"—", buy:"—", packs:"nie je v tomto letáku", used:"—", left:"", est:true, sale:false, was:""};
+      var need = it.need * f;
+      var packs = it.packQty > 0 ? Math.max(1, Math.ceil(need / it.packQty)) : 1;
+      var cost = packs * it.packPrice;
+      var inMeal = (it.mealBase || 0) * f;
+      var left = it.packQty > 0 ? packs * it.packQty - need : 0;
+      buy += cost; meal += inMeal;
+      if (it.saveBase != null) saved += it.saveBase * f;
+      return {
+        name:it.name, qty:it.text || fmtAmount(need, it.unit), buy:euroDec(cost),
+        packs:(packs > 1 ? packs + "× " : "") + it.packLabel, used:euroDec(inMeal),
+        left: left > 0 ? fmtAmount(left, it.unit) : "", sale:it.sale, est:it.est,
+        was:(it.saveBase != null && it.saveBase > 0) ? euroDec(inMeal + it.saveBase * f) : ""
+      };
+    });
+    return {items:items, buy:buy, meal:meal, pantry:buy - meal, saved:saved, perPortion:meal / portions};
+  }
+
+  grid.innerHTML = RECIPES.map(function(r, i){
+    var b = basket(r, 4);
+    return '<div class="recipe-card" data-i="' + i + '">' +
+      '<div class="recipe-photo"><img src="' + recipePhoto(r) + '" alt="' + r.name + '" loading="lazy">' +
+      '<div class="price">' + euroDec(b.perPortion) + ' / porcia</div><div class="store">' + r.store + '</div></div>' +
       '<div class="recipe-body">' +
         '<div class="name">' + r.name + '</div>' +
-        '<div class="recipe-meta"><span><span class="ms">schedule</span>' + r.time + '</span><span><span class="ms">group</span>' + r.portions + '</span></div>' +
+        '<div class="recipe-meta"><span><span class="ms">schedule</span>' + r.time + '</span><span><span class="ms">group</span>' + pluralPorcie(4) + '</span></div>' +
         '<div class="recipe-tags">' + r.tags.map(function(t){ return '<span>' + t + '</span>'; }).join('') + '</div>' +
         '<div class="recipe-open">Zobraziť recept<span class="ms" style="font-variation-settings:\'FILL\' 0,\'wght\' 600,\'GRAD\' 0,\'opsz\' 24;">arrow_forward</span></div>' +
-      '</div></a>';
+      '</div></div>';
   }).join('');
+
+  var state = {open:null, portions:4, openList:true, openSteps:false};
+
+  function closeModal(){
+    state.open = null;
+    modalRoot.innerHTML = "";
+    document.body.style.overflow = "";
+    document.removeEventListener("keydown", onKeydown);
+  }
+  function onKeydown(e){ if (e.key === "Escape") closeModal(); }
+
+  function renderModal(){
+    var r = RECIPES[state.open];
+    var b = basket(r, state.portions);
+    var portionOpts = [2, 4, 6].map(function(p){
+      return '<div class="rmodal-portion-opt' + (p === state.portions ? ' on' : '') + '" data-p="' + p + '">' + pluralPorcie(p) + '</div>';
+    }).join('');
+    var itemsHtml = b.items.map(function(it){
+      var chip = it.sale ? "akcia" : (it.est ? "odhad" : "z letáka");
+      var chipStyle = it.sale ? "background:var(--accent-bg);color:var(--accent);" : "background:var(--bg-sunken);color:var(--text-muted);";
+      return '<div class="rmodal-item"><div style="flex:1;min-width:0;">' +
+        '<div class="nm"><span class="name">' + it.name + '</span><span class="rmodal-chip" style="' + chipStyle + '">' + chip + '</span></div>' +
+        '<div class="sub">Kúpiš ' + it.packs + ' · v recepte ' + it.qty + '</div>' +
+        (it.left ? '<div class="rmodal-left"><span class="ms" style="font-size:var(--icon-sm);font-variation-settings:\'FILL\' 0,\'wght\' 600,\'GRAD\' 0,\'opsz\' 24;">kitchen</span>zostane ' + it.left + ' do špajze</div>' : '') +
+        '</div><div class="rmodal-item-right"><div class="buy" style="color:' + (it.buy === "—" ? "var(--text-faint)" : "var(--text-primary)") + ';">' + it.buy + '</div>' +
+        '<div class="used">v jedle ' + it.used + '</div>' +
+        (it.was ? '<div class="was">' + it.was + '</div>' : '') +
+        '</div></div>';
+    }).join('');
+    var stepsHtml = r.steps.map(function(s, n){
+      return '<div class="rmodal-step"><div class="rmodal-step-num">' + (n + 1) + '</div>' +
+        '<div style="flex:1;min-width:0;"><h5>' + s[0] + '</h5><p>' + s[1] + '</p></div></div>';
+    }).join('');
+    var saveHtml = b.saved > 0.005 ? (
+      '<div class="rmodal-save"><span class="ms" style="font-size:var(--icon-lg);color:var(--accent);font-variation-settings:\'FILL\' 1,\'wght\' 500,\'GRAD\' 0,\'opsz\' 24;">savings</span>' +
+      '<span>Vďaka akciám ušetríš ' + euroDec(b.saved / state.portions) + ' na porcii · ' + r.coverage + '</span></div>'
+    ) : '';
+
+    modalRoot.innerHTML =
+      '<div class="rmodal-scrim">' +
+        '<div class="rmodal-bg" data-close="1"></div>' +
+        '<div class="rmodal-box">' +
+          '<div class="rmodal-photo">' +
+            '<img src="' + recipePhoto(r) + '" alt="' + r.name + '">' +
+            '<div class="scrim"></div>' +
+            '<div class="rmodal-close" data-close="1" aria-label="Zavrieť"><span class="ms" style="font-size:var(--icon-xl);color:var(--text-on-inverse);">arrow_back</span></div>' +
+            '<div class="rmodal-tags"><div class="price">' + euroDec(b.perPortion) + ' / porcia</div><div class="store">' + r.store + '</div></div>' +
+            '<div class="rmodal-photo-foot"><h3>' + r.name + '</h3>' +
+              '<div class="rmodal-photo-facts">' +
+                '<span><span class="ms" style="font-size:var(--icon-md);">schedule</span>' + r.time + '</span>' +
+                '<span><span class="ms" style="font-size:var(--icon-md);">local_fire_department</span>' + r.kcal + ' na porciu</span>' +
+              '</div></div>' +
+          '</div>' +
+          '<div class="rmodal-body">' +
+            '<div class="rmodal-row"><div class="eyebrow" style="margin-bottom:0;">Varíš pre</div><div class="rmodal-portions">' + portionOpts + '</div></div>' +
+            saveHtml +
+            '<div class="rmodal-section-head" data-toggle="list"><div><span class="title">Nákupný zoznam</span> <span class="sub">' + r.store + ' · ' + r.valid + '</span></div>' +
+              '<span class="ms chev" data-chev="list" style="transform:' + (state.openList ? 'rotate(180deg)' : 'rotate(0deg)') + ';">expand_more</span></div>' +
+            '<div data-body="list" style="display:' + (state.openList ? 'block' : 'none') + ';">' +
+              '<div class="rmodal-basket">' + itemsHtml +
+                '<div class="rmodal-total"><span>Zaplatíš v obchode</span><span>' + euroDec(b.buy) + '</span></div>' +
+                '<div class="rmodal-subline" style="color:var(--text-secondary);"><span>Z toho zjete v tomto jedle</span><span style="font-weight:800;color:var(--text-primary);">' + euroDec(b.meal) + '</span></div>' +
+                '<div class="rmodal-subline" style="color:var(--pantry);padding-bottom:var(--s-35);"><span>Zostane ti v špajzi na ďalšie jedlá</span><span style="font-weight:800;">' + euroDec(b.pantry) + '</span></div>' +
+              '</div>' +
+              '<div class="rmodal-info"><span class="ms">kitchen</span><div>Balenie sa nekupuje po gramoch — jedno vajce ani pol balenia slaniny si nekúpiš. Čo zostane, ide do špajze a Šporáček s tým počíta pri ďalšom nákupe.</div></div>' +
+            '</div>' +
+            '<div class="rmodal-section-head" data-toggle="steps"><span class="title">Postup</span>' +
+              '<span class="ms chev" data-chev="steps" style="transform:' + (state.openSteps ? 'rotate(180deg)' : 'rotate(0deg)') + ';">expand_more</span></div>' +
+            '<div class="rmodal-steps" data-body="steps" style="display:' + (state.openSteps ? 'flex' : 'none') + ';">' + stepsHtml + '</div>' +
+            '<div class="rmodal-source"><span class="ms" style="font-variation-settings:\'FILL\' 0,\'wght\' 400,\'GRAD\' 0,\'opsz\' 24;">verified</span>' +
+              '<div>Recept je overený podľa viacerých zdrojov — pomery si nevymýšľame. Ceny sú z aktuálneho letáka daného obchodu; „odhad" znamená, že surovina v letáku nie je a počítame ju z bežnej ceny.<br>' +
+              '<a class="rmodal-weblink" href="' + recipeWebUrl(r) + '">Otvoriť celý recept na webe<span class="ms" style="font-size:var(--icon-md);font-variation-settings:\'FILL\' 0,\'wght\' 600,\'GRAD\' 0,\'opsz\' 24;">arrow_forward</span></a></div>' +
+            '</div>' +
+          '</div>' +
+        '</div>' +
+      '</div>';
+
+    Array.prototype.forEach.call(modalRoot.querySelectorAll('[data-close]'), function(el){
+      el.addEventListener("click", closeModal);
+    });
+    modalRoot.querySelectorAll('.rmodal-portion-opt').forEach(function(el){
+      el.addEventListener("click", function(){ state.portions = +el.getAttribute("data-p"); renderModal(); });
+    });
+    modalRoot.querySelectorAll('[data-toggle]').forEach(function(el){
+      el.addEventListener("click", function(){
+        var key = el.getAttribute("data-toggle");
+        if (key === "list") state.openList = !state.openList; else state.openSteps = !state.openSteps;
+        renderModal();
+      });
+    });
+  }
+
+  function openModal(i){
+    state.open = i; state.portions = 4; state.openList = true; state.openSteps = false;
+    renderModal();
+    document.body.style.overflow = "hidden";
+    document.addEventListener("keydown", onKeydown);
+  }
+
+  Array.prototype.forEach.call(grid.querySelectorAll(".recipe-card"), function(el){
+    el.addEventListener("click", function(){ openModal(+el.getAttribute("data-i")); });
+  });
 })();
 
 /* ── cenník ── */
@@ -893,10 +1168,10 @@ var LAWS = [
 
 /* ── faq ── */
 var FAQS = [
-  {q:"Potrebujem kartu na Free plán?", a:"Nie. Free plán je bez karty a bez časového limitu — vyskúšaš si appku naostro, koľko chceš dlho."},
-  {q:"Funguje appka aj bez toho, aby som mal appku otvorenú v obchode?", a:"Nákupný zoznam si vieš vytlačiť alebo prezrieť aj offline — appku v obchode potrebuješ len ak chceš rovno odškrtávať a sledovať súčet v košíku."},
-  {q:"Odkiaľ presne poznáte ceny z letákov?", a:"Ceny čítame priamo z aktuálnych letákov obchodov, kde nakupuješ — nie sú to odhady ani priemery, ale reálne akciové ceny platné ten týždeň."},
-  {q:"Môžem appku kedykoľvek zrušiť?", a:"Áno, predplatné vieš zrušiť jedným klikom kedykoľvek, bez výpovednej doby a bez otázok."}
+  {q:"Potrebujem kartu na Free plán?", a:"Nie — Free je bez karty a bez časového limitu."},
+  {q:"Funguje appka aj bez toho, aby som mal appku otvorenú v obchode?", a:"Áno, nákupný zoznam si vieš vytlačiť alebo prezrieť aj offline."},
+  {q:"Odkiaľ presne poznáte ceny z letákov?", a:"Priamo z aktuálnych letákov — sú to reálne akciové ceny, nie odhady."},
+  {q:"Môžem appku kedykoľvek zrušiť?", a:"Áno, jedným klikom, kedykoľvek, bez otázok."}
 ];
 (function(){
   var list = document.getElementById("faq-list");
