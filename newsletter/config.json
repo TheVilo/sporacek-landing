@@ -1,10 +1,12 @@
 {
   "prihlasovaci_formular": {
-    "action_url": "TODO",
-    "list_id": "TODO",
+    "action_url": "https://552a6ce5.sibforms.com/serve/MUIFALsC1oDXwPpjQvGpDQCCptdwkkExHPtg0LG_qHCkzDeH3zwGwJIBAaERfsHmlWjyA0dYymfgyI7qD3zjwBEDOlabw5l6MvFmUob_JjCv_Nplp_4LaspYxBvnL9dIPyqknmxYK5cU5Njh3HdIjBUv-3mFX1VwV6yAhb8_LxXzlEFSK1kETHcng9yuT47hzrI2AMqJlpXXJze8lw==",
+    "list_id": "5",
     "pole_email": "EMAIL",
-    "honeypot_pole": "TODO",
-    "extra_skryte_polia": [],
+    "honeypot_pole": "email_address_check",
+    "extra_skryte_polia": [
+      { "nazov": "locale", "hodnota": "en" }
+    ],
 
     "poznamky": {
       "_vseobecne": "Túto konfiguráciu na runtime načíta landing/index.html (fetch na /newsletter/config.json) a použije na vyplnenie action + skrytých polí newsletter formulára. Kým je action_url 'TODO', stránka zostáva v lokálnom demo režime (validácia + úspešná hláška, nič sa nikam neposiela) — takže sa dá bezpečne pushnúť aj bez hotových Brevo údajov a nič sa nepokazí. Formulár na stránke má už len pole email (meno sa od redizajnu nezbiera), preto tu nie je pole_meno.",
