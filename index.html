@@ -208,8 +208,8 @@ h2{font-size:var(--fs-web-h2);font-weight:800;letter-spacing:-0.03em;line-height
 .scene-dot.active{background:var(--accent);color:var(--text-on-inverse);}
 
 /* cta banner */
-.ctabanner{padding:var(--s-9);}
-.ctabannercard{max-width:1180px;margin:0 auto;background:var(--accent);border-radius:var(--radius-xl);padding:var(--s-6) var(--s-9);display:flex;align-items:center;justify-content:center;gap:var(--s-6);flex-wrap:wrap;text-align:center;}
+.ctabanner{padding:0;}
+.ctabannercard{margin:0 auto;background:var(--accent);padding:var(--s-6) var(--s-9);display:flex;align-items:center;justify-content:center;gap:var(--s-6);flex-wrap:wrap;text-align:center;}
 @media (max-width:700px){ .ctabannercard{border-radius:var(--radius-xl) !important;flex-direction:column !important;padding:var(--s-7) var(--s-6) !important;} }
 .ctabannercard span{font-size:var(--fs-web-lead);font-weight:800;color:var(--text-on-inverse);}
 
@@ -284,6 +284,16 @@ h2{font-size:var(--fs-web-h2);font-weight:800;letter-spacing:-0.03em;line-height
 @media (max-width:900px){ .plandot{width:8px !important;border-radius:var(--radius-full) !important;} }
 .plandot.plandot-active{width:22px;background:var(--accent);}
 
+/* faq */
+.faq-sec{background:var(--bg-surface);}
+.faq-inner{max-width:760px;margin:0 auto;padding:0 var(--s-9);}
+.faq-item{border-top:1px solid var(--border-subtle);padding:var(--s-6) 0;cursor:pointer;}
+.faq-item .row{display:flex;align-items:center;justify-content:space-between;gap:var(--s-4);}
+.faq-item .q{font-size:var(--fs-web-h4);font-weight:800;color:var(--text-primary);}
+.faq-item .chev{flex:none;font-size:var(--icon-xl);color:var(--text-faint);transition:transform 0.2s ease;}
+.faq-item .a-wrap{margin-top:var(--s-3);}
+.faq-item .a{font-size:var(--fs-web-body);font-weight:400;line-height:var(--lh-relaxed);color:var(--text-secondary);text-wrap:pretty;}
+
 /* signup */
 .signup-panel{background:var(--accent);padding:var(--s-13) var(--s-12);}
 @media (max-width:700px){ #signup{padding:0 !important;} .signup-panel{padding:var(--s-9) var(--s-6) !important;} }
@@ -291,11 +301,9 @@ h2{font-size:var(--fs-web-h2);font-weight:800;letter-spacing:-0.03em;line-height
 .signup-badge{display:inline-flex;align-items:center;gap:var(--s-2);background:rgba(255,255,255,0.18);color:var(--text-on-inverse);font-size:var(--fs-web-meta);font-weight:800;padding:var(--s-15) var(--s-35);border-radius:var(--radius-full);margin-bottom:var(--s-5);}
 .signup-inner h2{color:var(--text-on-inverse);margin-bottom:var(--s-35);}
 .signup-inner .lead{color:var(--on-photo-secondary);margin-bottom:var(--s-7);font-weight:700;line-height:var(--lh-relaxed);text-wrap:pretty;font-size:var(--fs-web-lead);}
-.nl-form{display:flex;flex-direction:column;gap:var(--s-25);max-width:520px;margin:0 auto;}
-.nl-row{display:flex;gap:var(--s-25);flex-wrap:wrap;}
-.nl-row input{flex:1;min-width:150px;font-family:inherit;font-size:var(--fs-web-body);font-weight:700;color:var(--text-primary);background:var(--bg-surface);border:2px solid transparent;border-radius:var(--radius-md);padding:var(--s-45);outline:none;min-height:52px;}
-.nl-row input#nl-email{flex:1.4;min-width:200px;}
-.nl-row input.err{border-color:var(--warn);}
+.nl-form{display:flex;flex-direction:column;gap:var(--s-25);max-width:420px;margin:0 auto;}
+.nl-form input{font-family:inherit;font-size:var(--fs-web-body);font-weight:700;color:var(--text-primary);background:var(--bg-surface);border:2px solid transparent;border-radius:var(--radius-md);padding:var(--s-45);outline:none;min-height:52px;}
+.nl-form input.err{border-color:var(--warn);}
 .nl-submit{background:var(--bg-inverse);color:var(--text-on-inverse);border:none;font-family:inherit;font-size:var(--fs-web-sm);font-weight:800;min-height:52px;padding:0 var(--s-7);border-radius:var(--radius-md);}
 .nl-submit:hover{background:var(--bg-inverse-strong);}
 .nl-error{display:none;align-items:center;justify-content:center;gap:var(--s-15);font-size:var(--fs-web-sm);font-weight:800;color:var(--text-on-inverse);}
@@ -362,7 +370,7 @@ footer.site{padding:var(--s-9) var(--s-9) var(--s-11);}
       <a href="#cennik">Cenník</a>
     </div>
     <button class="btn-header-cta" onclick="scrollToId('signup')">
-      <span class="ctafull">Chcem appku medzi prvými</span><span class="ctashort">Chcem appku skôr</span>
+      <span class="ctafull">Chcem šetriť od prvého dňa</span><span class="ctashort">Chcem appku skôr</span>
     </button>
   </div>
 </header>
@@ -371,10 +379,14 @@ footer.site{padding:var(--s-9) var(--s-9) var(--s-11);}
   <div class="herocopy">
     <div class="hero-badge"><span class="ms" style="font-size:var(--icon-md);font-variation-settings:'FILL' 1,'wght' 500,'GRAD' 0,'opsz' 24;">bolt</span>Appka sa pripravuje — buď pri tom od začiatku</div>
     <h1>Vieme, čo dnes navariť <span>z toho, čo je v akcii.</span></h1>
-    <p class="herolead">Šporáček prečíta letáky za teba, poskladá jedálniček z akciových surovín a k nemu rovno aj nákupný zoznam s cenami.</p>
+    <p class="herolead" style="margin-bottom:var(--s-4);">Šporáček prečíta letáky za teba, poskladá jedálniček z akciových surovín a k nemu rovno aj nákupný zoznam s cenami.</p>
+    <div style="display:flex;align-items:center;gap:var(--s-2);margin-bottom:var(--s-7);">
+      <span class="ms" style="font-size:var(--icon-md);color:var(--accent);font-variation-settings:'FILL' 1,'wght' 600,'GRAD' 0,'opsz' 24;">verified</span>
+      <span style="font-size:var(--fs-web-sm);font-weight:700;color:var(--text-secondary);">Každá cena a úspora je vždy reálna — nikdy si ju nevymýšľame.</span>
+    </div>
     <div class="herocta">
-      <button class="btn-accent" onclick="scrollToId('signup')">Chcem appku medzi prvými</button>
-      <a class="btn-textlink" onclick="scrollToId('ako')">Pozri, ako to funguje<span class="ms" style="font-size:var(--icon-lg);font-variation-settings:'FILL' 0,'wght' 600,'GRAD' 0,'opsz' 24;">arrow_downward</span></a>
+      <button class="btn-accent" onclick="scrollToId('signup')">Chcem šetriť od prvého dňa</button>
+      <a class="btn-textlink" onclick="scrollToId('recepty')">Pozri 3 recepty v akcii<span class="ms" style="font-size:var(--icon-lg);font-variation-settings:'FILL' 0,'wght' 600,'GRAD' 0,'opsz' 24;">arrow_downward</span></a>
     </div>
     <div class="herofacts">
       <span><span class="ms">storefront</span>Obchody vo tvojom okolí</span>
@@ -445,13 +457,13 @@ footer.site{padding:var(--s-9) var(--s-9) var(--s-11);}
 <div class="ctabanner">
   <div class="ctabannercard">
     <span>Appka je vo vývoji — buď pri tom od prvého dňa.</span>
-    <button class="btn-inverse" onclick="scrollToId('signup')">Pridať sa medzi prvých</button>
+    <button class="btn-inverse" onclick="scrollToId('signup')">Chcem šetriť od prvého dňa</button>
   </div>
 </div>
 
 <section id="recepty">
   <div class="wrap">
-    <div style="text-align:center;max-width:820px;margin:0 auto var(--s-9);">
+    <div style="text-align:center;max-width:700px;margin:0 auto var(--s-9);">
       <div class="eyebrow">Z našej databázy</div>
       <h2 style="margin-bottom:var(--s-35);">Tri recepty, ktoré vieš navariť dnes</h2>
       <p class="herolead" style="margin:0 auto;">Otvor si ktorýkoľvek — uvidíš nákupný zoznam s reálnymi cenami z aktuálnych letákov, čo zostane do špajze, aj celý postup. Prepni si počet porcií a ceny sa prepočítajú.</p>
@@ -495,6 +507,16 @@ footer.site{padding:var(--s-9) var(--s-9) var(--s-11);}
   </div>
 </section>
 
+<section id="faq" class="faq-sec">
+  <div class="faq-inner">
+    <div style="text-align:center;margin-bottom:var(--s-9);">
+      <div class="eyebrow">Otázky</div>
+      <h2>Čo ťa asi zaujíma</h2>
+    </div>
+    <div class="faq-list" id="faq-list"></div>
+  </div>
+</section>
+
 <section id="signup" style="padding:0;">
   <div class="signup-panel">
     <div class="signup-inner">
@@ -503,10 +525,7 @@ footer.site{padding:var(--s-9) var(--s-9) var(--s-11);}
       <p class="lead">Kým appka nie je vonku, posielame ukážky naživo — a kto je na zozname, dostane appku skôr aj možnosť prihlásiť sa do beta testovania.</p>
 
       <form class="nl-form" id="nl-form">
-        <div class="nl-row">
-          <input id="nl-name" type="text" required aria-label="Meno" placeholder="Meno">
-          <input id="nl-email" type="email" required aria-label="Email" placeholder="tvoj@email.sk">
-        </div>
+        <input id="nl-email" type="email" required aria-label="Email" placeholder="tvoj@email.sk">
         <button type="submit" class="nl-submit">Posielajte mi ukážky</button>
         <div class="nl-error" id="nl-error">
           <span class="ms" style="font-variation-settings:'FILL' 1,'wght' 600,'GRAD' 0,'opsz' 24;">error</span><span id="nl-error-text"></span>
@@ -823,6 +842,38 @@ var LAWS = [
   }).join('');
 })();
 
+/* ── faq ── */
+var FAQS = [
+  {q:"Potrebujem kartu na Free plán?", a:"Nie. Free plán je bez karty a bez časového limitu — vyskúšaš si appku naostro, koľko chceš dlho."},
+  {q:"Funguje appka aj bez toho, aby som mal appku otvorenú v obchode?", a:"Nákupný zoznam si vieš vytlačiť alebo prezrieť aj offline — appku v obchode potrebuješ len ak chceš rovno odškrtávať a sledovať súčet v košíku."},
+  {q:"Odkiaľ presne poznáte ceny z letákov?", a:"Ceny čítame priamo z aktuálnych letákov obchodov, kde nakupuješ — nie sú to odhady ani priemery, ale reálne akciové ceny platné ten týždeň."},
+  {q:"Môžem appku kedykoľvek zrušiť?", a:"Áno, predplatné vieš zrušiť jedným klikom kedykoľvek, bez výpovednej doby a bez otázok."}
+];
+(function(){
+  var list = document.getElementById("faq-list");
+  if (!list) return;
+  var openFaq = 0;
+
+  function render(){
+    list.innerHTML = FAQS.map(function(f,i){
+      return '<div class="faq-item" data-i="' + i + '">' +
+        '<div class="row"><div class="q">' + f.q + '</div><span class="ms chev">expand_more</span></div>' +
+        '<div class="a-wrap"><p class="a">' + f.a + '</p></div>' +
+      '</div>';
+    }).join('');
+    Array.prototype.forEach.call(list.children, function(el,i){
+      var open = openFaq === i;
+      el.querySelector(".a-wrap").style.display = open ? "block" : "none";
+      el.querySelector(".chev").style.transform = open ? "rotate(180deg)" : "rotate(0deg)";
+      el.addEventListener("click", function(){
+        openFaq = openFaq === i ? -1 : i;
+        render();
+      });
+    });
+  }
+  render();
+})();
+
 /* ── fab (floating cta) ── */
 (function(){
   var fab = document.getElementById("fab");
@@ -838,7 +889,6 @@ var LAWS = [
    (zostáva "TODO"), formulár beží len v lokálnom demo režime — validácia
    a úspešná hláška fungujú, ale nič sa nikam neposiela. */
 var nlForm = document.getElementById("nl-form");
-var nlName = document.getElementById("nl-name");
 var nlEmail = document.getElementById("nl-email");
 var nlError = document.getElementById("nl-error");
 var nlErrorText = document.getElementById("nl-error-text");
@@ -848,7 +898,7 @@ fetch("newsletter/config.json").then(function(r){ return r.ok ? r.json() : null;
   nlConfig = cfg && cfg.prihlasovaci_formular;
 }).catch(function(){ nlConfig = null; });
 
-function submitToBrevo(cfg, name, email){
+function submitToBrevo(cfg, email){
   var f = document.createElement("form");
   f.method = "POST";
   f.action = cfg.action_url;
@@ -862,7 +912,6 @@ function submitToBrevo(cfg, name, email){
     f.appendChild(input);
   }
   addField(cfg.pole_email || "EMAIL", email);
-  if (cfg.pole_meno) addField(cfg.pole_meno, name);
   if (cfg.honeypot_pole && cfg.honeypot_pole !== "TODO") addField(cfg.honeypot_pole, "");
   (cfg.extra_skryte_polia || []).forEach(function(p){ addField(p.nazov, p.hodnota); });
   document.body.appendChild(f);
@@ -872,23 +921,20 @@ function submitToBrevo(cfg, name, email){
 
 nlForm.addEventListener("submit", function(e){
   e.preventDefault();
-  var name = nlName.value.trim();
   var email = nlEmail.value.trim();
-  var nameOk = name.length >= 2;
   var mailOk = /^[^\s@]+@[^\s@]+\.[a-z]{2,}$/i.test(email);
-  nlName.classList.toggle("err", !nameOk);
   nlEmail.classList.toggle("err", !mailOk);
-  if (!nameOk || !mailOk){
+  if (!mailOk){
     nlError.classList.add("show");
-    nlErrorText.textContent = (!nameOk && !mailOk) ? "Potrebujeme meno aj email." : (!nameOk ? "Doplň meno, aby sme vedeli, ako ťa osloviť." : "Skontroluj email — chýba mu @ alebo koncovka.");
+    nlErrorText.textContent = "Skontroluj email — chýba mu @ alebo koncovka.";
     return;
   }
   nlError.classList.remove("show");
   if (nlConfig && nlConfig.action_url && nlConfig.action_url !== "TODO"){
-    submitToBrevo(nlConfig, name, email);
+    submitToBrevo(nlConfig, email);
   }
   nlForm.style.display = "none";
-  document.getElementById("nl-success-title").textContent = "Sme dohodnutí, " + name.split(" ")[0];
+  document.getElementById("nl-success-title").textContent = "Sme dohodnutí!";
   document.getElementById("nl-success-msg").textContent = "Prvú ukážku pošleme na " + email + ".";
   nlSuccess.classList.add("show");
 });
