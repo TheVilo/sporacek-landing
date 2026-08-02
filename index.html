@@ -941,8 +941,66 @@ var RECIPES = [
   var modalRoot = document.getElementById("recipe-modal-root");
   if (!grid || !modalRoot) return;
 
-  function recipePhoto(r){ return "https://recepty.sporacek.sk/fotky-nahlad/" + r.slug + ".jpg"; }
-  function recipeWebUrl(r){ return "https://recepty.sporacek.sk/" + r.slug + ".html"; }
+  function recipePhoto(r){ return r.foto || ("https://recepty.sporacek.sk/fotky-nahlad/" + r.slug + ".jpg"); }
+
+  /* ── mapovanie živých dát z API na rovnaký tvar, aký majú RECIPES vyššie ──
+     render() aj basket() logika sa vďaka tomu nemusí meniť (presne ako
+     hovorí komentár pri poli RECIPES). */
+  var API_BASE = "https://recepty.sporacek.sk/api/v1";
+
+  function fmtDate(iso){
+    if (!iso) return "";
+    var p = iso.split("-");
+    if (p.length !== 3) return "";
+    return (+p[2]) + ". " + (+p[1]) + ".";
+  }
+
+  function mapApiRecipe(api){
+    var best = null;
+    if (api.najlacnejsie && api.ceny_za_porciu){
+      best = api.ceny_za_porciu.filter(function(c){ return c.obchod === api.najlacnejsie.obchod; })[0];
+    }
+    if (!best && api.ceny_za_porciu && api.ceny_za_porciu.length) best = api.ceny_za_porciu[0];
+    var nakupById = {};
+    (best && best.nakup || []).forEach(function(n){ nakupById[n.id] = n; });
+    var akciaCount = 0;
+    var items = (api.suroviny || []).map(function(s){
+      var n = nakupById[s.id];
+      if (!n || n.cena_v_recepte == null){
+        return {name:s.nazov, text:null, need:0, unit:s.jednotka, packQty:0, packPrice:0, packLabel:"", mealBase:null, saveBase:null, sale:false, est:true, missing:true};
+      }
+      if (n.akcia) akciaCount++;
+      return {
+        name:s.nazov,
+        text:(s.mnozstvo === "—" ? "podľa chuti" : null),
+        need:(s.mnozstvo_g != null ? s.mnozstvo_g : s.qty),
+        unit:(s.mnozstvo_g != null ? "g" : s.jednotka),
+        packQty:n.balenie_qty || 0, packPrice:n.cena_balenia || 0, packLabel:n.balenie || "",
+        mealBase:n.cena_v_recepte, saveBase:n.usetris_v_recepte,
+        sale:!!n.akcia, est:n.zdroj_ceny === "bezna", missing:false
+      };
+    });
+    var steps = (api.postup || []).map(function(p){
+      return [p.nadpis, p.popis + (p.tip ? " Tip: " + p.tip : "")];
+    });
+    return {
+      slug:api.slug, name:api.nazov, foto:api.foto_url, time:api.cas_pripravy,
+      kcal:"~" + (api.nutricne ? api.nutricne.kcal : "?") + " kcal",
+      base:api.porcie || 2,
+      store: best ? best.obchod : "",
+      valid: best ? ("leták platí do " + fmtDate(best.platnost_do)) : "",
+      coverage: akciaCount + " z " + (api.suroviny || []).length + " surovín je v akcii",
+      tags:(api.tagy || []).slice(0, 3),
+      items:items, steps:steps
+    };
+  }
+
+  function fetchRecipeBySlug(slug){
+    return fetch(API_BASE + "/recepty/" + slug + ".json").then(function(r){
+      if (!r.ok) throw new Error("not found");
+      return r.json();
+    }).then(mapApiRecipe);
+  }
 
   function euroDec(n){ return (n || 0).toFixed(2).replace(".", ",") + "€"; }
   function pluralPorcie(n){ return n + (n === 1 ? " porcia" : (n < 5 ? " porcie" : " porcií")); }
@@ -986,18 +1044,20 @@ var RECIPES = [
       '</div></div>';
   }).join('');
 
-  var state = {open:null, portions:4, openList:true, openSteps:false};
+  var state = {open:null, dynamicRecipe:null, portions:4, openList:true, openSteps:false};
 
   function closeModal(){
-    state.open = null;
+    var wasUrlDriven = /^\/recepty\//.test(window.location.pathname);
+    state.open = null; state.dynamicRecipe = null;
     modalRoot.innerHTML = "";
     document.body.style.overflow = "";
     document.removeEventListener("keydown", onKeydown);
+    if (wasUrlDriven) history.pushState(null, "", "/");
   }
   function onKeydown(e){ if (e.key === "Escape") closeModal(); }
 
   function renderModal(){
-    var r = RECIPES[state.open];
+    var r = state.dynamicRecipe || RECIPES[state.open];
     var b = basket(r, state.portions);
     var portionOpts = [2, 4, 6].map(function(p){
       return '<div class="rmodal-portion-opt' + (p === state.portions ? ' on' : '') + '" data-p="' + p + '">' + pluralPorcie(p) + '</div>';
@@ -1055,8 +1115,7 @@ var RECIPES = [
               '<span class="ms chev" data-chev="steps" style="transform:' + (state.openSteps ? 'rotate(180deg)' : 'rotate(0deg)') + ';">expand_more</span></div>' +
             '<div class="rmodal-steps" data-body="steps" style="display:' + (state.openSteps ? 'flex' : 'none') + ';">' + stepsHtml + '</div>' +
             '<div class="rmodal-source"><span class="ms" style="font-variation-settings:\'FILL\' 0,\'wght\' 400,\'GRAD\' 0,\'opsz\' 24;">verified</span>' +
-              '<div>Recept je overený podľa viacerých zdrojov — pomery si nevymýšľame. Ceny sú z aktuálneho letáka daného obchodu; „odhad" znamená, že surovina v letáku nie je a počítame ju z bežnej ceny.<br>' +
-              '<a class="rmodal-weblink" href="' + recipeWebUrl(r) + '">Otvoriť celý recept na webe<span class="ms" style="font-size:var(--icon-md);font-variation-settings:\'FILL\' 0,\'wght\' 600,\'GRAD\' 0,\'opsz\' 24;">arrow_forward</span></a></div>' +
+              '<div>Recept je overený podľa viacerých zdrojov — pomery si nevymýšľame. Ceny sú z aktuálneho letáka daného obchodu; „odhad" znamená, že surovina v letáku nie je a počítame ju z bežnej ceny.</div>' +
             '</div>' +
           '</div>' +
         '</div>' +
@@ -1077,9 +1136,39 @@ var RECIPES = [
     });
   }
 
-  function openModal(i){
-    state.open = i; state.portions = 4; state.openList = true; state.openSteps = false;
+  function activateModal(){
+    state.portions = 4; state.openList = true; state.openSteps = false;
     renderModal();
+    document.body.style.overflow = "hidden";
+    document.addEventListener("keydown", onKeydown);
+  }
+
+  function openModal(i){
+    state.open = i; state.dynamicRecipe = null;
+    activateModal();
+    history.pushState(null, "", "/recepty/" + RECIPES[i].slug + "/");
+  }
+
+  function openModalDynamic(r){
+    state.open = null; state.dynamicRecipe = r;
+    activateModal();
+  }
+
+  function showNotFound(slug){
+    modalRoot.innerHTML =
+      '<div class="rmodal-scrim"><div class="rmodal-bg" data-close="1"></div>' +
+        '<div class="rmodal-box" style="align-items:center;justify-content:center;padding:var(--s-6);text-align:center;">' +
+          '<div style="max-width:360px;">' +
+            '<span class="ms" style="font-size:56px;color:var(--text-faint);">search_off</span>' +
+            '<h3 style="margin-top:var(--s-3);">Recept sa nenašiel</h3>' +
+            '<p style="color:var(--text-secondary);margin-top:var(--s-2);">Recept „' + slug + '" sme nenašli — možno bol premenovaný alebo odstránený.</p>' +
+            '<button class="btn-accent" style="margin-top:var(--s-4);" data-close="1">Späť na Šporáček</button>' +
+          '</div>' +
+        '</div>' +
+      '</div>';
+    Array.prototype.forEach.call(modalRoot.querySelectorAll('[data-close]'), function(el){
+      el.addEventListener("click", closeModal);
+    });
     document.body.style.overflow = "hidden";
     document.addEventListener("keydown", onKeydown);
   }
@@ -1087,6 +1176,18 @@ var RECIPES = [
   Array.prototype.forEach.call(grid.querySelectorAll(".recipe-card"), function(el){
     el.addEventListener("click", function(){ openModal(+el.getAttribute("data-i")); });
   });
+
+  /* ── priamy vstup cez /recepty/{slug} (odkazy z newslettera/kampaní) ──
+     GitHub Pages servíruje 404.html (kópia tejto stránky) pre každú takú
+     cestu, ktorá nemá vlastný súbor na disku — funguje teda pre AKÝKOĽVEK
+     slug vrátane receptu pridaného do databázy po poslednom nasadení,
+     lebo dáta sa vždy sťahujú naživo, nikdy sa nič nebuilduje vopred. */
+  var urlMatch = window.location.pathname.match(/^\/recepty\/([^/]+)\/?$/);
+  if (urlMatch){
+    var urlSlug = decodeURIComponent(urlMatch[1]);
+    fetchRecipeBySlug(urlSlug).then(function(r){ openModalDynamic(r); })
+      .catch(function(){ showNotFound(urlSlug); });
+  }
 })();
 
 /* ── cenník ── */

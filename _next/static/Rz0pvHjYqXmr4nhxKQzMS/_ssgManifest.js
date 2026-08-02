@@ -1,1 +1,0 @@
-self.__SSG_MANIFEST=new Set(["\u002Frecepty\u002F[slug]","\u002Fsledujem\u002Fhistoria\u002F[id]","\u002Fvarit\u002F[slug]"]);self.__SSG_MANIFEST_CB&&self.__SSG_MANIFEST_CB()
