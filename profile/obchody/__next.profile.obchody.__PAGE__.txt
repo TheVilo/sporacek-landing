@@ -1,0 +1,6 @@
+1:"$Sreact.fragment"
+2:I[82203,["/_next/static/chunks/1j60c8lah-ko8.js","/_next/static/chunks/14mrh2-p_w84d.js","/_next/static/chunks/2k6t52g6u07vh.js"],"ShopPrefsClient"]
+3:I[97367,["/_next/static/chunks/1j60c8lah-ko8.js","/_next/static/chunks/14mrh2-p_w84d.js"],"OutletBoundary"]
+4:"$Sreact.suspense"
+0:{"rsc":["$","$1","c",{"children":[["$","$L2",null,{"obchody":["BILLA","Biedronka","COOP","COOP Jednota","Fresh","Kaufland","Kraj","Lidl","Milk Agro","Terno","Tesco","Tesco hypermarket","Tesco supermarket"],"nextHref":"/profile","backHref":"/profile"}],[["$","script","script-0",{"src":"/_next/static/chunks/2k6t52g6u07vh.js","async":true}]],["$","$L3",null,{"children":["$","$4",null,{"name":"Next.MetadataOutlet","children":"$@5"}]}]]}],"isPartial":false,"staleTime":300,"varyParams":null,"buildId":"nXLTuevUVAjaSeQGfzx1B"}
+5:null
