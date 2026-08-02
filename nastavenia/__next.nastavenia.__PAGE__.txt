@@ -2,5 +2,5 @@
 2:I[87683,["/_next/static/chunks/2yrh2e6v_ot9g.js","/_next/static/chunks/14mrh2-p_w84d.js","/_next/static/chunks/3-q1aud1rmnas.js"],"PreferencesClient"]
 3:I[97367,["/_next/static/chunks/2yrh2e6v_ot9g.js","/_next/static/chunks/14mrh2-p_w84d.js"],"OutletBoundary"]
 4:"$Sreact.suspense"
-0:{"rsc":["$","$1","c",{"children":[["$","$L2",null,{"obchody":["BILLA","Biedronka","COOP","COOP Jednota","Fresh","Kaufland","Kraj","Lidl","Milk Agro","Terno","Tesco","Tesco hypermarket","Tesco supermarket"]}],[["$","script","script-0",{"src":"/_next/static/chunks/3-q1aud1rmnas.js","async":true}]],["$","$L3",null,{"children":["$","$4",null,{"name":"Next.MetadataOutlet","children":"$@5"}]}]]}],"isPartial":false,"staleTime":300,"varyParams":null,"buildId":"hHJkW3vqGk4G5IOCyg31V"}
+0:{"rsc":["$","$1","c",{"children":[["$","$L2",null,{"obchody":["BILLA","Biedronka","COOP","COOP Jednota","Fresh","Kaufland","Kraj","Lidl","Milk Agro","Terno","Tesco","Tesco hypermarket","Tesco supermarket"]}],[["$","script","script-0",{"src":"/_next/static/chunks/3-q1aud1rmnas.js","async":true}]],["$","$L3",null,{"children":["$","$4",null,{"name":"Next.MetadataOutlet","children":"$@5"}]}]]}],"isPartial":false,"staleTime":300,"varyParams":null,"buildId":"Rz0pvHjYqXmr4nhxKQzMS"}
 5:null
