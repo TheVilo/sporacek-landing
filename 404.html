@@ -508,7 +508,7 @@ footer.site{padding:var(--s-9) var(--s-9) var(--s-11);}
     <div class="hc-badge b1"><span class="ms" style="font-variation-settings:'FILL' 1,'wght' 500,'GRAD' 0,'opsz' 24;">restaurant_menu</span>Recepty priamo z akcií</div>
     <div class="hc-badge b2"><span class="ms" style="font-variation-settings:'FILL' 1,'wght' 500,'GRAD' 0,'opsz' 24;">savings</span>504,70€ ušetrené</div>
     <div class="hc-recipe">
-      <div class="ph"><img src="https://recepty.sporacek.sk/fotky-nahlad/bryndzove-halusky-slanina.jpg" alt="Bryndzové halušky so slaninou"></div>
+      <div class="ph"><img src="https://backend.sporacek.sk/storage/fotky/nahlad/bryndzove-halusky-slanina.jpg" alt="Bryndzové halušky so slaninou"></div>
       <div class="info">
         <div class="nm">Bryndzové halušky so slaninou</div>
         <div class="meta">
@@ -699,14 +699,14 @@ window.scrollToId = scrollToId;
 
 /* ── marquee — reálne recepty, nekonečná slučka ── */
 var MARQUEE_RECIPES = [
-  {photo:"https://recepty.sporacek.sk/fotky-nahlad/bravcovy-gulas-zemiaky.jpg", name:"Bravčový guláš so zemiakmi", price:"1,19€", store:"Kaufland"},
-  {photo:"https://recepty.sporacek.sk/fotky-nahlad/cestoviny-kuracie-spenat-smotana.jpg", name:"Toskánske cestoviny s kuracím", price:"1,61€", store:"Lidl"},
-  {photo:"https://recepty.sporacek.sk/fotky-nahlad/bryndzove-halusky-slanina.jpg", name:"Bryndzové halušky so slaninou", price:"1,24€", store:"Biedronka"},
-  {photo:"https://recepty.sporacek.sk/fotky-nahlad/pecena-bravcova-krkovicka-paprika-cibula.jpg", name:"Pečená bravčová krkovička s paprikou", price:"1,45€", store:"Tesco"},
-  {photo:"https://recepty.sporacek.sk/fotky-nahlad/peceny-losos-citron-brokolica.jpg", name:"Pečený losos s citrónom a brokolicou", price:"2,10€", store:"Kaufland"},
-  {photo:"https://recepty.sporacek.sk/fotky-nahlad/plnena-cuketa-mlete-maso.jpg", name:"Plnená cuketa s mletým mäsom", price:"0,95€", store:"BILLA"},
-  {photo:"https://recepty.sporacek.sk/fotky-nahlad/kremove-kuracie-rizoto-sampinony.jpg", name:"Krémové kuracie rizoto so šampiňónmi", price:"1,35€", store:"Tesco"},
-  {photo:"https://recepty.sporacek.sk/fotky-nahlad/hovedzi-gulas-zemiaky-mrkva.jpg", name:"Hovädzí guláš so zemiakmi a mrkvou", price:"1,29€", store:"Lidl"}
+  {photo:"https://backend.sporacek.sk/storage/fotky/nahlad/bravcovy-gulas-zemiaky.jpg", name:"Bravčový guláš so zemiakmi", price:"1,19€", store:"Kaufland"},
+  {photo:"https://backend.sporacek.sk/storage/fotky/nahlad/cestoviny-kuracie-spenat-smotana.jpg", name:"Toskánske cestoviny s kuracím", price:"1,61€", store:"Lidl"},
+  {photo:"https://backend.sporacek.sk/storage/fotky/nahlad/bryndzove-halusky-slanina.jpg", name:"Bryndzové halušky so slaninou", price:"1,24€", store:"Biedronka"},
+  {photo:"https://backend.sporacek.sk/storage/fotky/nahlad/pecena-bravcova-krkovicka-paprika-cibula.jpg", name:"Pečená bravčová krkovička s paprikou", price:"1,45€", store:"Tesco"},
+  {photo:"https://backend.sporacek.sk/storage/fotky/nahlad/peceny-losos-citron-brokolica.jpg", name:"Pečený losos s citrónom a brokolicou", price:"2,10€", store:"Kaufland"},
+  {photo:"https://backend.sporacek.sk/storage/fotky/nahlad/plnena-cuketa-mlete-maso.jpg", name:"Plnená cuketa s mletým mäsom", price:"0,95€", store:"BILLA"},
+  {photo:"https://backend.sporacek.sk/storage/fotky/nahlad/kremove-kuracie-rizoto-sampinony.jpg", name:"Krémové kuracie rizoto so šampiňónmi", price:"1,35€", store:"Tesco"},
+  {photo:"https://backend.sporacek.sk/storage/fotky/nahlad/hovedzi-gulas-zemiaky-mrkva.jpg", name:"Hovädzí guláš so zemiakmi a mrkvou", price:"1,29€", store:"Lidl"}
 ];
 (function(){
   var track = document.getElementById("marquee-track");
@@ -941,12 +941,17 @@ var RECIPES = [
   var modalRoot = document.getElementById("recipe-modal-root");
   if (!grid || !modalRoot) return;
 
-  function recipePhoto(r){ return r.foto || ("https://recepty.sporacek.sk/fotky-nahlad/" + r.slug + ".jpg"); }
+  function recipePhoto(r){ return r.foto || ("https://backend.sporacek.sk/storage/fotky/nahlad/" + r.slug + ".jpg"); }
 
   /* ── mapovanie živých dát z API na rovnaký tvar, aký majú RECIPES vyššie ──
      render() aj basket() logika sa vďaka tomu nemusí meniť (presne ako
-     hovorí komentár pri poli RECIPES). */
-  var API_BASE = "https://recepty.sporacek.sk/api/v1";
+     hovorí komentár pri poli RECIPES).
+     Fáza 6 (08/2026): starý statický recepty.sporacek.sk je mŕtvy (DB sa
+     presunula na Laravel), appka aj landing teraz volajú reálny "mozog"
+     server https://backend.sporacek.sk/api/v1/ — anglické polia
+     (snake_case), iný tvar než pôvodné API (viď ApiConfig.kt/
+     BackendRecipeDto.kt v sporacek-android, odtiaľ je tento tvar overený). */
+  var API_BASE = "https://backend.sporacek.sk/api/v1";
 
   function fmtDate(iso){
     if (!iso) return "";
@@ -957,49 +962,66 @@ var RECIPES = [
 
   function mapApiRecipe(api){
     var best = null;
-    if (api.najlacnejsie && api.ceny_za_porciu){
-      best = api.ceny_za_porciu.filter(function(c){ return c.obchod === api.najlacnejsie.obchod; })[0];
+    if (api.cheapest && api.prices){
+      best = api.prices.filter(function(p){ return p.store === api.cheapest.store; })[0];
     }
-    if (!best && api.ceny_za_porciu && api.ceny_za_porciu.length) best = api.ceny_za_porciu[0];
-    var nakupById = {};
-    (best && best.nakup || []).forEach(function(n){ nakupById[n.id] = n; });
-    var akciaCount = 0;
-    var items = (api.suroviny || []).map(function(s){
-      var n = nakupById[s.id];
-      if (!n || n.cena_v_recepte == null){
-        return {name:s.nazov, text:null, need:0, unit:s.jednotka, packQty:0, packPrice:0, packLabel:"", mealBase:null, saveBase:null, sale:false, est:true, missing:true};
+    if (!best && api.prices && api.prices.length) best = api.prices[0];
+    /* shopping_list VYNECHÁVA suroviny, ktoré daný leták nemá (overené
+       naživo — napr. "Bryndza" chýba v zozname pre Lidl), takže poradie
+       nie je 1:1 s ingredients a párovanie podľa indexu by posúvalo
+       nasledujúce položky. Appka ani toto staré API nemajú spoločné id,
+       preto sa páruje podľa názvu (shopping_list.ingredient je malými
+       písmenami; skús presnú zhodu, potom "obsahuje" pre zložené názvy
+       ako "Soľ, čierne korenie" → "čierne korenie"). */
+    var shoppingList = (best && best.shopping_list) || [];
+    var usedShopping = {};
+    function findShoppingEntry(name){
+      var lower = name.toLowerCase();
+      for (var i = 0; i < shoppingList.length; i++){
+        if (!usedShopping[i] && shoppingList[i].ingredient === lower){ usedShopping[i] = true; return shoppingList[i]; }
       }
-      if (n.akcia) akciaCount++;
+      for (var i = 0; i < shoppingList.length; i++){
+        if (!usedShopping[i] && lower.indexOf(shoppingList[i].ingredient) !== -1){ usedShopping[i] = true; return shoppingList[i]; }
+      }
+      return null;
+    }
+    var akciaCount = 0;
+    var items = (api.ingredients || []).map(function(s){
+      var n = findShoppingEntry(s.name);
+      if (!n){
+        return {name:s.name, text:null, need:0, unit:s.unit, packQty:0, packPrice:0, packLabel:"", mealBase:null, saveBase:null, sale:false, est:true, missing:true};
+      }
+      if (n.on_sale) akciaCount++;
       return {
-        name:s.nazov,
-        text:(s.mnozstvo === "—" ? "podľa chuti" : null),
-        need:(s.mnozstvo_g != null ? s.mnozstvo_g : s.qty),
-        unit:(s.mnozstvo_g != null ? "g" : s.jednotka),
-        packQty:n.balenie_qty || 0, packPrice:n.cena_balenia || 0, packLabel:n.balenie || "",
-        mealBase:n.cena_v_recepte, saveBase:n.usetris_v_recepte,
-        sale:!!n.akcia, est:n.zdroj_ceny === "bezna", missing:false
+        name:s.name,
+        text:(s.amount === "—" ? "podľa chuti" : null),
+        need:(s.amount_g != null ? s.amount_g : s.qty),
+        unit:(s.amount_g != null ? "g" : s.unit),
+        packQty:n.package_qty || 0, packPrice:n.package_price || 0, packLabel:n.package || "",
+        mealBase:n.price_in_recipe, saveBase:n.savings_in_recipe,
+        sale:!!n.on_sale, est:n.price_source !== "flyer", missing:false
       };
     });
-    var steps = (api.postup || []).map(function(p){
-      return [p.nadpis, p.popis + (p.tip ? " Tip: " + p.tip : "")];
+    var steps = (api.steps || []).map(function(p){
+      return [p.title, p.description + (p.tip ? " Tip: " + p.tip : "")];
     });
     return {
-      slug:api.slug, name:api.nazov, foto:api.foto_url, time:api.cas_pripravy,
-      kcal:"~" + (api.nutricne ? api.nutricne.kcal : "?") + " kcal",
-      base:api.porcie || 2,
-      store: best ? best.obchod : "",
-      valid: best ? ("leták platí do " + fmtDate(best.platnost_do)) : "",
-      coverage: akciaCount + " z " + (api.suroviny || []).length + " surovín je v akcii",
-      tags:(api.tagy || []).slice(0, 3),
+      slug:api.slug, name:api.name, foto:api.thumbnail_url || api.photo_url, time:api.prep_time,
+      kcal:"~" + (api.nutrition ? api.nutrition.kcal : "?") + " kcal",
+      base:api.servings || 2,
+      store: best ? best.store : "",
+      valid: best ? ("leták platí do " + fmtDate(best.valid_to)) : "",
+      coverage: akciaCount + " z " + (api.ingredients || []).length + " surovín je v akcii",
+      tags:(api.tags || []).slice(0, 3),
       items:items, steps:steps
     };
   }
 
   function fetchRecipeBySlug(slug){
-    return fetch(API_BASE + "/recepty/" + slug + ".json").then(function(r){
+    return fetch(API_BASE + "/recipes/" + encodeURIComponent(slug)).then(function(r){
       if (!r.ok) throw new Error("not found");
       return r.json();
-    }).then(mapApiRecipe);
+    }).then(function(json){ return mapApiRecipe(json.data); });
   }
 
   function euroDec(n){ return (n || 0).toFixed(2).replace(".", ",") + "€"; }
