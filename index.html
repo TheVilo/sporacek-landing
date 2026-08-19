@@ -1336,21 +1336,24 @@ var FAQS = [
 })();
 
 /* ── newsletter form ──
-   POSTuje priamo na náš backend (POST /api/v1/newsletter/subscribe),
-   nie na Brevo — backend sám pridá kontakt do Brevo listu a pri prvom
-   prihlásení rovno pošle uvítací mail s aktuálnymi receptami z DB
-   (BrevoContactClient, 2026-08-19). Skrytý iframe = žiadny CORS problém,
-   klasický cross-origin form POST to nepotrebuje. */
+   Konfigurácia napojenia na Brevo je v newsletter/config.json (mimo kódu,
+   nech sa dá meniť bez zásahu do JS). Kým tam action_url nie je vyplnená
+   (zostáva "TODO"), formulár beží len v lokálnom demo režime — validácia
+   a úspešná hláška fungujú, ale nič sa nikam neposiela. */
 var nlForm = document.getElementById("nl-form");
 var nlEmail = document.getElementById("nl-email");
 var nlError = document.getElementById("nl-error");
 var nlErrorText = document.getElementById("nl-error-text");
 var nlSuccess = document.getElementById("nl-success");
+var nlConfig = null;
+fetch("newsletter/config.json").then(function(r){ return r.ok ? r.json() : null; }).then(function(cfg){
+  nlConfig = cfg && cfg.prihlasovaci_formular;
+}).catch(function(){ nlConfig = null; });
 
-function submitToBackend(email){
+function submitToBrevo(cfg, email){
   var f = document.createElement("form");
   f.method = "POST";
-  f.action = "https://backend.sporacek.sk/api/v1/newsletter/subscribe";
+  f.action = cfg.action_url;
   f.target = "nl-hidden-frame";
   f.style.display = "none";
   function addField(name, value){
@@ -1360,8 +1363,9 @@ function submitToBackend(email){
     input.value = value;
     f.appendChild(input);
   }
-  addField("email", email);
-  addField("email_address_check", ""); // honeypot — musí ostať prázdne
+  addField(cfg.pole_email || "EMAIL", email);
+  if (cfg.honeypot_pole && cfg.honeypot_pole !== "TODO") addField(cfg.honeypot_pole, "");
+  (cfg.extra_skryte_polia || []).forEach(function(p){ addField(p.nazov, p.hodnota); });
   document.body.appendChild(f);
   f.submit();
   setTimeout(function(){ f.remove(); }, 3000);
@@ -1378,7 +1382,9 @@ nlForm.addEventListener("submit", function(e){
     return;
   }
   nlError.classList.remove("show");
-  submitToBackend(email);
+  if (nlConfig && nlConfig.action_url && nlConfig.action_url !== "TODO"){
+    submitToBrevo(nlConfig, email);
+  }
   nlForm.style.display = "none";
   document.getElementById("nl-success-title").textContent = "Sme dohodnutí!";
   document.getElementById("nl-success-msg").textContent = "Prvú ukážku pošleme na " + email + ".";
